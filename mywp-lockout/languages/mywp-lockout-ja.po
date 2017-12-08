@@ -1,0 +1,104 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: My WP Add-on Lockout\n"
+"POT-Creation-Date: 2017-12-07 01:39+0900\n"
+"PO-Revision-Date: 2017-12-07 01:40+0900\n"
+"Last-Translator: My WP Customize <info@mywpcustomize.com>\n"
+"Language-Team: gqevu6bsiz@gmail.com\n"
+"Language: ja\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.5\n"
+"X-Poedit-Basepath: .\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: controller/modules/mywp.controller.module.main.general.php:97
+#: setting/modules/mywp.setting.lockout.php:289
+msgid "Document"
+msgstr "ドキュメント"
+
+#: controller/modules/mywp.controller.module.updater.php:100
+#: controller/modules/mywp.controller.module.updater.php:137
+msgid "Connection lost or the server is busy. Please try again later."
+msgstr ""
+"サーバに接続できませんでした。 時間をおいてもう一度お試しください。"
+
+#: controller/modules/mywp.controller.module.updater.php:131
+#: controller/modules/mywp.controller.module.updater.php:147
+#: setting/modules/mywp.setting.lockout.php:373
+#: setting/modules/mywp.setting.lockout.php:407
+msgid "An error has occurred. Please reload the page and try again."
+msgstr ""
+"予期しないエラーが発生しました。ページをリロードして、もう一度お試し"
+"ください。"
+
+#: controller/modules/mywp.controller.module.updater.php:181
+msgid "Invalid remote Json data. Please try again in an hour."
+msgstr ""
+"リモートのJsonデータエラー。 約1時間後に、もう一度お試しください。"
+
+#: controller/modules/mywp.controller.module.updater.php:191
+msgid "Invalid results. Sorry maybe update format changed."
+msgstr "形式エラー。アップデートの形式が変更された可能性があります。"
+
+#: setting/modules/mywp.setting.lockout.php:26
+#: setting/modules/mywp.setting.lockout.php:34
+#: setting/modules/mywp.setting.lockout.php:49
+#: setting/modules/mywp.setting.lockout.php:58
+#: setting/modules/mywp.setting.lockout.php:148
+#: setting/modules/mywp.setting.lockout.php:163
+msgid "Lockout"
+msgstr "ロックアウト"
+
+#: setting/modules/mywp.setting.lockout.php:127
+msgid "Lockout time"
+msgstr "ロックアウト時間"
+
+#: setting/modules/mywp.setting.lockout.php:139
+msgid "Specific also GET data lockout"
+msgstr "特定の GET データロックアウト"
+
+#: setting/modules/mywp.setting.lockout.php:154
+msgid "Specific also POST data lockout"
+msgstr "特定の POST データロックアウト"
+
+#: setting/modules/mywp.setting.lockout.php:178
+msgid "Sending email when Locked out."
+msgstr "ロックアウト時にメールする"
+
+#: setting/modules/mywp.setting.lockout.php:182
+msgid "From"
+msgstr "差出人"
+
+#: setting/modules/mywp.setting.lockout.php:186
+msgid "To"
+msgstr "宛先"
+
+#: setting/modules/mywp.setting.lockout.php:200
+msgid "Sending with Input data."
+msgstr "入力されたデータも送信"
+
+#: setting/modules/mywp.setting.lockout.php:210
+msgid "Sending with Server data."
+msgstr "サーバのデータも送信"
+
+#: setting/modules/mywp.setting.lockout.php:218
+msgid "Lockout page"
+msgstr "ロックアウトページ"
+
+#: setting/modules/mywp.setting.lockout.php:263
+msgid "Plugin info"
+msgstr "プラグイン情報"
+
+#: setting/modules/mywp.setting.lockout.php:277
+msgid "Check again latest version"
+msgstr "最新版をチェック"
+
+#: setting/modules/mywp.setting.lockout.php:285
+msgid "Get latest version"
+msgstr "最新版を取得"
+
+#: setting/modules/mywp.setting.lockout.php:393
+msgid "Using a latest version."
+msgstr "最新版をご利用中です。"
