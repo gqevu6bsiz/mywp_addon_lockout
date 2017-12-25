@@ -68,7 +68,13 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     }
 
-    //do_action( 'mywp_lockout_exclude_lockout' );
+    $is_whitelist = apply_filters( 'mywp_lockout_is_whitelist' , false );
+
+    if( $is_whitelist ) {
+
+      return false;
+
+    }
 
     add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_logged_in' ) , 5 );
 

@@ -60,6 +60,8 @@ final class MywpLockoutApi {
 
     }
 
+    $remote_ip = apply_filters( 'mywp_lockout_get_remote_ip' , $remote_ip );
+
     return $remote_ip;
 
   }

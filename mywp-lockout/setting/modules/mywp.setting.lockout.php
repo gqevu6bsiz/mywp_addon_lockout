@@ -272,7 +272,7 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
         <tr>
           <th><?php _e( 'Latest' ); ?></th>
           <td>
-            <code><?php echo $latest; ?></code>
+            <code><?php echo MywpControllerModuleLockoutUpdater::get_latest(); ?></code>
             <br />
             <button type="button" id="check-latest-version" class="button button-secondary check-latest"><span class="dashicons dashicons-update"></span> <?php _e( 'Check again latest version' , 'mywp-lockout' ); ?></button>
             <span class="spinner"></span>
