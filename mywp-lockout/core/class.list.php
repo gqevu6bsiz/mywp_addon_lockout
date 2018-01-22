@@ -37,15 +37,25 @@ final class MywpLockoutList {
       '!qaz1qaz',
       '!qazxsw',
 
+      '12qwaszx',
+
       'admin',
       'abc',
 
       'changeme',
+      'chocolate',
       'chopper',
+
+      'dragon',
+
+      'iloveyou',
 
       'letmein',
 
+      'master',
+      'michelle',
       'migration',
+      'monkey',
 
       'parisdenoia',
       'pass',
@@ -67,6 +77,7 @@ final class MywpLockoutList {
       'slayer',
       'slipknot',
       'slut',
+      'smallcountry',
       'smokey',
       'snoopy',
       'snowfall',
@@ -130,6 +141,7 @@ final class MywpLockoutList {
       'tomcat',
       'trinity',
       'trustno',
+      'trustno1',
       'tucker',
       'tweety',
       'twitter',
@@ -185,6 +197,24 @@ final class MywpLockoutList {
       'zzzzz',
 
     );
+
+    $server_name = $_SERVER['SERVER_NAME'];
+
+    if( ! empty( $server_name ) ) {
+
+      if( strpos( $server_name , '.' ) === false ) {
+
+        $weak_password_list[] = $server_name;
+
+      } else {
+
+        $server_name_arr = explode( '.' , $server_name );
+
+        $weak_password_list[] = $server_name_arr[0];
+
+      }
+
+    }
 
     $weak_password_list = apply_filters( 'mywp_lockout_weak_password_list' , $weak_password_list );
 
@@ -347,6 +377,7 @@ final class MywpLockoutList {
     $blacklist_post_data_value_list = array(
 
       'die(pi()*42);',
+      'die(md5(34563));',
 
       'print(md5(11111));',
 
