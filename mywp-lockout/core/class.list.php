@@ -36,17 +36,25 @@ final class MywpLockoutList {
       '!qaz@wsx',
       '!qaz1qaz',
       '!qazxsw',
+      '@dm',
 
       '12qwaszx',
+      '123qwe',
+      '1qaz',
 
       'admin',
       'abc',
+      'asd123',
 
       'changeme',
       'chocolate',
       'chopper',
 
       'dragon',
+
+      'editor',
+
+      'first',
 
       'iloveyou',
 
@@ -59,13 +67,19 @@ final class MywpLockoutList {
 
       'parisdenoia',
       'pass',
-      'password',
       'p@ssw0rd',
+      'P@ssword',
+      'pa$$word',
+      'password',
 
+      'qaz',
       'qwe',
 
       'realmadrid',
+      'root',
 
+      'sadmin',
+      'shadow',
       'share',
       'shaved',
       'shit',
@@ -107,6 +121,7 @@ final class MywpLockoutList {
       'superman',
       'superuser',
       'supervisor',
+      'support',
       'surfer',
       'swimming',
 

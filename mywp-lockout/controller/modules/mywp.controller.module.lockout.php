@@ -112,6 +112,12 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     do_action( 'mywp_lockout_do_lockout' );
 
+    add_filter( 'mywp_do_lockout_page' , 'wptexturize' );
+    add_filter( 'mywp_do_lockout_page' , 'convert_smilies' , 20 );
+    add_filter( 'mywp_do_lockout_page' , 'wpautop' );
+    add_filter( 'mywp_do_lockout_page' , 'shortcode_unautop' );
+    add_filter( 'mywp_do_lockout_page' , 'prepend_attachment' );
+
     $lockout_page = apply_filters( 'mywp_do_lockout_page' , MywpLockoutApi::get_lockout_page() );
 
     echo $lockout_page;
