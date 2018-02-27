@@ -173,7 +173,7 @@ final class MywpLockoutApi {
 
       foreach( $blacklist_get_data_name_list as $word ) {
 
-        if( $post_data_key == $word ) {
+        if( (string) $post_data_key === (string) $word ) {
 
           $is_blacklist = true;
 
@@ -197,7 +197,13 @@ final class MywpLockoutApi {
 
       foreach( $blacklist_get_data_value_list as $word ) {
 
-        if( $post_data_val == $word ) {
+        if( is_array( $post_data_val ) ) {
+
+          continue;
+
+        }
+
+        if( (string) $post_data_val === (string) $word ) {
 
           $is_blacklist = true;
 
@@ -221,7 +227,7 @@ final class MywpLockoutApi {
 
       foreach( $blacklist_get_data_name_value_list as $name => $value ) {
 
-        if( $post_data_key == $name && $post_data_val == $value ) {
+        if( (string) $post_data_key === (string) $name && (string) $post_data_val === (string) $value ) {
 
           $is_blacklist = true;
 
@@ -296,7 +302,7 @@ final class MywpLockoutApi {
 
       foreach( $blacklist_post_data_name_list as $word ) {
 
-        if( $post_data_key == $word ) {
+        if( (string) $post_data_key === (string) $word ) {
 
           $is_blacklist = true;
 
@@ -320,7 +326,13 @@ final class MywpLockoutApi {
 
       foreach( $blacklist_post_data_value_list as $word ) {
 
-        if( $post_data_val == $word ) {
+        if( is_array( $post_data_val ) ) {
+
+          continue;
+
+        }
+
+        if( (string) $post_data_val === (string) $word ) {
 
           $is_blacklist = true;
 
@@ -344,7 +356,7 @@ final class MywpLockoutApi {
 
       foreach( $blacklist_post_data_name_value_list as $name => $value ) {
 
-        if( $post_data_key == $name && $post_data_val == $value ) {
+        if( (string) $post_data_key === (string) $name && (string) $post_data_val === (string) $value ) {
 
           $is_blacklist = true;
 

@@ -108,7 +108,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
   }
 
-  private static function do_lockedout() {
+  public static function do_lockedout() {
 
     do_action( 'mywp_lockout_do_lockout' );
 
@@ -158,7 +158,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
   }
 
-  private static function set_lockout_remote_data( $data = false ) {
+  public static function set_lockout_remote_data( $data = false ) {
 
     if( ! empty( $data['reason'] ) ) {
 
