@@ -56,7 +56,19 @@ final class MywpControllerModuleLockoutAuthorArchive extends MywpControllerAbstr
 
     }
 
-    if( empty( $wp_query->is_author ) ) {
+    if( ! $wp_query->is_main_query() ) {
+
+      return $wp_query;
+
+    }
+
+    if( ! $wp_query->is_archive() ) {
+
+      return $wp_query;
+
+    }
+
+    if( ! $wp_query->is_author() ) {
 
       return $wp_query;
 
@@ -74,7 +86,7 @@ final class MywpControllerModuleLockoutAuthorArchive extends MywpControllerAbstr
 
     $setting_data = $mywp_model->get_setting_data();
 
-    if( empty( $setting_data ) ) {
+    if( empty( $setting_data['disable_archive'] ) ) {
 
       return $wp_query;
 
