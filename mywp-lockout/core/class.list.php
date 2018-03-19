@@ -41,22 +41,28 @@ final class MywpLockoutList {
       '12qwaszx',
       '123qwe',
       '1qaz',
+      '1q2w3e4r',
 
       'admin',
       'abc',
-      'asd123',
 
       'changeme',
       'chocolate',
       'chopper',
 
+      'demo',
       'dragon',
 
       'editor',
 
       'first',
 
+      'guest',
+
+      'hello',
+
       'iloveyou',
+      'index',
 
       'letmein',
 
@@ -79,6 +85,7 @@ final class MywpLockoutList {
       'root',
 
       'sadmin',
+      'secret',
       'shadow',
       'share',
       'shaved',
@@ -165,6 +172,7 @@ final class MywpLockoutList {
       'unicornio',
       'universidad',
       'unknown',
+      'user',
 
       'vagina',
       'valentina',
@@ -297,7 +305,15 @@ final class MywpLockoutList {
 
   public static function get_blacklist_get_data_value_list() {
 
-    $blacklist_get_data_value_list = array();
+    $blacklist_get_data_value_list = array(
+
+      "die('===!'.'===');",
+      "die(\'===!\'.\'===\');",
+      "die(\\\\\'===!\\\\\'.\\\\\'===\\\\\');",
+      "die(\'z!a\'.\'x\');",
+      "die(\\\\\'z!a\\\\\'.\\\\\'x\\\\\');",
+
+    );
 
     $blacklist_get_data_value_list = apply_filters( 'mywp_lockout_blacklist_get_data_value_list' , $blacklist_get_data_value_list );
 
@@ -309,11 +325,19 @@ final class MywpLockoutList {
 
     $blacklist_get_data_name_value_list = array(
 
+      'author' => '0',
+
+      'font' => '/../../../../caches/bakup/default/0<<.sql',
+
       'login' => 'x2a5xB',
       'login' => 'cmd',
       'login' => 'safe',
 
-      'author' => '3',
+      'lol' => '1',
+
+      'page' => '/etc/passwd',
+
+      'yt' => 'echo',
 
     );
 
@@ -393,6 +417,8 @@ final class MywpLockoutList {
 
       'die(pi()*42);',
       'die(md5(34563));',
+      "die(\'z!a\'.\'x\');",
+      "die(\\\\\'z!a\\\\\'.\\\\\'x\\\\\');",
 
       'print(md5(11111));',
 

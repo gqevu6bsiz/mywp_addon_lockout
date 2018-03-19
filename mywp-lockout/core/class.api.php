@@ -169,11 +169,11 @@ final class MywpLockoutApi {
 
     $blacklist_get_data_name_list = MywpLockoutList::get_blacklist_get_data_name_list();
 
-    foreach( $get_data as $post_data_key => $post_data_val ) {
+    foreach( $get_data as $get_data_key => $get_data_val ) {
 
       foreach( $blacklist_get_data_name_list as $word ) {
 
-        if( (string) $post_data_key === (string) $word ) {
+        if( (string) $get_data_key === (string) $word ) {
 
           $is_blacklist = true;
 
@@ -193,17 +193,17 @@ final class MywpLockoutApi {
 
     $blacklist_get_data_value_list = MywpLockoutList::get_blacklist_get_data_value_list();
 
-    foreach( $get_data as $post_data_key => $post_data_val ) {
+    foreach( $get_data as $get_data_key => $get_data_val ) {
 
       foreach( $blacklist_get_data_value_list as $word ) {
 
-        if( is_array( $post_data_val ) ) {
+        if( is_array( $get_data_val ) ) {
 
           continue;
 
         }
 
-        if( (string) $post_data_val === (string) $word ) {
+        if( (string) $get_data_val === (string) $word ) {
 
           $is_blacklist = true;
 
@@ -223,11 +223,11 @@ final class MywpLockoutApi {
 
     $blacklist_get_data_name_value_list = MywpLockoutList::get_blacklist_get_data_name_value_list();
 
-    foreach( $get_data as $post_data_key => $post_data_val ) {
+    foreach( $get_data as $get_data_key => $get_data_val ) {
 
       foreach( $blacklist_get_data_name_value_list as $name => $value ) {
 
-        if( (string) $post_data_key === (string) $name && (string) $post_data_val === (string) $value ) {
+        if( (string) $get_data_key === (string) $name && (string) $get_data_val === (string) $value ) {
 
           $is_blacklist = true;
 
@@ -257,9 +257,9 @@ final class MywpLockoutApi {
 
       $pattern_str = sprintf( '/%s/%s' , $pattern['pattern'] , $pattern['after_delimiter'] );
 
-      foreach( $get_data as $post_data_key => $post_data_val ) {
+      foreach( $get_data as $get_data_key => $post_data_val ) {
 
-        if( preg_match( $pattern_str , $post_data_key ) ) {
+        if( preg_match( $pattern_str , $get_data_key ) ) {
 
           $is_blacklist = true;
           break;
