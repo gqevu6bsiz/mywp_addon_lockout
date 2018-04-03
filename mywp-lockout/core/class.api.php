@@ -136,6 +136,8 @@ final class MywpLockoutApi {
 
       }
 
+      $pattern['pattern'] = str_replace( '/' , '\/' , $pattern['pattern'] );
+
       $pattern_str = sprintf( '/%s/%s' , $pattern['pattern'] , $pattern['after_delimiter'] );
 
       if( preg_match( $pattern_str , $password ) ) {
@@ -254,6 +256,8 @@ final class MywpLockoutApi {
         continue;
 
       }
+
+      $pattern['pattern'] = str_replace( '/' , '\/' , $pattern['pattern'] );
 
       $pattern_str = sprintf( '/%s/%s' , $pattern['pattern'] , $pattern['after_delimiter'] );
 
@@ -383,6 +387,8 @@ final class MywpLockoutApi {
         continue;
 
       }
+
+      $pattern['pattern'] = str_replace( '/' , '\/' , $pattern['pattern'] );
 
       $pattern_str = sprintf( '/%s/%s' , $pattern['pattern'] , $pattern['after_delimiter'] );
 
