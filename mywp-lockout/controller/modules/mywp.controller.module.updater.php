@@ -64,11 +64,14 @@ final class MywpControllerModuleLockoutUpdater extends MywpControllerAbstractMod
     $plugin_info = MywpLockoutApi::plugin_info();
 
     $update_plugin = array(
+      'id' => MYWP_LOCKOUT_PLUGIN_BASENAME,
       'slug' => MYWP_LOCKOUT_PLUGIN_DIRNAME,
       'plugin' => MYWP_LOCKOUT_PLUGIN_BASENAME,
       'new_version' => $latest,
       'url' => $plugin_info['github'],
       'package' => '',
+      'tested' => false,
+      'compatibility' => false,
     );
 
     $site_transient->response[ MYWP_LOCKOUT_PLUGIN_BASENAME ] = (object) $update_plugin;

@@ -91,6 +91,12 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
     check_ajax_referer( $action_name , $action_name );
 
+    if( ! MywpApi::is_manager() ) {
+
+      return false;
+
+    }
+
     delete_site_transient( 'lockout_updater' );
     delete_site_transient( 'lockout_updater_remote' );
 
@@ -108,7 +114,7 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
     } else {
 
-      wp_send_json_success( array( 'is_latest' => 1 ) );
+      wp_send_json_success( array( 'is_latest' => 1 , 'message' => sprintf( '<p>%s</p>' , '<span class="dashicons dashicons-yes"></span> ' . __( 'Using a latest version.' , 'mywp-lockout' ) ) ) );
 
     }
 
@@ -230,14 +236,6 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
   public static function mywp_current_setting_screen_after_footer() {
 
-    $latest = MywpControllerModuleLockoutUpdater::get_latest();
-
-    if( ! empty( $latest ) or is_wp_error( $latest ) ) {
-
-      $latest = false;
-
-    }
-
     $is_latest = MywpControllerModuleLockoutUpdater::is_latest();
 
     $have_latest = false;
@@ -267,27 +265,23 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
           <th><?php printf( __( 'Version %s' ) , '' ); ?></th>
           <td>
             <code><?php echo MYWP_LOCKOUT_VERSION; ?></code>
-          </td>
-        </tr>
-        <tr>
-          <th><?php _e( 'Latest' ); ?></th>
-          <td>
-            <code><?php echo MywpControllerModuleLockoutUpdater::get_latest(); ?></code>
+            <a href="<?php echo esc_url( $plugin_info['github'] ); ?>" target="_blank" class="button button-primary link-latest"><?php printf( __( 'Get Version %s' ) , $have_latest ); ?></a>
+            <p class="already-latest"><span class="dashicons dashicons-yes"></span> <?php _e( 'Using a latest version.' , 'mywp-lockout' ); ?></p>
             <br />
-            <button type="button" id="check-latest-version" class="button button-secondary check-latest"><span class="dashicons dashicons-update"></span> <?php _e( 'Check again latest version' , 'mywp-lockout' ); ?></button>
-            <span class="spinner"></span>
           </td>
         </tr>
         <tr>
-          <th>&nbsp;</th>
+          <th><?php _e( 'Check latest' , 'mywp-lockout' ); ?></th>
           <td>
-            <a href="<?php echo esc_url( $plugin_info['github'] ); ?>" target="_blank" class="button button-primary link-latest">
-              <span class="dashicons dashicons-admin-plugins"></span> <?php _e( 'Get latest version' , 'mywp-lockout' ); ?>
-            </a>
-            &nbsp;
-            <a href="<?php echo esc_url( $plugin_info['document_url'] ); ?>" class="button button-secondary" target="_blank">
-              <span class="dashicons dashicons-book"></span> <?php _e( 'Document' , 'mywp-lockout' ); ?>
-            </a>
+            <button type="button" id="check-latest-version" class="button button-secondary check-latest"><span class="dashicons dashicons-update"></span> <?php _e( 'Check latest version' , 'mywp-lockout' ); ?></button>
+            <span class="spinner"></span>
+            <div id="check-latest-result"></div>
+          </td>
+        </tr>
+        <tr>
+          <th><?php _e( 'Document' , 'mywp-lockout' ); ?></th>
+          <td>
+            <a href="<?php echo esc_url( $plugin_info['document_url'] ); ?>" class="button button-secondary" target="_blank"><span class="dashicons dashicons-book"></span> <?php _e( 'Document' , 'mywp-lockout' ); ?>
           </td>
         </tr>
       </tbody>
@@ -316,6 +310,21 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 }
 #version-check-table.checking .spinner {
   visibility: visible;
+}
+#version-check-table .link-latest {
+  margin-left: 12px;
+  display: none;
+}
+#version-check-table .already-latest {
+  display: inline-block;
+}
+#version-check-table .check-latest {
+}
+#version-check-table.have-latest .link-latest {
+  display: inline-block;
+}
+#version-check-table.have-latest .already-latest {
+  display: none;
 }
 </style>
 <script>
@@ -370,9 +379,9 @@ jQuery(document).ready(function($){
 
       if( typeof xhr !== 'object' || xhr.success === undefined ) {
 
-        alert( '<?php _e( 'An error has occurred. Please reload the page and try again.' ); ?>' );
-
         $version_check_table.removeClass('checking');
+
+        alert( '<?php _e( 'An error has occurred. Please reload the page and try again.' ); ?>' );
 
         return false;
 
@@ -380,9 +389,9 @@ jQuery(document).ready(function($){
 
       if( ! xhr.success ) {
 
-        alert( xhr.data.error );
-
         $version_check_table.removeClass('checking');
+
+        alert( xhr.data.error );
 
         return false;
 
@@ -390,7 +399,7 @@ jQuery(document).ready(function($){
 
       if( xhr.data.is_latest ) {
 
-        alert( '<?php _e( 'Using a latest version.' , 'mywp-lockout' ); ?>' );
+        $('#check-latest-result').html( xhr.data.message );
 
         $version_check_table.removeClass('checking');
 
@@ -404,9 +413,9 @@ jQuery(document).ready(function($){
 
     }).fail( function( xhr ) {
 
-      alert( '<?php _e( 'An error has occurred. Please reload the page and try again.' ); ?>' );
-
       $version_check_table.removeClass('checking');
+
+      alert( '<?php _e( 'An error has occurred. Please reload the page and try again.' ); ?>' );
 
       return false;
 

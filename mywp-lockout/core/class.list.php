@@ -71,6 +71,8 @@ final class MywpLockoutList {
       'migration',
       'monkey',
 
+      'oshibe',
+
       'parisdenoia',
       'pass',
       'p@ssw0rd',
@@ -293,7 +295,10 @@ final class MywpLockoutList {
 
     $blacklist_get_data_name_list = array(
 
+      '/__/__/wp-config_php',
+
       'testwork',
+      'spanskys_filecontent',
 
     );
 
@@ -307,11 +312,18 @@ final class MywpLockoutList {
 
     $blacklist_get_data_value_list = array(
 
+      '../wp-config.php',
+      '../../wp-config.php',
+      '../../../wp-config.php',
+      '../../../../wp-config.php',
+
       "die('===!'.'===');",
       "die(\'===!\'.\'===\');",
       "die(\\\\\'===!\\\\\'.\\\\\'===\\\\\');",
       "die(\'z!a\'.\'x\');",
       "die(\\\\\'z!a\\\\\'.\\\\\'x\\\\\');",
+
+      'wp-config.php',
 
     );
 
