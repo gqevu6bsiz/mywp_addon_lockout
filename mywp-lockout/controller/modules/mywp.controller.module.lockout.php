@@ -104,7 +104,11 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
       self::do_lockedout();
 
+      exit;
+
     }
+
+    do_action( 'mywp_lockout_through_lockout' );
 
   }
 
@@ -121,8 +125,6 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
     $lockout_page = apply_filters( 'mywp_do_lockout_page' , MywpLockoutApi::get_lockout_page() );
 
     echo $lockout_page;
-
-    exit;
 
   }
 
@@ -262,6 +264,14 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
     $password = $_POST['pwd'];
 
     self::$input_fields = array( 'login_name' => $login_name , 'password' => $password );
+
+    if( $login_name === $password ) {
+
+      self::set_lockout_remote_data( array( 'reason' => 'Same Login name and  Password' , 'input_fields' => self::$input_fields ) );
+
+      return true;
+
+    }
 
     if( MywpLockoutApi::is_weak_password( $password ) ) {
 
