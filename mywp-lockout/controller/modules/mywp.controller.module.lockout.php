@@ -31,6 +31,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
     $initial_data['expire_timeout'] = '';
     $initial_data['specific_get_lockout'] = '';
     $initial_data['specific_post_lockout'] = '';
+    $initial_data['unknown_plugin_theme_lockout'] = '';
 
     $initial_data['send_mail'] = '';
     $initial_data['send_to_email'] = '';
@@ -48,6 +49,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
     $default_data['expire_timeout'] = '10';
     $default_data['specific_get_lockout'] = false;
     $default_data['specific_post_lockout'] = false;
+    $default_data['unknown_plugin_theme_lockout'] = false;
 
     $default_data['send_mail'] = false;
     $default_data['send_to_email'] = '';
@@ -85,6 +87,8 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
     add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_get_data_lockout' ) , 40 );
 
     add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_post_data_lockout' ) , 50 );
+
+    add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_unknown_plugin_theme_lockout' ) , 60 );
 
     add_action( 'mywp_lockout_do_lockout' , array( __CLASS__ , 'lockout_send_email' ) , 20 );
 
@@ -267,7 +271,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     if( $login_name === $password ) {
 
-      self::set_lockout_remote_data( array( 'reason' => 'Same Login name and  Password' , 'input_fields' => self::$input_fields ) );
+      self::set_lockout_remote_data( array( 'reason' => 'Same Login name and Password' , 'input_fields' => self::$input_fields ) );
 
       return true;
 
@@ -276,6 +280,16 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
     if( MywpLockoutApi::is_weak_password( $password ) ) {
 
       self::set_lockout_remote_data( array( 'reason' => 'Weak password' , 'input_fields' => self::$input_fields ) );
+
+      return true;
+
+    }
+
+    $login_name .= '123';
+
+    if( $login_name === $password ) {
+
+      self::set_lockout_remote_data( array( 'reason' => 'Similar Login name and Password' , 'input_fields' => self::$input_fields ) );
 
       return true;
 
@@ -352,6 +366,76 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
     if( MywpLockoutApi::is_blacklist_post_data( $post_data ) ) {
 
       self::set_lockout_remote_data( array( 'reason' => 'Blacklist Post Data' , 'input_fields' => self::$input_fields ) );
+
+      return true;
+
+    }
+
+    return $is_lockout;
+
+  }
+
+  public static function is_unknown_plugin_theme_lockout( $is_lockout ) {
+
+    if( $is_lockout ) {
+
+      return $is_lockout;
+
+    }
+
+    $setting_data = self::get_setting_data();
+
+    if( empty( $setting_data['unknown_plugin_theme_lockout'] ) ) {
+
+      return $is_lockout;
+
+    }
+
+    if( empty( $_SERVER['REQUEST_URI'] ) ) {
+
+      return false;
+
+    }
+
+    $request_uri = wp_parse_url( $_SERVER['REQUEST_URI'] );
+
+    if( empty( $request_uri['path'] ) or strpos( $request_uri['path'] , '.php' ) === false ) {
+
+      return false;
+
+    }
+
+    $request_path = $request_uri['path'];
+
+    $plugin_theme_path = false;
+
+    if( strpos( $request_path , 'wp-content/plugins/' ) !== false ) {
+
+      $str_num = ( strpos( $request_path , 'wp-content/plugins/' ) + strlen( 'wp-content/plugins/' ) );
+
+      $plugin_theme_path = WP_PLUGIN_DIR . '/' . substr( $request_path , $str_num );
+
+    } elseif( strpos( $request_path , 'wp-content/themes/' ) !== false ) {
+
+      $str_num = ( strpos( $request_path , 'wp-content/themes/' ) + strlen( 'wp-content/themes/' ) );
+
+      $plugin_theme_path = get_theme_root() . '/' . substr( $request_path , $str_num );
+
+    }
+
+    if( empty( $plugin_theme_path ) ) {
+
+      return false;
+
+    }
+
+    $post_data = $_POST;
+
+    self::$input_fields = array( 'post_data' => $post_data );
+
+    if( ! file_exists( $plugin_theme_path ) ) {
+
+      self::set_lockout_remote_data( array( 'reason' => 'Unknown Plugin/Theme Access' , 'input_fields' => self::$input_fields ) );
 
       return true;
 

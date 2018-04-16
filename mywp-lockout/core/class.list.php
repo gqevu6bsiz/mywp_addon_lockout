@@ -45,7 +45,10 @@ final class MywpLockoutList {
       '1qaz',
       '1q2w3e4r',
       '1,12E 11',
+      '67i5jjjt',
 
+      'a12345678',
+      'a123powerx-*',
       'admin',
       'abc',
       'alessandra',
@@ -67,6 +70,7 @@ final class MywpLockoutList {
       'chocolate',
       'chopper',
       'cliente',
+      'counter',
       'csaaihex',
 
       'dave',
@@ -104,6 +108,7 @@ final class MywpLockoutList {
       'lfplhfgthvf',
 
       'magda',
+      'mercedes',
       'maria',
       'marketing',
       'marta',
@@ -120,6 +125,7 @@ final class MywpLockoutList {
       'p@ssw0rd',
       'P@ssword',
       'pa$$word',
+      'paradise',
       'parisdenoia',
       'parkerspin',
       'pass',
@@ -366,6 +372,8 @@ final class MywpLockoutList {
       'testwork',
       'spanskys_filecontent',
 
+      'url../../../../wp-config.php',
+
     );
 
     $blacklist_get_data_name_list = apply_filters( 'mywp_lockout_blacklist_get_data_name_list' , $blacklist_get_data_name_list );
@@ -414,6 +422,8 @@ final class MywpLockoutList {
       'lol' => '1',
 
       'page' => '/etc/passwd',
+
+      '_wrapper_format' => 'drupal_ajax',
 
       'yt' => 'echo',
 

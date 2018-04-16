@@ -3,7 +3,7 @@
 Plugin Name: My WP Add-on Lockout
 Plugin URI: https://mywpcustomize.com/add_ons/my-wp-add-on-lockout/‎
 Description: My WP Add-on Lockout is Lockout to specific requests and do not waste transfer resources.
-Version: 1.1.8
+Version: 1.2
 Author: gqevu6bsiz
 Author URI: http://gqevu6bsiz.chicappa.jp/
 Text Domain: mywp-lockout
@@ -51,7 +51,7 @@ final class MywpLockout {
   private static function define_constants() {
 
     define( 'MYWP_LOCKOUT_NAME' , 'My WP Add-On Lockout' );
-    define( 'MYWP_LOCKOUT_VERSION' , '1.1.8' );
+    define( 'MYWP_LOCKOUT_VERSION' , '1.2' );
     define( 'MYWP_LOCKOUT_PLUGIN_FILE' , __FILE__ );
     define( 'MYWP_LOCKOUT_PLUGIN_BASENAME' , plugin_basename( MYWP_LOCKOUT_PLUGIN_FILE ) );
     define( 'MYWP_LOCKOUT_PLUGIN_DIRNAME' , dirname( MYWP_LOCKOUT_PLUGIN_BASENAME ) );
