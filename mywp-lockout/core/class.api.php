@@ -421,6 +421,80 @@ final class MywpLockoutApi {
 
   }
 
+  public static function is_blacklist_file_data( $file_data = false ) {
+
+    if( empty( $file_data ) ) {
+
+      return true;
+
+    }
+
+    $is_blacklist = false;
+
+    $blacklist_file_data_name_list = MywpLockoutList::get_blacklist_file_data_name_list();
+
+    foreach( $file_data as $file_data_key => $file_data_val ) {
+
+      if( empty( $file_data_key ) ) {
+
+        continue;
+
+      }
+
+      foreach( $blacklist_file_data_name_list as $word ) {
+
+        if( (string) $file_data_key === (string) $word ) {
+
+          $is_blacklist = true;
+
+          break;
+
+        }
+
+      }
+
+    }
+
+    if( $is_blacklist ) {
+
+      return true;
+
+    }
+
+    $blacklist_file_data_value_list = MywpLockoutList::get_blacklist_file_data_value_list();
+
+    foreach( $file_data as $file_data_key => $file_data_val ) {
+
+      foreach( $blacklist_file_data_value_list as $word ) {
+
+        if( empty( $file_data_val['name'] ) ) {
+
+          continue;
+
+        }
+
+        if( (string) $file_data_val['name'] === (string) $word ) {
+
+          $is_blacklist = true;
+
+          break;
+
+        }
+
+      }
+
+    }
+
+    if( $is_blacklist ) {
+
+      return true;
+
+    }
+
+    return false;
+
+  }
+
 }
 
 endif;

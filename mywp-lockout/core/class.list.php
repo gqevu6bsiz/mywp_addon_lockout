@@ -567,6 +567,33 @@ final class MywpLockoutList {
 
   }
 
+  public static function get_blacklist_file_data_name_list() {
+
+    $blacklist_file_data_name_list = array(
+    );
+
+    $blacklist_file_data_name_list = apply_filters( 'mywp_lockout_blacklist_file_data_name_list' , $blacklist_file_data_name_list );
+
+    return $blacklist_file_data_name_list;
+
+  }
+
+  public static function get_blacklist_file_data_value_list() {
+
+    $blacklist_file_data_value_list = array(
+
+      'bp.phtml',
+
+      'cb.php.php',
+
+    );
+
+    $blacklist_file_data_value_list = apply_filters( 'mywp_lockout_blacklist_file_data_value_list' , $blacklist_file_data_value_list );
+
+    return $blacklist_file_data_value_list;
+
+  }
+
 }
 
 endif;

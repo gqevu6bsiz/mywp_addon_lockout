@@ -3,46 +3,47 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: My WP Add-on Lockout\n"
-"POT-Creation-Date: 2017-12-24 21:22+0900\n"
+"POT-Creation-Date: 2018-05-03 17:00+0900\n"
 "PO-Revision-Date: 2017-12-24 21:21+0900\n"
 "Last-Translator: \n"
 "Language-Team: info@mywpcustomize.com\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.5\n"
+"X-Generator: Poedit 2.0.6\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: mywp-lockout.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
+"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
 #: controller/modules/mywp.controller.module.main.general.php:97
-#: setting/modules/mywp.setting.lockout.php:289
+#: setting/modules/mywp.setting.lockout.php:312
+#: setting/modules/mywp.setting.lockout.php:314
 msgid "Document"
 msgstr ""
 
-#: controller/modules/mywp.controller.module.updater.php:100
-#: controller/modules/mywp.controller.module.updater.php:137
+#: controller/modules/mywp.controller.module.updater.php:103
+#: controller/modules/mywp.controller.module.updater.php:140
 msgid "Connection lost or the server is busy. Please try again later."
 msgstr ""
 
-#: controller/modules/mywp.controller.module.updater.php:131
-#: controller/modules/mywp.controller.module.updater.php:147
-#: setting/modules/mywp.setting.lockout.php:373
-#: setting/modules/mywp.setting.lockout.php:407
+#: controller/modules/mywp.controller.module.updater.php:134
+#: controller/modules/mywp.controller.module.updater.php:150
+#: setting/modules/mywp.setting.lockout.php:414
+#: setting/modules/mywp.setting.lockout.php:448
 msgid "An error has occurred. Please reload the page and try again."
 msgstr ""
 
-#: controller/modules/mywp.controller.module.updater.php:181
+#: controller/modules/mywp.controller.module.updater.php:184
 msgid "Invalid remote Json data. Please try again in an hour."
 msgstr ""
 
-#: controller/modules/mywp.controller.module.updater.php:191
+#: controller/modules/mywp.controller.module.updater.php:194
 msgid "Invalid results. Sorry maybe update format changed."
 msgstr ""
 
@@ -50,59 +51,70 @@ msgstr ""
 #: setting/modules/mywp.setting.lockout.php:34
 #: setting/modules/mywp.setting.lockout.php:49
 #: setting/modules/mywp.setting.lockout.php:58
-#: setting/modules/mywp.setting.lockout.php:148
-#: setting/modules/mywp.setting.lockout.php:163
+#: setting/modules/mywp.setting.lockout.php:154
+#: setting/modules/mywp.setting.lockout.php:169
+#: setting/modules/mywp.setting.lockout.php:184
+#: setting/modules/mywp.setting.lockout.php:199
 msgid "Lockout"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:127
+#: setting/modules/mywp.setting.lockout.php:117
+#: setting/modules/mywp.setting.lockout.php:299
+msgid "Using a latest version."
+msgstr ""
+
+#: setting/modules/mywp.setting.lockout.php:133
 msgid "Lockout time"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:139
-msgid "Specific also GET data lockout"
+#: setting/modules/mywp.setting.lockout.php:145
+msgid "Specific GET data lockout"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:154
-msgid "Specific also POST data lockout"
+#: setting/modules/mywp.setting.lockout.php:160
+msgid "Specific POST data lockout"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:178
+#: setting/modules/mywp.setting.lockout.php:175
+msgid "Specific FILES data lockout"
+msgstr ""
+
+#: setting/modules/mywp.setting.lockout.php:190
+msgid "Unknown plugins/themes access lockout"
+msgstr ""
+
+#: setting/modules/mywp.setting.lockout.php:214
 msgid "Sending email when Locked out."
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:182
+#: setting/modules/mywp.setting.lockout.php:218
 msgid "From"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:186
+#: setting/modules/mywp.setting.lockout.php:222
 msgid "To"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:200
+#: setting/modules/mywp.setting.lockout.php:236
 msgid "Sending with Input data."
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:210
+#: setting/modules/mywp.setting.lockout.php:246
 msgid "Sending with Server data."
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:218
+#: setting/modules/mywp.setting.lockout.php:254
 msgid "Lockout page"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:263
+#: setting/modules/mywp.setting.lockout.php:291
 msgid "Plugin info"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:277
-msgid "Check again latest version"
+#: setting/modules/mywp.setting.lockout.php:304
+msgid "Check latest"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:285
-msgid "Get latest version"
-msgstr ""
-
-#: setting/modules/mywp.setting.lockout.php:393
-msgid "Using a latest version."
+#: setting/modules/mywp.setting.lockout.php:306
+msgid "Check latest version"
 msgstr ""
