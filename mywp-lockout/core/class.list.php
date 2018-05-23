@@ -37,11 +37,16 @@ final class MywpLockoutList {
       '!qaz1qaz',
       '!qazxsw',
       '@dm',
+      '{nigoL}',
 
+      '1{nigoL}',
+      '123{nigoL}',
+      '123123a',
       '12qwaszx',
       '12345q',
       '1234qwer',
       '123qwe',
+      '13pass',
       '1qaz',
       '1q2w3e4r',
       '1,12E 11',
@@ -49,6 +54,7 @@ final class MywpLockoutList {
 
       'a12345678',
       'a123powerx-*',
+      'aaaaaa',
       'admin',
       'abc',
       'alessandra',
@@ -57,6 +63,8 @@ final class MywpLockoutList {
       'andromeda',
       'apple',
       'arif',
+      'asdasd',
+      'asdqwe123',
 
       'banana',
       'blogadmin',
@@ -70,6 +78,7 @@ final class MywpLockoutList {
       'chocolate',
       'chopper',
       'cliente',
+      'computer',
       'counter',
       'csaaihex',
 
@@ -119,6 +128,8 @@ final class MywpLockoutList {
       'migration',
       'monkey',
 
+      'NULL',
+
       'oliver',
       'oshibe',
 
@@ -134,6 +145,8 @@ final class MywpLockoutList {
       'philipp',
       'prince',
 
+      'q1q1q1',
+      'q1w2e3r4t5',
       'qaz',
       'qq123',
       'qwe',
@@ -194,6 +207,7 @@ final class MywpLockoutList {
       'superuser',
       'supervisor',
       'support',
+      'stalker',
       'surfer',
       'swimming',
 
@@ -342,6 +356,16 @@ final class MywpLockoutList {
         'after_delimiter' => 'i',
       );
 
+      $patterns[] = array(
+        'pattern' => sprintf( '^[0-9]+%s$' , $word ),
+        'after_delimiter' => 'i',
+      );
+
+      $patterns[] = array(
+        'pattern' => sprintf( '^[0-9]+%s[0-9]+$' , $word ),
+        'after_delimiter' => 'i',
+      );
+
     }
 
     $default = array(
@@ -390,6 +414,11 @@ final class MywpLockoutList {
       '../../wp-config.php',
       '../../../wp-config.php',
       '../../../../wp-config.php',
+      '/boot.ini\0',
+      '/etc',
+      '/etc/passwd\0',
+      '/windows/win.ini\0',
+      '/winnt/win.ini\0',
 
       "die('===!'.'===');",
       "die(\'===!\'.\'===\');",
@@ -411,17 +440,26 @@ final class MywpLockoutList {
 
     $blacklist_get_data_name_value_list = array(
 
+      '_wrapper_format' => 'drupal_ajax',
+
       'author' => '0',
+
+      'dataType' => 'ApplyChanges',
+      'DD' => 'ASNIAOUFMOMZJIBD',
 
       'font' => '/../../../../caches/bakup/default/0<<.sql',
 
       'login' => 'x2a5xB',
       'login' => 'cmd',
       'login' => 'safe',
-
       'lol' => '1',
 
+      'mod' => 'publisher',
+      'mstshash' => 'Administr',
+
       'page' => '/etc/passwd',
+
+      'ref' => 'marketopia',
 
       '_wrapper_format' => 'drupal_ajax',
 
@@ -585,6 +623,8 @@ final class MywpLockoutList {
       'bp.phtml',
 
       'cb.php.php',
+
+      'db.php',
 
     );
 
