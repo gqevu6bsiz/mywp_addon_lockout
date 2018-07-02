@@ -128,6 +128,16 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
     add_filter( 'mywp_do_lockout_page' , 'shortcode_unautop' );
     add_filter( 'mywp_do_lockout_page' , 'prepend_attachment' );
 
+    $lockout_header = 'HTTP/1.1 403 Forbidden';
+
+    $lockout_header = apply_filters( 'mywp_do_lockout_page_header' , $lockout_header );
+
+    if( ! empty( $lockout_header ) ) {
+
+      header( $lockout_header );
+
+    }
+
     $lockout_page = apply_filters( 'mywp_do_lockout_page' , MywpLockoutApi::get_lockout_page() );
 
     echo $lockout_page;

@@ -91,6 +91,7 @@ final class MywpLockoutList {
       'emre',
 
       'first',
+      'F*uckYou',
 
       'guest',
       'gimboroot',
@@ -115,6 +116,7 @@ final class MywpLockoutList {
 
       'letmein',
       'lfplhfgthvf',
+      'logitech89',
 
       'magda',
       'mercedes',
@@ -146,6 +148,8 @@ final class MywpLockoutList {
       'prince',
 
       'q1q1q1',
+      'q1w2e3',
+      'q1w2e3r4',
       'q1w2e3r4t5',
       'qaz',
       'qq123',
@@ -160,6 +164,7 @@ final class MywpLockoutList {
 
       'realmadrid',
       'redaktion',
+      'ricsky789..',
       'root',
 
       'sadmin',
@@ -415,10 +420,16 @@ final class MywpLockoutList {
       '../../../wp-config.php',
       '../../../../wp-config.php',
       '/boot.ini\0',
+      '/boot.ini%0',
       '/etc',
+      '/etc/passwd',
       '/etc/passwd\0',
+      '/etc/passwd%0',
       '/windows/win.ini\0',
+      '/windows/win.ini%0',
       '/winnt/win.ini\0',
+      '/winnt/win.ini%0',
+      '<script>alert(/openvas-xss-test/)</script>',
 
       "die('===!'.'===');",
       "die(\'===!\'.\'===\');",
@@ -444,10 +455,16 @@ final class MywpLockoutList {
 
       'author' => '0',
 
+      'Command' => 'GetFolders',
+
       'dataType' => 'ApplyChanges',
       'DD' => 'ASNIAOUFMOMZJIBD',
 
       'font' => '/../../../../caches/bakup/default/0<<.sql',
+
+      'gf_page' => 'upload',
+
+      'iIDcat' => '\'',
 
       'login' => 'x2a5xB',
       'login' => 'cmd',
