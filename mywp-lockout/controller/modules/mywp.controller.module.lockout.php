@@ -98,6 +98,8 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     self::lockout();
 
+    add_action( 'wp_footer' , array( __CLASS__ , 'wp_footer' ) );
+
   }
 
   private static function lockout() {
@@ -113,8 +115,6 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
       self::do_lockedout();
 
     }
-
-    do_action( 'mywp_lockout_through_lockout' );
 
   }
 
@@ -550,6 +550,12 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
     $headers = apply_filters( 'mywp_lockout_send_email_headers' , array() );
 
     wp_mail( $to , $subject , $messages , $headers );
+
+  }
+
+  public static function wp_footer() {
+
+    do_action( 'mywp_lockout_through_lockout' );
 
   }
 
