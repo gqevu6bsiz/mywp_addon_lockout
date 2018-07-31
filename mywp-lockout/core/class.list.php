@@ -93,8 +93,9 @@ final class MywpLockoutList {
       'first',
       'F*uckYou',
 
-      'guest',
+      'gfhjkm',
       'gimboroot',
+      'guest',
 
       'hannah',
       'hello',
@@ -117,6 +118,7 @@ final class MywpLockoutList {
       'letmein',
       'lfplhfgthvf',
       'logitech89',
+      'love',
 
       'magda',
       'mercedes',
@@ -129,6 +131,7 @@ final class MywpLockoutList {
       'michelle',
       'migration',
       'monkey',
+      'myname',
 
       'NULL',
 
@@ -398,8 +401,11 @@ final class MywpLockoutList {
 
       '/__/__/wp-config_php',
 
-      'testwork',
+      'cperpage',
+
       'spanskys_filecontent',
+
+      'testwork',
 
       'url../../../../wp-config.php',
 
@@ -436,6 +442,8 @@ final class MywpLockoutList {
       "die(\\\\\'===!\\\\\'.\\\\\'===\\\\\');",
       "die(\'z!a\'.\'x\');",
       "die(\\\\\'z!a\\\\\'.\\\\\'x\\\\\');",
+
+      'user/password',
 
       'wp-config.php',
 
@@ -545,6 +553,7 @@ final class MywpLockoutList {
 
       'x0x0',
       'xxeerr',
+      'xxxxxxxxxxxx_loads',
 
     );
 
@@ -557,6 +566,8 @@ final class MywpLockoutList {
   public static function get_blacklist_post_data_value_list() {
 
     $blacklist_post_data_value_list = array(
+
+      'cHJpbnQobWQ1KDMyNDIzNCkpOw==',
 
       'die(pi()*42);',
       'die(md5(34563));',
@@ -636,18 +647,30 @@ final class MywpLockoutList {
   public static function get_blacklist_file_data_value_list() {
 
     $blacklist_file_data_value_list = array(
-
-      'bp.phtml',
-
-      'cb.php.php',
-
-      'db.php',
-
     );
 
     $blacklist_file_data_value_list = apply_filters( 'mywp_lockout_blacklist_file_data_value_list' , $blacklist_file_data_value_list );
 
     return $blacklist_file_data_value_list;
+
+  }
+
+  public static function get_blacklist_file_extension_list() {
+
+    $blacklist_file_extension_list = array(
+
+      'cgi',
+
+      'php',
+      'phtml',
+
+      'sh',
+
+    );
+
+    $blacklist_file_extension_list = apply_filters( 'mywp_lockout_blacklist_file_extension_list' , $blacklist_file_extension_list );
+
+    return $blacklist_file_extension_list;
 
   }
 

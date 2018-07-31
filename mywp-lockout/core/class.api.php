@@ -491,6 +491,44 @@ final class MywpLockoutApi {
 
     }
 
+    $blacklist_file_extension_list = MywpLockoutList::get_blacklist_file_extension_list();
+
+    foreach( $file_data as $file_data_key => $file_data_val ) {
+
+      foreach( $blacklist_file_extension_list as $word ) {
+
+        if( empty( $file_data_val['name'] ) ) {
+
+          continue;
+
+        }
+
+        $file_path_info = pathinfo( $file_data_val['name'] );
+
+        if( empty( $file_path_info['extension'] ) ) {
+
+          continue;
+
+        }
+
+        if( (string) $file_path_info['extension'] === (string) $word ) {
+
+          $is_blacklist = true;
+
+          break;
+
+        }
+
+      }
+
+    }
+
+    if( $is_blacklist ) {
+
+      return true;
+
+    }
+
     return false;
 
   }
