@@ -399,7 +399,11 @@ final class MywpLockoutList {
 
     $blacklist_get_data_name_list = array(
 
+      '_escaped_fragment_',
+
       '/__/__/wp-config_php',
+
+      'bataboom',
 
       'cperpage',
 
@@ -487,6 +491,8 @@ final class MywpLockoutList {
       'ref' => 'marketopia',
 
       '_wrapper_format' => 'drupal_ajax',
+
+      'x' => '',
 
       'yt' => 'echo',
 

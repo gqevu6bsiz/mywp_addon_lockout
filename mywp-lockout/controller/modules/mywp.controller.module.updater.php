@@ -203,6 +203,12 @@ final class MywpControllerModuleLockoutUpdater extends MywpControllerAbstractMod
 
     set_site_transient( self::$id , $transient , HOUR_IN_SECONDS );
 
+    if( ! function_exists( 'wp_clean_plugins_cache' ) ) {
+
+      require_once( ABSPATH . 'wp-admin/includes/plugin.php' );
+
+    }
+
     wp_clean_plugins_cache();
 
     return $latest;
