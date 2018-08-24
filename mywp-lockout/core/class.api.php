@@ -155,6 +155,46 @@ final class MywpLockoutApi {
 
     }
 
+    if( ! empty( $_SERVER['SERVER_NAME'] ) ) {
+
+      $server_name = $_SERVER['SERVER_NAME'];
+
+      $weeek_domain_password = false;
+
+      if( strpos( $server_name , '.' ) === false ) {
+
+        $weeek_domain_password = $server_name;
+
+      } else {
+
+        $server_name_arr = explode( '.' , $server_name );
+
+        array_pop( $server_name_arr );
+
+        if( isset( $server_name_arr[1] ) ) {
+
+          $weeek_domain_password = implode( '.' , $server_name_arr );
+
+        } else {
+
+          $weeek_domain_password = $server_name_arr[0];
+
+        }
+
+      }
+
+      if( $weeek_domain_password ) {
+
+        if( strpos( $password , $weeek_domain_password ) !== false ) {
+
+          return true;
+
+        }
+
+      }
+
+    }
+
     return false;
 
   }

@@ -3,14 +3,14 @@ msgid ""
 msgstr ""
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 "Project-Id-Version: My WP Add-on Lockout\n"
-"POT-Creation-Date: 2018-05-03 17:00+0900\n"
+"POT-Creation-Date: 2018-08-24 14:09+0900\n"
 "PO-Revision-Date: 2017-12-24 21:21+0900\n"
 "Last-Translator: \n"
 "Language-Team: info@mywpcustomize.com\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.6\n"
+"X-Generator: Poedit 2.0.7\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: mywp-lockout.php\n"
@@ -23,8 +23,19 @@ msgstr ""
 
 #: controller/modules/mywp.controller.module.main.general.php:97
 #: setting/modules/mywp.setting.lockout.php:312
-#: setting/modules/mywp.setting.lockout.php:314
-msgid "Document"
+msgid "Documents"
+msgstr ""
+
+#: controller/modules/mywp.controller.module.main.general.php:119
+#: setting/modules/mywp.setting.lockout.php:128
+msgid "Settings"
+msgstr ""
+
+#: controller/modules/mywp.controller.module.main.general.php:145
+#, php-format
+msgid ""
+"There is a new version of %1$s available. <a href=\"%2$s\" %3$s>View "
+"version %4$s details</a>."
 msgstr ""
 
 #: controller/modules/mywp.controller.module.updater.php:103
@@ -67,6 +78,10 @@ msgstr ""
 msgid "Lockout time"
 msgstr ""
 
+#: setting/modules/mywp.setting.lockout.php:140
+msgid "Minute"
+msgstr ""
+
 #: setting/modules/mywp.setting.lockout.php:145
 msgid "Specific GET data lockout"
 msgstr ""
@@ -83,8 +98,12 @@ msgstr ""
 msgid "Unknown plugins/themes access lockout"
 msgstr ""
 
+#: setting/modules/mywp.setting.lockout.php:205
+msgid "Email me whenever"
+msgstr ""
+
 #: setting/modules/mywp.setting.lockout.php:214
-msgid "Sending email when Locked out."
+msgid "Send email when Locked out."
 msgstr ""
 
 #: setting/modules/mywp.setting.lockout.php:218
@@ -96,11 +115,11 @@ msgid "To"
 msgstr ""
 
 #: setting/modules/mywp.setting.lockout.php:236
-msgid "Sending with Input data."
+msgid "Send with Input data."
 msgstr ""
 
 #: setting/modules/mywp.setting.lockout.php:246
-msgid "Sending with Server data."
+msgid "Send with Server data."
 msgstr ""
 
 #: setting/modules/mywp.setting.lockout.php:254
@@ -111,10 +130,30 @@ msgstr ""
 msgid "Plugin info"
 msgstr ""
 
+#: setting/modules/mywp.setting.lockout.php:295
+#, php-format
+msgid "Version %s"
+msgstr ""
+
+#: setting/modules/mywp.setting.lockout.php:298
+#, php-format
+msgid "Get Version %s"
+msgstr ""
+
 #: setting/modules/mywp.setting.lockout.php:304
 msgid "Check latest"
 msgstr ""
 
 #: setting/modules/mywp.setting.lockout.php:306
 msgid "Check latest version"
+msgstr ""
+
+#: setting/modules/mywp.setting.lockout.php:314
+msgid "Document"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"My WP Add-on Lockout is Lockout to specific requests and do not waste "
+"transfer resources."
 msgstr ""

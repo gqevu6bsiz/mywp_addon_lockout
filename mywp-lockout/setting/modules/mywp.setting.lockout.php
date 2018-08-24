@@ -211,7 +211,7 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
                 <?php $checked = true; ?>
               <?php endif; ?>
               <input type="checkbox" name="mywp[data][send_mail]" class="send_mail" id="send_mail" value="1" <?php checked( $checked , true ); ?> />
-              <?php _e( 'Sending email when Locked out.' , 'mywp-lockout' ); ?>
+              <?php _e( 'Send email when Locked out.' , 'mywp-lockout' ); ?>
             </label>
             <div id="send-mail-option">
               <p>
@@ -233,7 +233,7 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
                     <?php $checked = true; ?>
                   <?php endif; ?>
                   <input type="checkbox" name="mywp[data][send_email_with_input]" class="send_email_with_input" id="send_email_with_input" value="1" <?php checked( $checked , true ); ?> />
-                  <?php _e( 'Sending with Input data.' , 'mywp-lockout' ); ?>
+                  <?php _e( 'Send with Input data.' , 'mywp-lockout' ); ?>
                 </label>
               </p>
               <p>
@@ -243,7 +243,7 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
                     <?php $checked = true; ?>
                   <?php endif; ?>
                   <input type="checkbox" name="mywp[data][send_email_with_server]" class="send_email_with_server" id="send_email_with_server" value="1" <?php checked( $checked , true ); ?> />
-                  <?php _e( 'Sending with Server data.' , 'mywp-lockout' ); ?>
+                  <?php _e( 'Send with Server data.' , 'mywp-lockout' ); ?>
                 </label>
               </p>
             </div>
@@ -288,7 +288,7 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
     ?>
     <p>&nbsp;</p>
-    <h3><?php _e( 'Plugin info' , 'mywp-lockout' ); ?></h3>
+    <h3><?php _e( 'Plugin info' , 'my-wp' ); ?></h3>
     <table class="form-table <?php echo esc_attr( $class_have_latest ); ?>" id="version-check-table">
       <tbody>
         <tr>
@@ -309,7 +309,7 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
           </td>
         </tr>
         <tr>
-          <th><?php _e( 'Document' , 'mywp-lockout' ); ?></th>
+          <th><?php _e( 'Documents' , 'my-wp' ); ?></th>
           <td>
             <a href="<?php echo esc_url( $plugin_info['document_url'] ); ?>" class="button button-secondary" target="_blank"><span class="dashicons dashicons-book"></span> <?php _e( 'Document' , 'mywp-lockout' ); ?>
           </td>

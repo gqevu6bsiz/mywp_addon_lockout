@@ -39,6 +39,7 @@ final class MywpLockoutList {
       '@dm',
       '{nigoL}',
 
+      '0x1999',
       '1{nigoL}',
       '123{nigoL}',
       '123123a',
@@ -48,7 +49,10 @@ final class MywpLockoutList {
       '123qwe',
       '13pass',
       '1qaz',
+      '1q2w',
+      '1q2w3e',
       '1q2w3e4r',
+      '1q2w3e4r5t',
       '1,12E 11',
       '67i5jjjt',
 
@@ -56,8 +60,14 @@ final class MywpLockoutList {
       'a123powerx-*',
       'aaaaaa',
       'admin',
+      'admin@123',
+      'adminadmin',
+      'administrador',
+      'administrator',
       'abc',
+      'akushare',
       'alessandra',
+      'alex',
       'alexandru',
       'ali',
       'andromeda',
@@ -65,6 +75,7 @@ final class MywpLockoutList {
       'arif',
       'asdasd',
       'asdqwe123',
+      'author',
 
       'banana',
       'blogadmin',
@@ -77,13 +88,18 @@ final class MywpLockoutList {
       'chelsea',
       'chocolate',
       'chopper',
+      'chris',
       'cliente',
       'computer',
       'counter',
       'csaaihex',
 
+      'daniel',
       'dave',
+      'david',
+      'developer',
       'demo',
+      'demouser',
       'dragon',
 
       'editor',
@@ -97,19 +113,24 @@ final class MywpLockoutList {
       'gimboroot',
       'guest',
 
+      'hanhqcled',
       'hannah',
+      'hasbuzz',
       'hello',
       'henkondernemer',
       'hunter',
 
       'iloveyou',
       'index',
+      'indoxploit',
+      'info',
       'ines',
       'iyfm',
 
       'jason',
       'jerome',
       'jesse',
+      'john',
 
       'K98pWjiSq',
       'karine',
@@ -120,8 +141,11 @@ final class MywpLockoutList {
       'logitech89',
       'love',
 
+      'm@rcos',
       'magda',
       'mercedes',
+      'merlin',
+      'mexeltech',
       'maria',
       'marketing',
       'marta',
@@ -130,14 +154,19 @@ final class MywpLockoutList {
       'mercury',
       'michelle',
       'migration',
+      'mihai',
+      'miranda',
       'monkey',
       'myname',
+
 
       'NULL',
 
       'oliver',
+      'operator',
       'oshibe',
 
+      'p@$$w0rd',
       'p@ssw0rd',
       'P@ssword',
       'pa$$word',
@@ -148,7 +177,10 @@ final class MywpLockoutList {
       'passw0rd',
       'password',
       'philipp',
+      'preview',
       'prince',
+      'prova',
+      'prueba',
 
       'q1q1q1',
       'q1w2e3',
@@ -157,13 +189,9 @@ final class MywpLockoutList {
       'qaz',
       'qq123',
       'qwe',
+      'qweqwe',
       'qwsxza',
-
-      'm@rcos',
-      'merlin',
-      'mexeltech',
-      'mihai',
-      'miranda',
+      'qwertyuiop',
 
       'realmadrid',
       'redaktion',
@@ -200,6 +228,7 @@ final class MywpLockoutList {
       'sqlexec',
       'squirt',
       'srinivas',
+      'ssadmin',
       'star',
       'stars',
       'startrek',
@@ -223,10 +252,13 @@ final class MywpLockoutList {
       'teens',
       'tekila',
       'telefono',
+      'temp',
       'temp!',
       'test',
+      'teste',
       'tester',
       'testing',
+      'testtest',
       'temp',
       'temporary',
       'tennis',
@@ -257,6 +289,7 @@ final class MywpLockoutList {
       'twitter',
       'tybnoq',
 
+      'ultimate',
       'unicornio',
       'universidad',
       'unknown',
@@ -279,10 +312,12 @@ final class MywpLockoutList {
       'warrior',
       'wachtwoord',
       'web',
+      'webmaster',
       'west',
       'westside',
       'whatever',
       'white',
+      'wibowo',
       'william',
       'willow',
       'winston',
@@ -291,9 +326,11 @@ final class MywpLockoutList {
       'women',
       'work',
       'wpadmin',
+      'wpengine',
       'wpmafia',
       'writer',
       'writing',
+      'www',
 
       'xanadu',
       'xavier',
@@ -316,24 +353,6 @@ final class MywpLockoutList {
       'zzzzz',
 
     );
-
-    $server_name = $_SERVER['SERVER_NAME'];
-
-    if( ! empty( $server_name ) ) {
-
-      if( strpos( $server_name , '.' ) === false ) {
-
-        $weak_password_list[] = $server_name;
-
-      } else {
-
-        $server_name_arr = explode( '.' , $server_name );
-
-        $weak_password_list[] = $server_name_arr[0];
-
-      }
-
-    }
 
     $weak_password_list = apply_filters( 'mywp_lockout_weak_password_list' , $weak_password_list );
 
@@ -405,6 +424,7 @@ final class MywpLockoutList {
 
       'bataboom',
 
+      'config_prefer_imagemagick',
       'cperpage',
 
       'spanskys_filecontent',
@@ -429,6 +449,10 @@ final class MywpLockoutList {
       '../../wp-config.php',
       '../../../wp-config.php',
       '../../../../wp-config.php',
+      '../../../../../../../../../boot.ini%00',
+      '../../../../../../../../../etc/passwd%00',
+      '../../../../../../../../../windows/win.ini%00',
+      '../../../../../../../../../winnt/win.ini%00',
       '/boot.ini\0',
       '/boot.ini%0',
       '/etc',
@@ -441,11 +465,17 @@ final class MywpLockoutList {
       '/winnt/win.ini%0',
       '<script>alert(/openvas-xss-test/)</script>',
 
+      'Attacker',
+
+      'com_jdownloads',
+
       "die('===!'.'===');",
       "die(\'===!\'.\'===\');",
       "die(\\\\\'===!\\\\\'.\\\\\'===\\\\\');",
       "die(\'z!a\'.\'x\');",
       "die(\\\\\'z!a\\\\\'.\\\\\'x\\\\\');",
+
+      'printerInfo',
 
       'user/password',
 
