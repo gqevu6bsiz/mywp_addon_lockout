@@ -467,6 +467,7 @@ final class MywpLockoutList {
 
       'Attacker',
 
+      'com_fabrik',
       'com_jdownloads',
 
       "die('===!'.'===');",
@@ -475,7 +476,11 @@ final class MywpLockoutList {
       "die(\'z!a\'.\'x\');",
       "die(\\\\\'z!a\\\\\'.\\\\\'x\\\\\');",
 
+      'mk_file_folder_manager',
+
       'printerInfo',
+
+      'testActivation',
 
       'user/password',
 

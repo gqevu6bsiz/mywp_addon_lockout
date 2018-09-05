@@ -69,9 +69,21 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
   public static function mywp_ajax() {
 
-    if( ! MywpApi::is_manager() ) {
+    if( is_multisite() ) {
 
-      return false;
+      if( ! MywpLockoutApi::is_network_manager() ) {
+
+        return false;
+
+      }
+
+    } else {
+
+      if( ! MywpLockoutApi::is_manager() ) {
+
+        return false;
+
+      }
 
     }
 
@@ -91,14 +103,26 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
     check_ajax_referer( $action_name , $action_name );
 
-    if( ! MywpApi::is_manager() ) {
+    if( is_multisite() ) {
 
-      return false;
+      if( ! MywpLockoutApi::is_network_manager() ) {
+
+        return false;
+
+      }
+
+    } else {
+
+      if( ! MywpLockoutApi::is_manager() ) {
+
+        return false;
+
+      }
 
     }
 
-    delete_site_transient( 'lockout_updater' );
-    delete_site_transient( 'lockout_updater_remote' );
+    delete_site_transient( 'mywp_lockout_updater' );
+    delete_site_transient( 'mywp_lockout_updater_remote' );
 
     $is_latest = MywpControllerModuleLockoutUpdater::is_latest();
 
@@ -211,7 +235,7 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
                 <?php $checked = true; ?>
               <?php endif; ?>
               <input type="checkbox" name="mywp[data][send_mail]" class="send_mail" id="send_mail" value="1" <?php checked( $checked , true ); ?> />
-              <?php _e( 'Send email when Locked out.' , 'mywp-lockout' ); ?>
+              <?php _e( 'Send email when Locked out' , 'mywp-lockout' ); ?>
             </label>
             <div id="send-mail-option">
               <p>
@@ -233,7 +257,7 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
                     <?php $checked = true; ?>
                   <?php endif; ?>
                   <input type="checkbox" name="mywp[data][send_email_with_input]" class="send_email_with_input" id="send_email_with_input" value="1" <?php checked( $checked , true ); ?> />
-                  <?php _e( 'Send with Input data.' , 'mywp-lockout' ); ?>
+                  <?php _e( 'Send with Input data' , 'mywp-lockout' ); ?>
                 </label>
               </p>
               <p>
@@ -243,7 +267,7 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
                     <?php $checked = true; ?>
                   <?php endif; ?>
                   <input type="checkbox" name="mywp[data][send_email_with_server]" class="send_email_with_server" id="send_email_with_server" value="1" <?php checked( $checked , true ); ?> />
-                  <?php _e( 'Send with Server data.' , 'mywp-lockout' ); ?>
+                  <?php _e( 'Send with Server data' , 'mywp-lockout' ); ?>
                 </label>
               </p>
             </div>
@@ -311,7 +335,7 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
         <tr>
           <th><?php _e( 'Documents' , 'my-wp' ); ?></th>
           <td>
-            <a href="<?php echo esc_url( $plugin_info['document_url'] ); ?>" class="button button-secondary" target="_blank"><span class="dashicons dashicons-book"></span> <?php _e( 'Document' , 'mywp-lockout' ); ?>
+            <a href="<?php echo esc_url( $plugin_info['document_url'] ); ?>" class="button button-secondary" target="_blank"><span class="dashicons dashicons-book"></span> <?php _e( 'Documents' , 'my-wp' ); ?>
           </td>
         </tr>
       </tbody>

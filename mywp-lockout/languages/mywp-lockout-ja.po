@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: My WP Add-on Lockout\n"
-"POT-Creation-Date: 2018-08-24 14:09+0900\n"
-"PO-Revision-Date: 2018-08-24 14:11+0900\n"
+"POT-Creation-Date: 2018-09-05 11:27+0900\n"
+"PO-Revision-Date: 2018-09-05 11:29+0900\n"
 "Last-Translator: gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
 "Language-Team: gqevu6bsiz@gmail.com\n"
 "Language: ja\n"
@@ -14,12 +14,13 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: controller/modules/mywp.controller.module.main.general.php:97
-#: setting/modules/mywp.setting.lockout.php:312
+#: setting/modules/mywp.setting.lockout.php:336
+#: setting/modules/mywp.setting.lockout.php:338
 msgid "Documents"
 msgstr ""
 
 #: controller/modules/mywp.controller.module.main.general.php:119
-#: setting/modules/mywp.setting.lockout.php:128
+#: setting/modules/mywp.setting.lockout.php:152
 msgid "Settings"
 msgstr ""
 
@@ -30,25 +31,25 @@ msgid ""
 "%4$s details</a>."
 msgstr ""
 
-#: controller/modules/mywp.controller.module.updater.php:103
-#: controller/modules/mywp.controller.module.updater.php:140
+#: controller/modules/mywp.controller.module.updater.php:106
+#: controller/modules/mywp.controller.module.updater.php:143
 msgid "Connection lost or the server is busy. Please try again later."
 msgstr "サーバに接続できませんでした。 時間をおいてもう一度お試しください。"
 
-#: controller/modules/mywp.controller.module.updater.php:134
-#: controller/modules/mywp.controller.module.updater.php:150
-#: setting/modules/mywp.setting.lockout.php:414
-#: setting/modules/mywp.setting.lockout.php:448
+#: controller/modules/mywp.controller.module.updater.php:137
+#: controller/modules/mywp.controller.module.updater.php:153
+#: setting/modules/mywp.setting.lockout.php:438
+#: setting/modules/mywp.setting.lockout.php:472
 msgid "An error has occurred. Please reload the page and try again."
 msgstr ""
 "予期しないエラーが発生しました。ページをリロードして、もう一度お試しくださ"
 "い。"
 
-#: controller/modules/mywp.controller.module.updater.php:184
+#: controller/modules/mywp.controller.module.updater.php:189
 msgid "Invalid remote Json data. Please try again in an hour."
 msgstr "リモートのJsonデータエラー。 約1時間後に、もう一度お試しください。"
 
-#: controller/modules/mywp.controller.module.updater.php:194
+#: controller/modules/mywp.controller.module.updater.php:199
 msgid "Invalid results. Sorry maybe update format changed."
 msgstr "形式エラー。アップデートの形式が変更された可能性があります。"
 
@@ -56,100 +57,95 @@ msgstr "形式エラー。アップデートの形式が変更された可能性
 #: setting/modules/mywp.setting.lockout.php:34
 #: setting/modules/mywp.setting.lockout.php:49
 #: setting/modules/mywp.setting.lockout.php:58
-#: setting/modules/mywp.setting.lockout.php:154
-#: setting/modules/mywp.setting.lockout.php:169
-#: setting/modules/mywp.setting.lockout.php:184
-#: setting/modules/mywp.setting.lockout.php:199
+#: setting/modules/mywp.setting.lockout.php:178
+#: setting/modules/mywp.setting.lockout.php:193
+#: setting/modules/mywp.setting.lockout.php:208
+#: setting/modules/mywp.setting.lockout.php:223
 msgid "Lockout"
 msgstr "ロックアウト"
 
-#: setting/modules/mywp.setting.lockout.php:117
-#: setting/modules/mywp.setting.lockout.php:299
+#: setting/modules/mywp.setting.lockout.php:141
+#: setting/modules/mywp.setting.lockout.php:323
 msgid "Using a latest version."
 msgstr "最新版をご利用中です。"
 
-#: setting/modules/mywp.setting.lockout.php:133
+#: setting/modules/mywp.setting.lockout.php:157
 msgid "Lockout time"
 msgstr "ロックアウト時間"
 
-#: setting/modules/mywp.setting.lockout.php:140
+#: setting/modules/mywp.setting.lockout.php:164
 msgid "Minute"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:145
+#: setting/modules/mywp.setting.lockout.php:169
 msgid "Specific GET data lockout"
 msgstr "特定の GET データロックアウト"
 
-#: setting/modules/mywp.setting.lockout.php:160
+#: setting/modules/mywp.setting.lockout.php:184
 msgid "Specific POST data lockout"
 msgstr "特定の POST データロックアウト"
 
-#: setting/modules/mywp.setting.lockout.php:175
+#: setting/modules/mywp.setting.lockout.php:199
 msgid "Specific FILES data lockout"
 msgstr "特定の FILES データロックアウト"
 
-#: setting/modules/mywp.setting.lockout.php:190
+#: setting/modules/mywp.setting.lockout.php:214
 msgid "Unknown plugins/themes access lockout"
 msgstr "存在しない不明なプラグイン/テーマへのアクセスロックアウト"
 
-#: setting/modules/mywp.setting.lockout.php:205
+#: setting/modules/mywp.setting.lockout.php:229
 msgid "Email me whenever"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:214
-msgid "Send email when Locked out."
-msgstr "ロックアウト時にメールする。"
+#: setting/modules/mywp.setting.lockout.php:238
+msgid "Send email when Locked out"
+msgstr "ロックアウト時にメールする"
 
-#: setting/modules/mywp.setting.lockout.php:218
+#: setting/modules/mywp.setting.lockout.php:242
 msgid "From"
 msgstr "差出人"
 
-#: setting/modules/mywp.setting.lockout.php:222
+#: setting/modules/mywp.setting.lockout.php:246
 msgid "To"
 msgstr "宛先"
 
-#: setting/modules/mywp.setting.lockout.php:236
-msgid "Send with Input data."
-msgstr "入力されたデータも送信する。"
+#: setting/modules/mywp.setting.lockout.php:260
+msgid "Send with Input data"
+msgstr "入力されたデータも送信"
 
-#: setting/modules/mywp.setting.lockout.php:246
-msgid "Send with Server data."
-msgstr "サーバのデータも送信する。"
+#: setting/modules/mywp.setting.lockout.php:270
+msgid "Send with Server data"
+msgstr "サーバのデータも送信"
 
-#: setting/modules/mywp.setting.lockout.php:254
+#: setting/modules/mywp.setting.lockout.php:278
 msgid "Lockout page"
 msgstr "ロックアウトページ"
 
-#: setting/modules/mywp.setting.lockout.php:291
+#: setting/modules/mywp.setting.lockout.php:315
 msgid "Plugin info"
 msgstr "プラグイン情報"
 
-#: setting/modules/mywp.setting.lockout.php:295
+#: setting/modules/mywp.setting.lockout.php:319
 #, php-format
 msgid "Version %s"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:298
+#: setting/modules/mywp.setting.lockout.php:322
 #, php-format
 msgid "Get Version %s"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:304
+#: setting/modules/mywp.setting.lockout.php:328
 msgid "Check latest"
 msgstr "最新版をチェック"
 
-#: setting/modules/mywp.setting.lockout.php:306
+#: setting/modules/mywp.setting.lockout.php:330
 msgid "Check latest version"
 msgstr "最新版をチェック"
 
-#: setting/modules/mywp.setting.lockout.php:314
-msgid "Document"
-msgstr "ドキュメント"
-
 #. Description of the plugin/theme
 msgid ""
-"My WP Add-on Lockout is Lockout to specific requests and do not waste "
-"transfer resources."
+"My WP Add-on Lockout is blocks to specific requests and weak login passwords."
 msgstr ""
-"My WP Add-on Lockout は特定のリクエストなどを締め出して転送リソースを無駄にし"
-"ないプラグインです。"
+"My WP Add-on Lockout は特定のリクエストや弱いログインパスワードのリクエストを"
+"ブロックします。"

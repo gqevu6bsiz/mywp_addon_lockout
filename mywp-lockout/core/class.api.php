@@ -50,6 +50,24 @@ final class MywpLockoutApi {
 
   }
 
+  public static function is_network_manager() {
+
+    if( method_exists( 'MywpApi' , 'is_network_manager' ) ) {
+
+      return MywpApi::is_network_manager();
+
+    }
+
+    return MywpApi::is_manager();
+
+  }
+
+  public static function is_manager() {
+
+    return MywpApi::is_manager();
+
+  }
+
   public static function get_remote_ip() {
 
     $remote_ip = false;
@@ -94,15 +112,15 @@ final class MywpLockoutApi {
 
     }
 
-    $data = $mywp_controller['model']->get_data();
+    $option = $mywp_controller['model']->get_option();
 
-    if( empty( $data['lockout_page'] ) ) {
+    if( empty( $option['lockout_page'] ) ) {
 
       return $lockout_page;
 
     }
 
-    return $data['lockout_page'];
+    return $option['lockout_page'];
 
   }
 

@@ -18,11 +18,11 @@ final class MywpControllerModuleLockoutMainGeneral extends MywpControllerAbstrac
 
   protected static function after_init() {
 
-    add_filter( 'mywp_controller_model_' . self::$id , array( __CLASS__ , 'mywp_controller_model' ) );
+    add_filter( 'mywp_controller_pre_get_model_' . self::$id , array( __CLASS__ , 'mywp_controller_pre_get_model' ) );
 
   }
 
-  public static function mywp_controller_model( $pre_model ) {
+  public static function mywp_controller_pre_get_model( $pre_model ) {
 
     $pre_model = true;
 
