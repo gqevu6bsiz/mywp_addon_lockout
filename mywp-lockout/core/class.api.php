@@ -126,9 +126,9 @@ final class MywpLockoutApi {
 
   public static function is_weak_password( $password = false ) {
 
-    if( empty( $password ) ) {
+    if( $password === false ) {
 
-      return true;
+      return false;
 
     }
 
@@ -324,6 +324,7 @@ final class MywpLockoutApi {
         if( preg_match( $pattern_str , $get_data_key ) ) {
 
           $is_blacklist = true;
+
           break;
 
         }
@@ -331,6 +332,28 @@ final class MywpLockoutApi {
       }
 
       if( $is_blacklist ) {
+
+        break;
+
+      }
+
+    }
+
+    if( $is_blacklist ) {
+
+      return true;
+
+    }
+
+    $blacklist_get_data_find_value_list = MywpLockoutList::get_blacklist_get_data_find_value_list();
+
+    $serialize_get_data = maybe_serialize( $get_data );
+
+    foreach( $blacklist_get_data_find_value_list as $word ) {
+
+      if( strpos( $serialize_get_data , $word ) !== false ) {
+
+        $is_blacklist = true;
 
         break;
 

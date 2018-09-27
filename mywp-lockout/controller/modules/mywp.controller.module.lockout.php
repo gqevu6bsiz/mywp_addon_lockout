@@ -281,7 +281,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     self::$input_fields = array( 'login_name' => $login_name , 'password' => $password );
 
-    if( $login_name === $password ) {
+    if( ! empty( $login_name ) && $login_name === $password ) {
 
       self::set_lockout_remote_data( array( 'reason' => 'Same Login name and Password' , 'input_fields' => self::$input_fields ) );
 

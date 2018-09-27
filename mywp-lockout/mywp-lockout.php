@@ -3,7 +3,7 @@
 Plugin Name: My WP Add-on Lockout
 Plugin URI: https://mywpcustomize.com/add_ons/my-wp-add-on-lockout/‎
 Description: My WP Add-on Lockout is blocks to specific requests and weak login passwords.
-Version: 1.3
+Version: 1.3.1
 Author: gqevu6bsiz
 Author URI: http://gqevu6bsiz.chicappa.jp/
 Text Domain: mywp-lockout
@@ -51,7 +51,7 @@ final class MywpLockout {
   private static function define_constants() {
 
     define( 'MYWP_LOCKOUT_NAME' , 'My WP Add-On Lockout' );
-    define( 'MYWP_LOCKOUT_VERSION' , '1.3' );
+    define( 'MYWP_LOCKOUT_VERSION' , '1.3.1' );
     define( 'MYWP_LOCKOUT_PLUGIN_FILE' , __FILE__ );
     define( 'MYWP_LOCKOUT_PLUGIN_BASENAME' , plugin_basename( MYWP_LOCKOUT_PLUGIN_FILE ) );
     define( 'MYWP_LOCKOUT_PLUGIN_DIRNAME' , dirname( MYWP_LOCKOUT_PLUGIN_BASENAME ) );
@@ -83,6 +83,8 @@ final class MywpLockout {
 
     add_filter( 'mywp_setting_plugins_loaded_include_modules' , array( __CLASS__ , 'mywp_setting_plugins_loaded_include_modules' ) );
 
+    add_filter( 'mywp_thirdparty_plugins_loaded_include_modules' , array( __CLASS__ , 'mywp_thirdparty_plugins_loaded_include_modules' ) );
+
   }
 
   public static function wp_init() {
@@ -109,6 +111,16 @@ final class MywpLockout {
     $dir = MYWP_LOCKOUT_PLUGIN_PATH . 'setting/modules/';
 
     $includes['lockout_setting'] = $dir . 'mywp.setting.lockout.php';
+
+    return $includes;
+
+  }
+
+  public static function mywp_thirdparty_plugins_loaded_include_modules( $includes ) {
+
+    $dir = MYWP_LOCKOUT_PLUGIN_PATH . 'thirdparty/modules/';
+
+    $includes['lockout_wps_hide_login'] = $dir . 'wps-hide-login.php';
 
     return $includes;
 

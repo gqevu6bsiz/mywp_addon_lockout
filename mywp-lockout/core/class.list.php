@@ -445,36 +445,12 @@ final class MywpLockoutList {
 
     $blacklist_get_data_value_list = array(
 
-      '../wp-config.php',
-      '../../wp-config.php',
-      '../../../wp-config.php',
-      '../../../../wp-config.php',
-      '../../../../../../../../../boot.ini%00',
-      '../../../../../../../../../etc/passwd%00',
-      '../../../../../../../../../windows/win.ini%00',
-      '../../../../../../../../../winnt/win.ini%00',
-      '/boot.ini\0',
-      '/boot.ini%0',
       '/etc',
-      '/etc/passwd',
-      '/etc/passwd\0',
-      '/etc/passwd%0',
-      '/windows/win.ini\0',
-      '/windows/win.ini%0',
-      '/winnt/win.ini\0',
-      '/winnt/win.ini%0',
-      '<script>alert(/openvas-xss-test/)</script>',
 
       'Attacker',
 
       'com_fabrik',
       'com_jdownloads',
-
-      "die('===!'.'===');",
-      "die(\'===!\'.\'===\');",
-      "die(\\\\\'===!\\\\\'.\\\\\'===\\\\\');",
-      "die(\'z!a\'.\'x\');",
-      "die(\\\\\'z!a\\\\\'.\\\\\'x\\\\\');",
 
       'mk_file_folder_manager',
 
@@ -483,8 +459,6 @@ final class MywpLockoutList {
       'testActivation',
 
       'user/password',
-
-      'wp-config.php',
 
     );
 
@@ -578,6 +552,32 @@ final class MywpLockoutList {
 
   }
 
+  public static function get_blacklist_get_data_find_value_list() {
+
+    $blacklist_get_data_find_value_list = array(
+
+      '<script>',
+
+      'boot.ini',
+
+      "die(",
+
+      'echo(',
+      'etc/passwd',
+
+      'wget -O',
+      'windows/win.ini',
+      'winnt/win.ini',
+      'wp-config.php',
+
+    );
+
+    $blacklist_get_data_find_value_list = apply_filters( 'mywp_lockout_blacklist_get_data_find_value_list' , $blacklist_get_data_find_value_list );
+
+    return $blacklist_get_data_find_value_list;
+
+  }
+
   public static function get_blacklist_post_data_name_list() {
 
     $blacklist_post_data_name_list = array(
@@ -614,6 +614,8 @@ final class MywpLockoutList {
       'die(md5(34563));',
       "die(\'z!a\'.\'x\');",
       "die(\\\\\'z!a\\\\\'.\\\\\'x\\\\\');",
+
+      'echo(344444443+1);',
 
       'print(md5(11111));',
 
