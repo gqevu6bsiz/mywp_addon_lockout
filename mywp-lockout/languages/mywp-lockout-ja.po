@@ -1,21 +1,21 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: My WP Add-on Lockout\n"
-"POT-Creation-Date: 2018-09-05 11:27+0900\n"
-"PO-Revision-Date: 2018-09-05 11:29+0900\n"
+"POT-Creation-Date: 2018-10-29 20:30+0900\n"
+"PO-Revision-Date: 2018-10-29 20:31+0900\n"
 "Last-Translator: gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
 "Language-Team: gqevu6bsiz@gmail.com\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.7\n"
+"X-Generator: Poedit 2.1.1\n"
 "X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: controller/modules/mywp.controller.module.main.general.php:97
-#: setting/modules/mywp.setting.lockout.php:336
-#: setting/modules/mywp.setting.lockout.php:338
+#: setting/modules/mywp.setting.lockout.php:351
+#: setting/modules/mywp.setting.lockout.php:353
 msgid "Documents"
 msgstr ""
 
@@ -38,8 +38,8 @@ msgstr "サーバに接続できませんでした。 時間をおいてもう�
 
 #: controller/modules/mywp.controller.module.updater.php:137
 #: controller/modules/mywp.controller.module.updater.php:153
-#: setting/modules/mywp.setting.lockout.php:438
-#: setting/modules/mywp.setting.lockout.php:472
+#: setting/modules/mywp.setting.lockout.php:453
+#: setting/modules/mywp.setting.lockout.php:487
 msgid "An error has occurred. Please reload the page and try again."
 msgstr ""
 "予期しないエラーが発生しました。ページをリロードして、もう一度お試しくださ"
@@ -61,11 +61,12 @@ msgstr "形式エラー。アップデートの形式が変更された可能性
 #: setting/modules/mywp.setting.lockout.php:193
 #: setting/modules/mywp.setting.lockout.php:208
 #: setting/modules/mywp.setting.lockout.php:223
+#: setting/modules/mywp.setting.lockout.php:238
 msgid "Lockout"
 msgstr "ロックアウト"
 
 #: setting/modules/mywp.setting.lockout.php:141
-#: setting/modules/mywp.setting.lockout.php:323
+#: setting/modules/mywp.setting.lockout.php:338
 msgid "Using a latest version."
 msgstr "最新版をご利用中です。"
 
@@ -90,56 +91,60 @@ msgid "Specific FILES data lockout"
 msgstr "特定の FILES データロックアウト"
 
 #: setting/modules/mywp.setting.lockout.php:214
+msgid "Specific URI lockout"
+msgstr "特定のURI ロックアウト"
+
+#: setting/modules/mywp.setting.lockout.php:229
 msgid "Unknown plugins/themes access lockout"
 msgstr "存在しない不明なプラグイン/テーマへのアクセスロックアウト"
 
-#: setting/modules/mywp.setting.lockout.php:229
+#: setting/modules/mywp.setting.lockout.php:244
 msgid "Email me whenever"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:238
+#: setting/modules/mywp.setting.lockout.php:253
 msgid "Send email when Locked out"
 msgstr "ロックアウト時にメールする"
 
-#: setting/modules/mywp.setting.lockout.php:242
+#: setting/modules/mywp.setting.lockout.php:257
 msgid "From"
 msgstr "差出人"
 
-#: setting/modules/mywp.setting.lockout.php:246
+#: setting/modules/mywp.setting.lockout.php:261
 msgid "To"
 msgstr "宛先"
 
-#: setting/modules/mywp.setting.lockout.php:260
+#: setting/modules/mywp.setting.lockout.php:275
 msgid "Send with Input data"
 msgstr "入力されたデータも送信"
 
-#: setting/modules/mywp.setting.lockout.php:270
+#: setting/modules/mywp.setting.lockout.php:285
 msgid "Send with Server data"
 msgstr "サーバのデータも送信"
 
-#: setting/modules/mywp.setting.lockout.php:278
+#: setting/modules/mywp.setting.lockout.php:293
 msgid "Lockout page"
 msgstr "ロックアウトページ"
 
-#: setting/modules/mywp.setting.lockout.php:315
+#: setting/modules/mywp.setting.lockout.php:330
 msgid "Plugin info"
 msgstr "プラグイン情報"
 
-#: setting/modules/mywp.setting.lockout.php:319
+#: setting/modules/mywp.setting.lockout.php:334
 #, php-format
 msgid "Version %s"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:322
+#: setting/modules/mywp.setting.lockout.php:337
 #, php-format
 msgid "Get Version %s"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:328
+#: setting/modules/mywp.setting.lockout.php:343
 msgid "Check latest"
 msgstr "最新版をチェック"
 
-#: setting/modules/mywp.setting.lockout.php:330
+#: setting/modules/mywp.setting.lockout.php:345
 msgid "Check latest version"
 msgstr "最新版をチェック"
 

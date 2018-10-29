@@ -32,6 +32,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
     $initial_data['specific_get_lockout'] = '';
     $initial_data['specific_post_lockout'] = '';
     $initial_data['specific_file_lockout'] = '';
+    $initial_data['specific_uri_lockout'] = '';
     $initial_data['unknown_plugin_theme_lockout'] = '';
 
     $initial_data['send_mail'] = '';
@@ -51,6 +52,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
     $default_data['specific_get_lockout'] = false;
     $default_data['specific_post_lockout'] = false;
     $default_data['specific_file_lockout'] = false;
+    $default_data['specific_uri_lockout'] = false;
     $default_data['unknown_plugin_theme_lockout'] = false;
 
     $default_data['send_mail'] = false;
@@ -92,7 +94,9 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_file_data_lockout' ) , 60 );
 
-    add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_unknown_plugin_theme_lockout' ) , 70 );
+    add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_uri_lockout' ) , 70 );
+
+    add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_unknown_plugin_theme_lockout' ) , 80 );
 
     add_action( 'mywp_lockout_do_lockout' , array( __CLASS__ , 'lockout_send_email' ) , 20 );
 
@@ -416,6 +420,44 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
     if( MywpLockoutApi::is_blacklist_file_data( $file_data ) ) {
 
       self::set_lockout_remote_data( array( 'reason' => 'Blacklist Files Data' , 'input_fields' => self::$input_fields ) );
+
+      return true;
+
+    }
+
+    return $is_lockout;
+
+  }
+
+  public static function is_uri_lockout( $is_lockout ) {
+
+    if( $is_lockout ) {
+
+      return $is_lockout;
+
+    }
+
+    $setting_data = self::get_setting_data();
+
+    if( empty( $setting_data['specific_uri_lockout'] ) ) {
+
+      return $is_lockout;
+
+    }
+
+    if( empty( $_SERVER['REQUEST_URI'] ) ) {
+
+      return $is_lockout;
+
+    }
+
+    $request_uri = $_SERVER['REQUEST_URI'];
+
+    self::$input_fields = array( 'request_uri' => $request_uri );
+
+    if( MywpLockoutApi::is_blacklist_uri( $request_uri ) ) {
+
+      self::set_lockout_remote_data( array( 'reason' => 'Blacklist URI' , 'input_fields' => self::$input_fields ) );
 
       return true;
 

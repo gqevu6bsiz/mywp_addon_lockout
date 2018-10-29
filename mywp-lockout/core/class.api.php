@@ -614,6 +614,42 @@ final class MywpLockoutApi {
 
   }
 
+  public static function is_blacklist_uri( $request_uri = false ) {
+
+    if( empty( $request_uri ) ) {
+
+      return true;
+
+    }
+
+    $is_blacklist = false;
+
+    $blacklist_uri_find_list = MywpLockoutList::get_blacklist_uri_find_list();
+
+    $request_uri = urldecode( $request_uri );
+
+    foreach( $blacklist_uri_find_list as $word ) {
+
+      if( strpos( $request_uri , $word ) !== false ) {
+
+        $is_blacklist = true;
+
+        break;
+
+      }
+
+    }
+
+    if( $is_blacklist ) {
+
+      return true;
+
+    }
+
+    return false;
+
+  }
+
 }
 
 endif;

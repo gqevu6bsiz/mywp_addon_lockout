@@ -211,6 +211,21 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
         </tr>
         <tr>
           <th>
+            <?php _e( 'Specific URI lockout' , 'mywp-lockout' ); ?>
+          </th>
+          <td>
+            <?php $checked = false; ?>
+            <?php if( ! empty( $setting_data['specific_uri_lockout'] ) ) : ?>
+              <?php $checked = $setting_data['specific_uri_lockout']; ?>
+            <?php endif; ?>
+            <label>
+              <input type="checkbox" name="mywp[data][specific_uri_lockout]" class="specific_uri_lockout" id="specific_uri_lockout" value="1" <?php checked( $checked , 1 ); ?> />
+              <?php _e( 'Lockout' , 'mywp-lockout' ); ?>
+            </label>
+          </td>
+        </tr>
+        <tr>
+          <th>
             <?php _e( 'Unknown plugins/themes access lockout' , 'mywp-lockout' ); ?>
           </th>
           <td>
@@ -518,6 +533,12 @@ jQuery(document).ready(function($){
     if( ! empty( $formatted_data['specific_file_lockout'] ) ) {
 
       $new_formatted_data['specific_file_lockout'] = true;
+
+    }
+
+    if( ! empty( $formatted_data['specific_uri_lockout'] ) ) {
+
+      $new_formatted_data['specific_uri_lockout'] = true;
 
     }
 

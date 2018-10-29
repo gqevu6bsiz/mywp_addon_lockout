@@ -472,14 +472,14 @@ final class MywpLockoutList {
 
     $blacklist_get_data_name_value_list = array(
 
-      '_wrapper_format' => 'drupal_ajax',
-
       'author' => '0',
 
       'Command' => 'GetFolders',
 
       'dataType' => 'ApplyChanges',
       'DD' => 'ASNIAOUFMOMZJIBD',
+
+      'email' => 'yourmail@gmail.com',
 
       'font' => '/../../../../caches/bakup/default/0<<.sql',
 
@@ -495,11 +495,7 @@ final class MywpLockoutList {
       'mod' => 'publisher',
       'mstshash' => 'Administr',
 
-      'page' => '/etc/passwd',
-
       'ref' => 'marketopia',
-
-      '_wrapper_format' => 'drupal_ajax',
 
       'x' => '',
 
@@ -560,7 +556,9 @@ final class MywpLockoutList {
 
       'boot.ini',
 
-      "die(",
+      'die(',
+      'drupal_aja',
+      'drupal_ajax',
 
       'echo(',
       'etc/passwd',
@@ -612,8 +610,8 @@ final class MywpLockoutList {
 
       'die(pi()*42);',
       'die(md5(34563));',
-      "die(\'z!a\'.\'x\');",
-      "die(\\\\\'z!a\\\\\'.\\\\\'x\\\\\');",
+      'die(\'z!a\'.\'x\');',
+      'die(\\\\\'z!a\\\\\'.\\\\\'x\\\\\');',
 
       'echo(344444443+1);',
 
@@ -714,6 +712,21 @@ final class MywpLockoutList {
     $blacklist_file_extension_list = apply_filters( 'mywp_lockout_blacklist_file_extension_list' , $blacklist_file_extension_list );
 
     return $blacklist_file_extension_list;
+
+  }
+
+  public static function get_blacklist_uri_find_list() {
+
+    $blacklist_uri_find_list = array(
+
+      '<script>',
+      '</script>',
+
+    );
+
+    $blacklist_uri_find_list = apply_filters( 'mywp_lockout_blacklist_uri_find_list' , $blacklist_uri_find_list );
+
+    return $blacklist_uri_find_list;
 
   }
 
