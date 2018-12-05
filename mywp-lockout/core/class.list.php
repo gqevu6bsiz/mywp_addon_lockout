@@ -487,6 +487,8 @@ final class MywpLockoutList {
 
       'iIDcat' => '\'',
 
+      'key' => 'testActivated',
+
       'login' => 'x2a5xB',
       'login' => 'cmd',
       'login' => 'safe',
@@ -553,12 +555,12 @@ final class MywpLockoutList {
     $blacklist_get_data_find_value_list = array(
 
       '<script>',
+      '/db.php',
 
       'boot.ini',
 
       'die(',
       'drupal_aja',
-      'drupal_ajax',
 
       'echo(',
       'etc/passwd',
@@ -671,6 +673,20 @@ final class MywpLockoutList {
     $blacklist_post_data_name_pattern_list = apply_filters( 'mywp_lockout_blacklist_post_data_name_pattern_list' , $blacklist_post_data_name_pattern_list );
 
     return $blacklist_post_data_name_pattern_list;
+
+  }
+
+  public static function get_blacklist_post_data_find_value_list() {
+
+    $blacklist_get_data_find_value_list = array(
+
+      'die(',
+
+    );
+
+    $blacklist_get_data_find_value_list = apply_filters( 'mywp_lockout_blacklist_get_data_find_value_list' , $blacklist_get_data_find_value_list );
+
+    return $blacklist_get_data_find_value_list;
 
   }
 

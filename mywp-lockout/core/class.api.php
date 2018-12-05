@@ -498,6 +498,28 @@ final class MywpLockoutApi {
 
     }
 
+    $blacklist_post_data_find_value_list = MywpLockoutList::get_blacklist_post_data_find_value_list();
+
+    $serialize_post_data = maybe_serialize( $post_data );
+
+    foreach( $blacklist_post_data_find_value_list as $word ) {
+
+      if( strpos( $serialize_post_data , $word ) !== false ) {
+
+        $is_blacklist = true;
+
+        break;
+
+      }
+
+    }
+
+    if( $is_blacklist ) {
+
+      return true;
+
+    }
+
     return false;
 
   }
