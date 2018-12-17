@@ -556,14 +556,19 @@ final class MywpLockoutList {
 
       '<script>',
       '/db.php',
+      '/configuration.php',
 
       'boot.ini',
+
+      'curl ',
 
       'die(',
       'drupal_aja',
 
       'echo(',
       'etc/passwd',
+
+      'HelloThinkPHP',
 
       'wget -O',
       'windows/win.ini',
