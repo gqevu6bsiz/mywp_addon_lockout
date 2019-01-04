@@ -570,7 +570,9 @@ final class MywpLockoutList {
 
       'HelloThinkPHP',
 
-      'wget -O',
+      'shell_exec',
+
+      'wget ',
       'windows/win.ini',
       'winnt/win.ini',
       'wp-config.php',
