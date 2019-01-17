@@ -472,8 +472,6 @@ final class MywpLockoutList {
 
     $blacklist_get_data_name_value_list = array(
 
-      'author' => '0',
-
       'Command' => 'GetFolders',
 
       'dataType' => 'ApplyChanges',
@@ -490,8 +488,6 @@ final class MywpLockoutList {
       'key' => 'testActivated',
 
       'login' => 'x2a5xB',
-      'login' => 'cmd',
-      'login' => 'safe',
       'lol' => '1',
 
       'mod' => 'publisher',
@@ -558,17 +554,24 @@ final class MywpLockoutList {
       '/db.php',
       '/configuration.php',
 
+      'base64_decode(',
       'boot.ini',
 
       'curl ',
+      'chmod 777',
 
       'die(',
+      '@DEFAULT_MEMBER_ACCESS',
       'drupal_aja',
 
       'echo(',
       'etc/passwd',
+      'eval(',
+
+      'getInputStream()',
 
       'HelloThinkPHP',
+      'HttpServletResponse',
 
       'shell_exec',
 
