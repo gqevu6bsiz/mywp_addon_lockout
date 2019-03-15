@@ -38,6 +38,7 @@ final class MywpLockoutList {
       '!qazxsw',
       '@dm',
       '{nigoL}',
+      sprintf( '[login]%s' , date( 'Y' ) ),
 
       '0x1999',
       '1{nigoL}',
@@ -422,6 +423,8 @@ final class MywpLockoutList {
 
       '/__/__/wp-config_php',
 
+      'abc11',
+
       'bataboom',
 
       'config_prefer_imagemagick',
@@ -432,6 +435,8 @@ final class MywpLockoutList {
       'testwork',
 
       'url../../../../wp-config.php',
+
+      'xxxxxxxxxxxx_loads',
 
     );
 
@@ -453,6 +458,7 @@ final class MywpLockoutList {
       'com_jdownloads',
 
       'mk_file_folder_manager',
+      'module/newsletters/news',
 
       'printerInfo',
 
@@ -619,6 +625,8 @@ final class MywpLockoutList {
     $blacklist_post_data_value_list = array(
 
       'cHJpbnQobWQ1KDMyNDIzNCkpOw==',
+      'cs_employer_ajax_profile',
+      'cs_reset_pass',
 
       'die(pi()*42);',
       'die(md5(34563));',
@@ -627,7 +635,13 @@ final class MywpLockoutList {
 
       'echo(344444443+1);',
 
+      'kiwi_social_share_set_option',
+
       'print(md5(11111));',
+
+      'td_ajax_update_panel',
+
+      'wpgdprc_process_action',
 
     );
 
@@ -691,6 +705,8 @@ final class MywpLockoutList {
     $blacklist_get_data_find_value_list = array(
 
       'die(',
+
+      '.php#.jpg',
 
     );
 

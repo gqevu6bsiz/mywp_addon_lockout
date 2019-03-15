@@ -247,6 +247,25 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     $lockout_remote_data = self::get_lockout_remote_data();
 
+    $get_data = false;
+
+    if( ! empty( $_GET ) ) {
+
+      $get_data = $_GET;
+
+    }
+
+    $post_data = false;
+
+    if( ! empty( $_POST ) ) {
+
+      $post_data = $_POST;
+
+    }
+
+
+    self::$input_fields = array( 'get_data' => $get_data , 'post_data' => $post_data );
+
     if( ! empty( $lockout_remote_data ) ) {
 
       self::$lockout_reason = 'Already Lockedout';
@@ -589,7 +608,31 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     $headers = apply_filters( 'mywp_lockout_send_email_headers' , array() );
 
+    $switch_blog = false;
+
+    if( is_multisite() ) {
+
+      if( ! is_main_site() ) {
+
+        $switch_blog = true;
+
+      }
+
+    }
+
+    if( $switch_blog ) {
+
+      switch_to_blog( 1 );
+
+    }
+
     wp_mail( $to , $subject , $messages , $headers );
+
+    if( $switch_blog ) {
+
+      restore_current_blog();
+
+    }
 
   }
 
