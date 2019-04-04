@@ -241,6 +241,36 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
         </tr>
         <tr>
           <th>
+            <?php _e( 'Already lockout early action' , 'mywp-lockout' ); ?>
+          </th>
+          <td>
+            <?php $checked = false; ?>
+            <?php if( ! empty( $setting_data['already_early_lockout'] ) ) : ?>
+              <?php $checked = $setting_data['already_early_lockout']; ?>
+            <?php endif; ?>
+            <label>
+              <input type="checkbox" name="mywp[data][already_early_lockout]" class="already_early_lockout" id="already_early_lockout" value="1" <?php checked( $checked , 1 ); ?> />
+              <?php _e( 'Early action lockout' , 'mywp-lockout' ); ?>
+            </label>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <?php _e( 'Slow response' , 'mywp-lockout' ); ?>
+          </th>
+          <td>
+            <?php $number = 0; ?>
+            <?php if( ! empty( $setting_data['sleep_lockout'] ) ) : ?>
+              <?php $number = intval( $setting_data['sleep_lockout'] ); ?>
+            <?php endif; ?>
+            <label>
+              <input type="number" name="mywp[data][sleep_lockout]" class="sleep_lockout small-text" id="sleep_lockout" value="<?php echo esc_attr( $number ); ?>" />
+              <?php _e( 'Seconds' , 'mywp-lockout' ); ?>
+            </label>
+          </td>
+        </tr>
+        <tr>
+          <th>
             <?php _e( 'Email me whenever' ); ?>
           </th>
           <td>
@@ -545,6 +575,18 @@ jQuery(document).ready(function($){
     if( ! empty( $formatted_data['unknown_plugin_theme_lockout'] ) ) {
 
       $new_formatted_data['unknown_plugin_theme_lockout'] = true;
+
+    }
+
+    if( ! empty( $formatted_data['already_early_lockout'] ) ) {
+
+      $new_formatted_data['already_early_lockout'] = true;
+
+    }
+
+    if( ! empty( $formatted_data['sleep_lockout'] ) ) {
+
+      $new_formatted_data['sleep_lockout'] = intval( $formatted_data['sleep_lockout'] );
 
     }
 

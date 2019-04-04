@@ -431,6 +431,7 @@ final class MywpLockoutList {
       'cperpage',
 
       'spanskys_filecontent',
+      'swp_debug',
 
       'testwork',
 
@@ -460,6 +461,7 @@ final class MywpLockoutList {
       'mk_file_folder_manager',
       'module/newsletters/news',
 
+      'ppom_upload_file',
       'printerInfo',
 
       'testActivation',
@@ -640,6 +642,7 @@ final class MywpLockoutList {
       'print(md5(11111));',
 
       'td_ajax_update_panel',
+      'td_mod_register',
 
       'wpgdprc_process_action',
 

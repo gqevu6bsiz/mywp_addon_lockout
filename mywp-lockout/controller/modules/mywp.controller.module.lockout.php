@@ -26,6 +26,46 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
   private static $lockout_reason = false;
 
+  protected static function after_init() {
+
+    $setting_data = self::get_setting_data();
+
+    if( ! empty( $setting_data['already_early_lockout'] ) ) {
+
+      add_action( 'mywp_setup_theme' , array( __CLASS__ , 'fast_is_exist_lockout' ) , 1000 );
+
+    }
+
+  }
+
+  public static function get_is_whitelist() {
+
+    $is_whitelist = false;
+
+    $is_whitelist = apply_filters( 'mywp_lockout_is_whitelist' , $is_whitelist );
+
+    return $is_whitelist;
+
+  }
+
+  public static function fast_is_exist_lockout() {
+
+    $is_whitelist = self::get_is_whitelist();
+
+    if( $is_whitelist ) {
+
+      return false;
+
+    }
+
+    add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_exist_lockout' ) , 20 );
+
+    add_action( 'mywp_lockout_do_lockout' , array( __CLASS__ , 'lockout_send_email' ) , 20 );
+
+    self::lockout();
+
+  }
+
   public static function mywp_controller_initial_data( $initial_data ) {
 
     $initial_data['expire_timeout'] = '';
@@ -34,6 +74,8 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
     $initial_data['specific_file_lockout'] = '';
     $initial_data['specific_uri_lockout'] = '';
     $initial_data['unknown_plugin_theme_lockout'] = '';
+    $initial_data['already_early_lockout'] = '';
+    $initial_data['sleep_lockout'] = '';
 
     $initial_data['send_mail'] = '';
     $initial_data['send_to_email'] = '';
@@ -54,6 +96,8 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
     $default_data['specific_file_lockout'] = false;
     $default_data['specific_uri_lockout'] = false;
     $default_data['unknown_plugin_theme_lockout'] = false;
+    $default_data['already_early_lockout'] = false;
+    $default_data['sleep_lockout'] = 0;
 
     $default_data['send_mail'] = false;
     $default_data['send_to_email'] = '';
@@ -74,7 +118,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     }
 
-    $is_whitelist = apply_filters( 'mywp_lockout_is_whitelist' , false );
+    $is_whitelist = self::get_is_whitelist();
 
     if( $is_whitelist ) {
 
@@ -113,6 +157,20 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
     $is_lockout = apply_filters( 'mywp_lockout_is_lockout' , false );
 
     if( $is_lockout ) {
+
+      $setting_data = self::get_setting_data();
+
+      if( ! empty( $setting_data['sleep_lockout'] ) ) {
+
+        $seconds = intval( $setting_data['sleep_lockout'] );
+
+        if( ! empty( $seconds ) ) {
+
+          sleep( $seconds );
+
+        }
+
+      }
 
       self::do_lockedout();
 
