@@ -439,6 +439,10 @@ final class MywpLockoutList {
 
       'xxxxxxxxxxxx_loads',
 
+      'yp_remote_get',
+
+      'zzz',
+
     );
 
     $blacklist_get_data_name_list = apply_filters( 'mywp_lockout_blacklist_get_data_name_list' , $blacklist_get_data_name_list );
@@ -458,6 +462,7 @@ final class MywpLockoutList {
       'com_fabrik',
       'com_jdownloads',
 
+      'mk_check_filemanager_php_syntax',
       'mk_file_folder_manager',
       'module/newsletters/news',
 
@@ -466,6 +471,7 @@ final class MywpLockoutList {
 
       'testActivation',
 
+      'um_fileupload',
       'user/password',
 
     );
@@ -643,6 +649,7 @@ final class MywpLockoutList {
 
       'td_ajax_update_panel',
       'td_mod_register',
+      'thim_update_theme_mods',
 
       'wpgdprc_process_action',
 
@@ -708,6 +715,9 @@ final class MywpLockoutList {
     $blacklist_get_data_find_value_list = array(
 
       'die(',
+      ';eval',
+
+      'location.href',
 
       '.php#.jpg',
 
@@ -766,6 +776,7 @@ final class MywpLockoutList {
 
       '<script>',
       '</script>',
+      '@eval',
 
     );
 

@@ -642,9 +642,17 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     $messages .= self::$lockout_reason . "\n\n";
 
-    $messages .= sprintf( 'Site: %s' , do_shortcode( '[mywp_site field="name"]' ) ) . "\n\n";
+    $site_name = do_shortcode( '[mywp_site field="name"]' );
 
-    $messages .= sprintf( 'Date: %s' , self::$current_date['date'] ) . "\n\n";
+    if( empty( $site_name ) ) {
+
+      $site_name = get_option( 'blogname' );
+
+    }
+
+    $messages .= sprintf( 'Site: %s' , $site_name ) . "\n\n";
+
+    $messages .= sprintf( 'Date: %s (%s)' , self::$current_date['date'] , get_option( 'timezone_string' ) ) . "\n\n";
 
     $messages .= sprintf( 'Remote IP: %s' , self::$remote_ip ) . "\n\n";
 
