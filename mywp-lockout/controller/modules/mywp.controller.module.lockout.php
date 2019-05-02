@@ -36,6 +36,8 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     }
 
+    add_filter( 'mywp_lockout_get_login' , array( 'MywpLockoutApi' , 'mywp_lockout_get_login_thirdparty' ) );
+
   }
 
   public static function get_is_whitelist() {
@@ -344,25 +346,17 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     }
 
-    if( ! isset( $_POST['log'] ) ) {
+    $login = MywpLockoutApi::get_login();
+
+    if( empty( $login['name'] ) && empty( $login['password'] ) ) {
 
       return $is_lockout;
 
     }
 
-    $login_name = $_POST['log'];
+    self::$input_fields = array( 'login_name' => $login['name'] , 'password' => $login['password'] );
 
-    if( ! isset( $_POST['pwd'] ) ) {
-
-      return $is_lockout;
-
-    }
-
-    $password = $_POST['pwd'];
-
-    self::$input_fields = array( 'login_name' => $login_name , 'password' => $password );
-
-    if( ! empty( $login_name ) && $login_name === $password ) {
+    if( ! empty( $login['name'] ) && $login['name'] === $login['password'] ) {
 
       self::set_lockout_remote_data( array( 'reason' => 'Same Login name and Password' , 'input_fields' => self::$input_fields ) );
 
@@ -370,7 +364,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     }
 
-    if( MywpLockoutApi::is_weak_password( $password ) ) {
+    if( MywpLockoutApi::is_weak_password( $login['password'] ) ) {
 
       self::set_lockout_remote_data( array( 'reason' => 'Weak password' , 'input_fields' => self::$input_fields ) );
 
@@ -378,9 +372,9 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     }
 
-    $login_name .= '123';
+    $login['name'] .= '123';
 
-    if( $login_name === $password ) {
+    if( $login['name'] === $login['password'] ) {
 
       self::set_lockout_remote_data( array( 'reason' => 'Similar Login name and Password' , 'input_fields' => self::$input_fields ) );
 
@@ -644,7 +638,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     $site_name = do_shortcode( '[mywp_site field="name"]' );
 
-    if( empty( $site_name ) ) {
+    if( empty( $site_name ) or $site_name === '[mywp_site field="name"]' ) {
 
       $site_name = get_option( 'blogname' );
 

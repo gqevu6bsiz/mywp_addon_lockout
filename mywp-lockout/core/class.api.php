@@ -672,6 +672,50 @@ final class MywpLockoutApi {
 
   }
 
+  public static function get_login() {
+
+    $login = array( 'name' => '' , 'password' => '' );
+
+    if( ! empty( $_POST['log'] ) ) {
+
+      $login['name'] = $_POST['log'];
+
+    }
+
+    if( ! empty( $_POST['pwd'] ) ) {
+
+      $login['password'] = $_POST['pwd'];
+
+    }
+
+    $login = apply_filters( 'mywp_lockout_get_login' , $login );
+
+    return $login;
+
+  }
+
+  public static function mywp_lockout_get_login_thirdparty( $login ) {
+
+    if( ! empty( $_POST['woocommerce-login-nonce'] ) ) {
+
+      if( ! empty( $_POST['username'] ) ) {
+
+        $login['name'] = $_POST['username'];
+
+      }
+
+      if( ! empty( $_POST['password'] ) ) {
+
+        $login['password'] = $_POST['password'];
+
+      }
+
+    }
+
+    return $login;
+
+  }
+
 }
 
 endif;
