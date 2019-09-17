@@ -716,6 +716,36 @@ final class MywpLockoutApi {
 
   }
 
+  public static function get_max_lockout_seconds() {
+
+    $max_lockout_seconds = -1;
+
+    if( function_exists( 'ini_get' ) ) {
+
+      $max_lockout_seconds = ini_get( 'max_execution_time' );
+
+    }
+
+    if( ! empty( $max_lockout_seconds ) && $max_lockout_seconds > 0 ) {
+
+      $max_lockout_seconds = intval( $max_lockout_seconds );
+
+    }
+
+    return $max_lockout_seconds;
+
+  }
+
+  public static function get_mask_fields() {
+
+    $mask_fields = array( 'password' );
+
+    $mask_fields = apply_filters( 'mywp_lockout_get_mask_fields' , $mask_fields );
+
+    return $mask_fields;
+
+  }
+
 }
 
 endif;

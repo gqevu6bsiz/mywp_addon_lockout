@@ -267,6 +267,9 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
               <input type="number" name="mywp[data][sleep_lockout]" class="sleep_lockout small-text" id="sleep_lockout" value="<?php echo esc_attr( $number ); ?>" />
               <?php _e( 'Seconds' , 'mywp-lockout' ); ?>
             </label>
+            <code>
+              <?php _e( 'Max seconds' , 'mywp-lockout' ); ?>: <?php printf( __( '%s seconds' ) , MywpLockoutApi::get_max_lockout_seconds() ); ?>
+            </code>
           </td>
         </tr>
         <tr>

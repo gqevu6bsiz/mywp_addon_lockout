@@ -606,6 +606,8 @@ final class MywpLockoutList {
 
     $blacklist_post_data_name_list = array(
 
+      'cp_set_user',
+
       'fuckyou',
 
       'itongtong',
@@ -714,12 +716,14 @@ final class MywpLockoutList {
 
     $blacklist_get_data_find_value_list = array(
 
-      'die(',
       ';eval',
+      '.php#.jpg',
+
+
+      'die(',
+      'fromCharCode',
 
       'location.href',
-
-      '.php#.jpg',
 
     );
 
@@ -732,6 +736,7 @@ final class MywpLockoutList {
   public static function get_blacklist_file_data_name_list() {
 
     $blacklist_file_data_name_list = array(
+      '301_bulk_redirects',
     );
 
     $blacklist_file_data_name_list = apply_filters( 'mywp_lockout_blacklist_file_data_name_list' , $blacklist_file_data_name_list );

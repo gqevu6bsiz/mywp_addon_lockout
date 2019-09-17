@@ -168,7 +168,25 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
         if( ! empty( $seconds ) ) {
 
-          sleep( $seconds );
+          $max_lockout_seconds = MywpLockoutApi::get_max_lockout_seconds();
+
+          if( ! empty( $max_lockout_seconds ) ) {
+
+            if( $max_lockout_seconds < $seconds ) {
+
+              sleep( $max_lockout_seconds );
+
+            } else {
+
+              sleep( $seconds );
+
+            }
+
+          } else {
+
+            sleep( $seconds );
+
+          }
 
         }
 
@@ -237,6 +255,42 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
     self::$lockout_remote_data = $lockout_remote_data;
 
     return $lockout_remote_data;
+
+  }
+
+  private static function mask_input_fields( $input_fields ) {
+
+    if( ! is_array( $input_fields ) ) {
+
+      return $input_fields;
+
+    }
+
+    $mask_fields = MywpLockoutApi::get_mask_fields();
+
+    if( empty( $mask_fields ) ) {
+
+      return $input_fields;
+
+    }
+
+    foreach( $input_fields as $key => $val ) {
+
+      if( in_array( $key , $mask_fields , true ) ) {
+
+        $input_fields[ $key ] = '*****MASKED*****';
+
+      }
+
+      if( is_array( $input_fields[ $key ] ) ) {
+
+        self::mask_input_fields( $input_fields[ $key ] );
+
+      }
+
+    }
+
+    return $input_fields;
 
   }
 
@@ -354,7 +408,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     }
 
-    self::$input_fields = array( 'login_name' => $login['name'] , 'password' => $login['password'] );
+    self::$input_fields = self::mask_input_fields( array( 'login_name' => $login['name'] , 'password' => $login['password'] ) );
 
     if( ! empty( $login['name'] ) && $login['name'] === $login['password'] ) {
 
@@ -410,7 +464,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     $get_data = $_GET;
 
-    self::$input_fields = array( 'get_data' => $get_data );
+    self::$input_fields = array( 'get_data' => self::mask_input_fields( $get_data ) );
 
     if( MywpLockoutApi::is_blacklist_get_data( $get_data ) ) {
 
@@ -448,7 +502,9 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     $post_data = $_POST;
 
-    self::$input_fields = array( 'post_data' => $post_data );
+
+
+    self::$input_fields = array( 'post_data' => self::mask_input_fields( $post_data ) );
 
     if( MywpLockoutApi::is_blacklist_post_data( $post_data ) ) {
 
