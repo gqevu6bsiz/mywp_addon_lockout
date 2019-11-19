@@ -71,6 +71,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
   public static function mywp_controller_initial_data( $initial_data ) {
 
     $initial_data['expire_timeout'] = '';
+    $initial_data['week_password_lockout'] = '';
     $initial_data['specific_get_lockout'] = '';
     $initial_data['specific_post_lockout'] = '';
     $initial_data['specific_file_lockout'] = '';
@@ -93,6 +94,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
   public static function mywp_controller_default_data( $default_data ) {
 
     $default_data['expire_timeout'] = '10';
+    $default_data['week_password_lockout'] = false;
     $default_data['specific_get_lockout'] = false;
     $default_data['specific_post_lockout'] = false;
     $default_data['specific_file_lockout'] = false;
@@ -418,14 +420,6 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     }
 
-    if( MywpLockoutApi::is_weak_password( $login['password'] ) ) {
-
-      self::set_lockout_remote_data( array( 'reason' => 'Weak password' , 'input_fields' => self::$input_fields ) );
-
-      return true;
-
-    }
-
     $login['name'] .= '123';
 
     if( $login['name'] === $login['password'] ) {
@@ -433,6 +427,20 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
       self::set_lockout_remote_data( array( 'reason' => 'Similar Login name and Password' , 'input_fields' => self::$input_fields ) );
 
       return true;
+
+    }
+
+    $setting_data = self::get_setting_data();
+
+    if( ! empty( $setting_data['week_password_lockout'] ) ) {
+
+      if( MywpLockoutApi::is_weak_password( $login['password'] ) ) {
+
+        self::set_lockout_remote_data( array( 'reason' => 'Weak password' , 'input_fields' => self::$input_fields ) );
+
+        return true;
+
+      }
 
     }
 

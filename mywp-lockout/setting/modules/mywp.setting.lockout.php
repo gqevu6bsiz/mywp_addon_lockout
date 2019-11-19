@@ -20,20 +20,14 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
   public static function mywp_setting_menus( $setting_menus ) {
 
+    $setting_menus[ self::$menu ] = array(
+      'menu_title' => __( 'Lockout' , 'mywp-lockout' ),
+      'multiple_screens' => false,
+    );
+
     if( is_multisite() ) {
 
-      $setting_menus[ self::$menu ] = array(
-        'menu_title' => __( 'Lockout' , 'mywp-lockout' ),
-        'multiple_screens' => false,
-        'network' => true,
-      );
-
-    } else {
-
-      $setting_menus[ self::$menu ] = array(
-        'menu_title' => __( 'Lockout' , 'mywp-lockout' ),
-        'multiple_screens' => false,
-      );
+      $setting_menus[ self::$menu ]['network'] = true;
 
     }
 
@@ -43,25 +37,15 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
   public static function mywp_setting_screens( $setting_screens ) {
 
-    if( is_multisite() ) {
+    $plugin_info = MywpLockoutApi::plugin_info();
 
-      $setting_screens[ self::$id ] = array(
-        'title' => __( 'Lockout' , 'mywp-lockout' ),
-        'menu' => self::$menu,
-        'controller' => 'lockout',
-        'use_advance' => false,
-      );
-
-    } else {
-
-      $setting_screens[ self::$id ] = array(
-        'title' => __( 'Lockout' , 'mywp-lockout' ),
-        'menu' => self::$menu,
-        'controller' => 'lockout',
-        'use_advance' => false,
-      );
-
-    }
+    $setting_screens[ self::$id ] = array(
+      'title' => __( 'Lockout' , 'mywp-lockout' ),
+      'menu' => self::$menu,
+      'controller' => 'lockout',
+      'use_advance' => false,
+      'document_url' => $plugin_info['document_url'],
+    );
 
     return $setting_screens;
 
@@ -162,6 +146,21 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
               <?php $val = $setting_data['expire_timeout']; ?>
             <?php endif; ?>
             <input type="number" name="mywp[data][expire_timeout]" class="small-text expire_timeout" id="expire_timeout" value="<?php echo esc_attr( $val ); ?>" placeholder="<?php echo esc_attr( '10' ); ?>" /> <?php _e( 'Minute' ); ?>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <?php _e( 'Week password lockout' , 'mywp-lockout' ); ?>
+          </th>
+          <td>
+            <?php $checked = false; ?>
+            <?php if( ! empty( $setting_data['week_password_lockout'] ) ) : ?>
+              <?php $checked = $setting_data['week_password_lockout']; ?>
+            <?php endif; ?>
+            <label>
+              <input type="checkbox" name="mywp[data][week_password_lockout]" class="week_password_lockout" id="week_password_lockout" value="1" <?php checked( $checked , 1 ); ?> />
+              <?php _e( 'Lockout' , 'mywp-lockout' ); ?>
+            </label>
           </td>
         </tr>
         <tr>
@@ -380,12 +379,6 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
             <div id="check-latest-result"></div>
           </td>
         </tr>
-        <tr>
-          <th><?php _e( 'Documents' , 'my-wp' ); ?></th>
-          <td>
-            <a href="<?php echo esc_url( $plugin_info['document_url'] ); ?>" class="button button-secondary" target="_blank"><span class="dashicons dashicons-book"></span> <?php _e( 'Documents' , 'my-wp' ); ?>
-          </td>
-        </tr>
       </tbody>
     </table>
 
@@ -548,6 +541,12 @@ jQuery(document).ready(function($){
     if( ! empty( $formatted_data['expire_timeout'] ) ) {
 
       $new_formatted_data['expire_timeout'] = intval( $formatted_data['expire_timeout'] );
+
+    }
+
+    if( ! empty( $formatted_data['week_password_lockout'] ) ) {
+
+      $new_formatted_data['week_password_lockout'] = true;
 
     }
 

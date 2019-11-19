@@ -457,7 +457,10 @@ final class MywpLockoutList {
 
       '/etc',
 
+      'ajax/render/widget_php',
       'Attacker',
+
+      'br-aapf-setup',
 
       'com_fabrik',
       'com_jdownloads',
@@ -506,8 +509,6 @@ final class MywpLockoutList {
 
       'mod' => 'publisher',
       'mstshash' => 'Administr',
-
-      'ref' => 'marketopia',
 
       'x' => '',
 
@@ -584,14 +585,20 @@ final class MywpLockoutList {
 
       'getInputStream()',
 
+      'hellorconfig',
       'HelloThinkPHP',
       'HttpServletResponse',
 
+      'invokefunction',
+
+      'phpinfo',
+
       'shell_exec',
 
+      ' UNION SELECT ',
+
       'wget ',
-      'windows/win.ini',
-      'winnt/win.ini',
+      'win.ini',
       'wp-config.php',
 
     );
@@ -617,6 +624,8 @@ final class MywpLockoutList {
       'spanskys_filecontent',
 
       'theendding',
+
+      'wuev_form_type',
 
       'x0x0',
       'xxeerr',
@@ -782,6 +791,7 @@ final class MywpLockoutList {
       '<script>',
       '</script>',
       '@eval',
+      '@die',
 
     );
 
