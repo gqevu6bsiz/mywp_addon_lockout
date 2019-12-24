@@ -430,13 +430,17 @@ final class MywpLockoutList {
       'config_prefer_imagemagick',
       'cperpage',
 
+      'redir',
+
       'spanskys_filecontent',
       'swp_debug',
+      'sysCmd',
 
       'testwork',
 
       'url../../../../wp-config.php',
 
+      'x_uv_o_debug',
       'xxxxxxxxxxxx_loads',
 
       'yp_remote_get',
@@ -456,12 +460,14 @@ final class MywpLockoutList {
     $blacklist_get_data_value_list = array(
 
       '/etc',
+      ';wget',
 
       'ajax/render/widget_php',
       'Attacker',
 
       'br-aapf-setup',
 
+      'call_user_func_array',
       'com_fabrik',
       'com_jdownloads',
 
@@ -490,6 +496,7 @@ final class MywpLockoutList {
     $blacklist_get_data_name_value_list = array(
 
       'Command' => 'GetFolders',
+      'cs_email' => '1@1',
 
       'dataType' => 'ApplyChanges',
       'DD' => 'ASNIAOUFMOMZJIBD',
@@ -591,13 +598,20 @@ final class MywpLockoutList {
 
       'invokefunction',
 
+      'kjhgfdkjhgfd',
+
       'phpinfo',
+      'phpunit.xsd',
+      'print(',
+
+      'QQQQQQQ',
 
       'shell_exec',
 
       ' UNION SELECT ',
 
       'wget ',
+      '`wget',
       'win.ini',
       'wp-config.php',
 
@@ -728,9 +742,18 @@ final class MywpLockoutList {
       ';eval',
       '.php#.jpg',
 
-
       'die(',
+
       'fromCharCode',
+
+      '[nd_booking_option_value]',
+      '[nd_donations_option_value]',
+      '[nd_donations_value_import_settings]',
+      '[nd_learning_option_value]',
+      '[nd_options_option_value]',
+      '[nd_stats_value_import_settings]',
+      '[nd_stats_option_value]',
+      '[nd_travel_option_value]',
 
       'location.href',
 
