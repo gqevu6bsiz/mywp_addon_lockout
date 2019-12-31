@@ -430,8 +430,6 @@ final class MywpLockoutList {
       'config_prefer_imagemagick',
       'cperpage',
 
-      'redir',
-
       'spanskys_filecontent',
       'swp_debug',
       'sysCmd',
