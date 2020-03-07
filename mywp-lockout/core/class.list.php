@@ -434,11 +434,13 @@ final class MywpLockoutList {
       'swp_debug',
       'sysCmd',
 
+      'testingfsoc',
       'testwork',
 
       'url../../../../wp-config.php',
 
       'x_uv_o_debug',
+      'xxnew2018_url1',
       'xxxxxxxxxxxx_loads',
 
       'yp_remote_get',
@@ -573,6 +575,8 @@ final class MywpLockoutList {
       '<script>',
       '/db.php',
       '/configuration.php',
+      ' and ',
+      '\' AnD',
 
       'base64_decode(',
       'boot.ini',
@@ -587,6 +591,9 @@ final class MywpLockoutList {
       'echo(',
       'etc/passwd',
       'eval(',
+
+      'file_get_contents(',
+      'file_put_contents(',
 
       'getInputStream()',
 
@@ -604,9 +611,12 @@ final class MywpLockoutList {
 
       'QQQQQQQ',
 
+      'select unhex',
       'shell_exec',
 
       ' UNION SELECT ',
+
+      ' unhex(',
 
       'wget ',
       '`wget',

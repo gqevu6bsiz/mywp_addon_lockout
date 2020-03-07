@@ -51,19 +51,11 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
   }
 
-  public static function mywp_ajax() {
+  public static function mywp_ajax_manager() {
 
     if( is_multisite() ) {
 
       if( ! MywpLockoutApi::is_network_manager() ) {
-
-        return false;
-
-      }
-
-    } else {
-
-      if( ! MywpLockoutApi::is_manager() ) {
 
         return false;
 
@@ -150,15 +142,15 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
         </tr>
         <tr>
           <th>
-            <?php _e( 'Week password lockout' , 'mywp-lockout' ); ?>
+            <?php _e( 'Weak password lockout' , 'mywp-lockout' ); ?>
           </th>
           <td>
             <?php $checked = false; ?>
-            <?php if( ! empty( $setting_data['week_password_lockout'] ) ) : ?>
-              <?php $checked = $setting_data['week_password_lockout']; ?>
+            <?php if( ! empty( $setting_data['weak_password_lockout'] ) ) : ?>
+              <?php $checked = $setting_data['weak_password_lockout']; ?>
             <?php endif; ?>
             <label>
-              <input type="checkbox" name="mywp[data][week_password_lockout]" class="week_password_lockout" id="week_password_lockout" value="1" <?php checked( $checked , 1 ); ?> />
+              <input type="checkbox" name="mywp[data][weak_password_lockout]" class="weak_password_lockout" id="weak_password_lockout" value="1" <?php checked( $checked , 1 ); ?> />
               <?php _e( 'Lockout' , 'mywp-lockout' ); ?>
             </label>
           </td>
@@ -235,6 +227,21 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
             <label>
               <input type="checkbox" name="mywp[data][unknown_plugin_theme_lockout]" class="unknown_plugin_theme_lockout" id="unknown_plugin_theme_lockout" value="1" <?php checked( $checked , 1 ); ?> />
               <?php _e( 'Lockout' , 'mywp-lockout' ); ?>
+            </label>
+          </td>
+        </tr>
+        <tr>
+          <th>
+            <?php _e( 'Weak password validate' , 'mywp-lockout' ); ?>
+          </th>
+          <td>
+            <?php $checked = false; ?>
+            <?php if( ! empty( $setting_data['week_password_validate'] ) ) : ?>
+              <?php $checked = $setting_data['week_password_validate']; ?>
+            <?php endif; ?>
+            <label>
+              <input type="checkbox" name="mywp[data][week_password_validate]" class="week_password_validate" id="week_password_validate" value="1" <?php checked( $checked , 1 ); ?> />
+              <?php _e( 'Activate' ); ?>
             </label>
           </td>
         </tr>
@@ -389,138 +396,138 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
   public static function mywp_current_admin_print_footer_scripts() {
 
-?>
-<style>
-#send-mail-option {
-  display: none;
-  padding: 20px;
-  margin: 20px 0 0 0;
-  background: #fff;
-}
-#send-mail-option.active {
-  display: block;
-}
-#version-check-table .spinner {
-  visibility: hidden;
-}
-#version-check-table.checking .spinner {
-  visibility: visible;
-}
-#version-check-table .link-latest {
-  margin-left: 12px;
-  display: none;
-}
-#version-check-table .already-latest {
-  display: inline-block;
-}
-#version-check-table .check-latest {
-}
-#version-check-table.have-latest .link-latest {
-  display: inline-block;
-}
-#version-check-table.have-latest .already-latest {
-  display: none;
-}
-</style>
-<script>
-jQuery(document).ready(function($){
-
-  var is_send_mail_checked = $('#send_mail').prop('checked');
-
-  if( is_send_mail_checked ) {
-
-    send_mail_option( true );
-
-  }
-
-  function send_mail_option( is_true = false ) {
-
-    var $send_email_option = $('#send-mail-option');
-
-    if( is_true ) {
-
-      $send_email_option.addClass('active');
-
-    } else {
-
-      $send_email_option.removeClass('active');
-
+    ?>
+    <style>
+    #send-mail-option {
+      display: none;
+      padding: 20px;
+      margin: 20px 0 0 0;
+      background: #fff;
     }
+    #send-mail-option.active {
+      display: block;
+    }
+    #version-check-table .spinner {
+      visibility: hidden;
+    }
+    #version-check-table.checking .spinner {
+      visibility: visible;
+    }
+    #version-check-table .link-latest {
+      margin-left: 12px;
+      display: none;
+    }
+    #version-check-table .already-latest {
+      display: inline-block;
+    }
+    #version-check-table .check-latest {
+    }
+    #version-check-table.have-latest .link-latest {
+      display: inline-block;
+    }
+    #version-check-table.have-latest .already-latest {
+      display: none;
+    }
+    </style>
+    <script>
+    jQuery(document).ready(function($){
 
-  }
+      var is_send_mail_checked = $('#send_mail').prop('checked');
 
-  $('#send_mail').on('click', function() {
+      if( is_send_mail_checked ) {
 
-    send_mail_option( $(this).prop('checked') );
-
-  });
-
-  $('#check-latest-version').on('click', function() {
-
-    var $version_check_table = $(this).parent().parent().parent().parent();
-
-    $version_check_table.addClass('checking');
-
-    PostData = {
-      action: '<?php echo MywpSetting::get_ajax_action_name( self::$id , 'check_latest' ); ?>',
-      <?php echo MywpSetting::get_ajax_action_name( self::$id , 'check_latest' ); ?>: '<?php echo wp_create_nonce( MywpSetting::get_ajax_action_name( self::$id , 'check_latest' ) ); ?>'
-    };
-
-    $.ajax({
-      type: 'post',
-      url: ajaxurl,
-      data: PostData
-    }).done( function( xhr ) {
-
-      if( typeof xhr !== 'object' || xhr.success === undefined ) {
-
-        $version_check_table.removeClass('checking');
-
-        alert( '<?php _e( 'An error has occurred. Please reload the page and try again.' ); ?>' );
-
-        return false;
-
-      }
-
-      if( ! xhr.success ) {
-
-        $version_check_table.removeClass('checking');
-
-        alert( xhr.data.error );
-
-        return false;
+        send_mail_option( true );
 
       }
 
-      if( xhr.data.is_latest ) {
+      function send_mail_option( is_true = false ) {
 
-        $('#check-latest-result').html( xhr.data.message );
+        var $send_email_option = $('#send-mail-option');
 
-        $version_check_table.removeClass('checking');
+        if( is_true ) {
 
-        return false;
+          $send_email_option.addClass('active');
+
+        } else {
+
+          $send_email_option.removeClass('active');
+
+        }
 
       }
 
-      location.reload();
+      $('#send_mail').on('click', function() {
 
-      return true;
+        send_mail_option( $(this).prop('checked') );
 
-    }).fail( function( xhr ) {
+      });
 
-      $version_check_table.removeClass('checking');
+      $('#check-latest-version').on('click', function() {
 
-      alert( '<?php _e( 'An error has occurred. Please reload the page and try again.' ); ?>' );
+        var $version_check_table = $(this).parent().parent().parent().parent();
 
-      return false;
+        $version_check_table.addClass('checking');
+
+        PostData = {
+          action: '<?php echo MywpSetting::get_ajax_action_name( self::$id , 'check_latest' ); ?>',
+          <?php echo MywpSetting::get_ajax_action_name( self::$id , 'check_latest' ); ?>: '<?php echo wp_create_nonce( MywpSetting::get_ajax_action_name( self::$id , 'check_latest' ) ); ?>'
+        };
+
+        $.ajax({
+          type: 'post',
+          url: ajaxurl,
+          data: PostData
+        }).done( function( xhr ) {
+
+          if( typeof xhr !== 'object' || xhr.success === undefined ) {
+
+            $version_check_table.removeClass('checking');
+
+            alert( '<?php _e( 'An error has occurred. Please reload the page and try again.' ); ?>' );
+
+            return false;
+
+          }
+
+          if( ! xhr.success ) {
+
+            $version_check_table.removeClass('checking');
+
+            alert( xhr.data.error );
+
+            return false;
+
+          }
+
+          if( xhr.data.is_latest ) {
+
+            $('#check-latest-result').html( xhr.data.message );
+
+            $version_check_table.removeClass('checking');
+
+            return false;
+
+          }
+
+          location.reload();
+
+          return true;
+
+        }).fail( function( xhr ) {
+
+          $version_check_table.removeClass('checking');
+
+          alert( '<?php _e( 'An error has occurred. Please reload the page and try again.' ); ?>' );
+
+          return false;
+
+        });
+
+      });
 
     });
-
-  });
-
-});
-</script>
-<?php
+    </script>
+    <?php
 
   }
 
@@ -544,9 +551,9 @@ jQuery(document).ready(function($){
 
     }
 
-    if( ! empty( $formatted_data['week_password_lockout'] ) ) {
+    if( ! empty( $formatted_data['weak_password_lockout'] ) ) {
 
-      $new_formatted_data['week_password_lockout'] = true;
+      $new_formatted_data['weak_password_lockout'] = true;
 
     }
 
@@ -577,6 +584,12 @@ jQuery(document).ready(function($){
     if( ! empty( $formatted_data['unknown_plugin_theme_lockout'] ) ) {
 
       $new_formatted_data['unknown_plugin_theme_lockout'] = true;
+
+    }
+
+    if( ! empty( $formatted_data['week_password_validate'] ) ) {
+
+      $new_formatted_data['week_password_validate'] = true;
 
     }
 

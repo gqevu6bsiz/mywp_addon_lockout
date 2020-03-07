@@ -71,12 +71,13 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
   public static function mywp_controller_initial_data( $initial_data ) {
 
     $initial_data['expire_timeout'] = '';
-    $initial_data['week_password_lockout'] = '';
+    $initial_data['weak_password_lockout'] = '';
     $initial_data['specific_get_lockout'] = '';
     $initial_data['specific_post_lockout'] = '';
     $initial_data['specific_file_lockout'] = '';
     $initial_data['specific_uri_lockout'] = '';
     $initial_data['unknown_plugin_theme_lockout'] = '';
+    $initial_data['week_password_validate'] = '';
     $initial_data['already_early_lockout'] = '';
     $initial_data['sleep_lockout'] = '';
 
@@ -94,12 +95,13 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
   public static function mywp_controller_default_data( $default_data ) {
 
     $default_data['expire_timeout'] = '10';
-    $default_data['week_password_lockout'] = false;
+    $default_data['weak_password_lockout'] = false;
     $default_data['specific_get_lockout'] = false;
     $default_data['specific_post_lockout'] = false;
     $default_data['specific_file_lockout'] = false;
     $default_data['specific_uri_lockout'] = false;
     $default_data['unknown_plugin_theme_lockout'] = false;
+    $default_data['week_password_validate'] = false;
     $default_data['already_early_lockout'] = false;
     $default_data['sleep_lockout'] = 0;
 
@@ -149,6 +151,10 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
     add_action( 'mywp_lockout_do_lockout' , array( __CLASS__ , 'lockout_send_email' ) , 20 );
 
     self::lockout();
+
+    add_action( 'user_profile_update_errors' , array( __CLASS__ , 'user_profile_update_errors' ) , 10 , 3 );
+
+    add_action( 'validate_password_reset' , array( __CLASS__ , 'validate_password_reset' ) , 10 , 2 );
 
   }
 
@@ -432,7 +438,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     $setting_data = self::get_setting_data();
 
-    if( ! empty( $setting_data['week_password_lockout'] ) ) {
+    if( ! empty( $setting_data['weak_password_lockout'] ) ) {
 
       if( MywpLockoutApi::is_weak_password( $login['password'] ) ) {
 
@@ -757,6 +763,62 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
       restore_current_blog();
 
     }
+
+  }
+
+  public static function user_profile_update_errors( $errors , $update , $user ) {
+
+    $password = false;
+
+    if( ! empty( $user->user_pass ) ) {
+
+      $password = $user->user_pass;
+
+    } elseif( ! empty( $_POST['pass1'] ) ) {
+
+      $password = $_POST['pass1'];
+
+    }
+
+    if( empty( $password ) ) {
+
+      return $errors;
+
+    }
+
+    if( MywpLockoutApi::is_weak_password( $password ) ) {
+
+      $errors->add( 'weak_password' , __( '<strong>ERROR</strong>: This password is weak. Please enter a stronger password.' ) , array( 'form-field' => 'pass1' ) );
+
+    }
+
+    return $errors;
+
+  }
+
+  public static function validate_password_reset( $errors , $user ) {
+
+    $password = false;
+
+    if( ! empty( $_POST['pass1'] ) ) {
+
+      $password = $_POST['pass1'];
+
+    }
+
+    if( empty( $password ) ) {
+
+      return $errors;
+
+    }
+
+    if( MywpLockoutApi::is_weak_password( $password ) ) {
+
+      $errors->add( 'weak_password' , __( '<strong>ERROR</strong>: This password is weak. Please enter a stronger password.' ) , array( 'form-field' => 'pass1' ) );
+
+    }
+
+    return $errors;
 
   }
 
