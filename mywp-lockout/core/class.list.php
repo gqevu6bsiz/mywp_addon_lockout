@@ -461,6 +461,7 @@ final class MywpLockoutList {
 
       '/etc',
       ';wget',
+      '../index.php',
 
       'ajax/render/widget_php',
       'Attacker',
@@ -471,6 +472,8 @@ final class MywpLockoutList {
       'com_fabrik',
       'com_jdownloads',
 
+      'getJSONExportTable',
+
       'mk_check_filemanager_php_syntax',
       'mk_file_folder_manager',
       'module/newsletters/news',
@@ -480,6 +483,7 @@ final class MywpLockoutList {
 
       'testActivation',
 
+      'ufaq_search',
       'um_fileupload',
       'user/password',
 
@@ -577,6 +581,8 @@ final class MywpLockoutList {
       '/configuration.php',
       ' and ',
       '\' AnD',
+
+      'allow_url_fopen',
 
       'base64_decode(',
       'boot.ini',
