@@ -415,21 +415,28 @@ final class MywpLockoutList {
 
   }
 
-  public static function get_blacklist_get_data_name_list() {
+  public static function get_denylist_get_data_name_list() {
 
-    $blacklist_get_data_name_list = array(
+    $denylist_get_data_name_list = array(
 
       '_escaped_fragment_',
 
       '/__/__/wp-config_php',
 
       'abc11',
+      'asavsdvds',
 
       'bataboom',
 
       'config_prefer_imagemagick',
       'cperpage',
 
+      'daksldlkdsadas',
+      'do_reset_wordpress',
+
+      'lgkfghdfh',
+
+      'smt_download_export_file',
       'spanskys_filecontent',
       'swp_debug',
       'sysCmd',
@@ -438,6 +445,9 @@ final class MywpLockoutList {
       'testwork',
 
       'url../../../../wp-config.php',
+
+      'wppcp-security-settings-page',
+      'wppcp-settings',
 
       'x_uv_o_debug',
       'xxnew2018_url1',
@@ -449,19 +459,21 @@ final class MywpLockoutList {
 
     );
 
-    $blacklist_get_data_name_list = apply_filters( 'mywp_lockout_blacklist_get_data_name_list' , $blacklist_get_data_name_list );
+    $denylist_get_data_name_list = apply_filters( 'mywp_lockout_denylist_get_data_name_list' , $denylist_get_data_name_list );
 
-    return $blacklist_get_data_name_list;
+    return $denylist_get_data_name_list;
 
   }
 
-  public static function get_blacklist_get_data_value_list() {
+  public static function get_denylist_get_data_value_list() {
 
-    $blacklist_get_data_value_list = array(
+    $denylist_get_data_value_list = array(
 
       '/etc',
       ';wget',
       '../index.php',
+
+      '1name=alex',
 
       'ajax/render/widget_php',
       'Attacker',
@@ -472,7 +484,14 @@ final class MywpLockoutList {
       'com_fabrik',
       'com_jdownloads',
 
+      'dupl.txt',
+
+      'EWD-UFAQ-Options',
+      'EWD_UFAQ_UpdateOptions',
+
       'getJSONExportTable',
+
+      'initiationready',
 
       'mk_check_filemanager_php_syntax',
       'mk_file_folder_manager',
@@ -481,23 +500,36 @@ final class MywpLockoutList {
       'ppom_upload_file',
       'printerInfo',
 
+      'rdfgdfgdfg',
+      'rms_ping_from_the_universe',
+
+      'sssspaincett3',
+
       'testActivation',
 
       'ufaq_search',
       'um_fileupload',
       'user/password',
 
+      'wpfm_save_file_data',
+      'wpim_manage_settings',
+      'wpsm_responsive_coming_soon',
+      'wpuf_file_upload',
+      'www.exp2redir2.com',
+
+      'yuzo-related-post',
+
     );
 
-    $blacklist_get_data_value_list = apply_filters( 'mywp_lockout_blacklist_get_data_value_list' , $blacklist_get_data_value_list );
+    $denylist_get_data_value_list = apply_filters( 'mywp_lockout_denylist_get_data_value_list' , $denylist_get_data_value_list );
 
-    return $blacklist_get_data_value_list;
+    return $denylist_get_data_value_list;
 
   }
 
-  public static function get_blacklist_get_data_name_value_list() {
+  public static function get_denylist_get_data_name_value_list() {
 
-    $blacklist_get_data_name_value_list = array(
+    $denylist_get_data_name_value_list = array(
 
       'Command' => 'GetFolders',
       'cs_email' => '1@1',
@@ -506,6 +538,7 @@ final class MywpLockoutList {
       'DD' => 'ASNIAOUFMOMZJIBD',
 
       'email' => 'yourmail@gmail.com',
+      'enpl' => 'OEhIJw==',
 
       'font' => '/../../../../caches/bakup/default/0<<.sql',
 
@@ -527,19 +560,19 @@ final class MywpLockoutList {
 
     );
 
-    $blacklist_get_data_name_value_list = apply_filters( 'mywp_lockout_blacklist_get_data_name_value_list' , $blacklist_get_data_name_value_list );
+    $denylist_get_data_name_value_list = apply_filters( 'mywp_lockout_denylist_get_data_name_value_list' , $denylist_get_data_name_value_list );
 
-    return $blacklist_get_data_name_value_list;
+    return $denylist_get_data_name_value_list;
 
   }
 
-  public static function get_blacklist_get_data_name_pattern_list() {
+  public static function get_denylist_get_data_name_pattern_list() {
 
     $patterns = array();
 
-    $blacklist_get_data_name_list = self::get_blacklist_get_data_name_list();
+    $denylist_get_data_name_list = self::get_denylist_get_data_name_list();
 
-    foreach( $blacklist_get_data_name_list as $word ) {
+    foreach( $denylist_get_data_name_list as $word ) {
 
       $patterns[] = array(
         'pattern' => sprintf( '^%s' , $word ),
@@ -558,25 +591,26 @@ final class MywpLockoutList {
       'after_delimiter' => '',
     );
 
-    $blacklist_get_data_name_pattern_list = array();
+    $denylist_get_data_name_pattern_list = array();
 
     foreach( $patterns as $pattern ) {
 
-      $blacklist_get_data_name_pattern_list[] = wp_parse_args( $pattern , $default );
+      $denylist_get_data_name_pattern_list[] = wp_parse_args( $pattern , $default );
 
     }
 
-    $blacklist_get_data_name_pattern_list = apply_filters( 'mywp_lockout_blacklist_get_data_name_pattern_list' , $blacklist_get_data_name_pattern_list );
+    $denylist_get_data_name_pattern_list = apply_filters( 'mywp_lockout_denylist_get_data_name_pattern_list' , $denylist_get_data_name_pattern_list );
 
-    return $blacklist_get_data_name_pattern_list;
+    return $denylist_get_data_name_pattern_list;
 
   }
 
-  public static function get_blacklist_get_data_find_value_list() {
+  public static function get_denylist_get_data_find_value_list() {
 
-    $blacklist_get_data_find_value_list = array(
+    $denylist_get_data_find_value_list = array(
 
       '<script>',
+      '><script',
       '/db.php',
       '/configuration.php',
       ' and ',
@@ -598,6 +632,7 @@ final class MywpLockoutList {
       'etc/passwd',
       'eval(',
 
+      'fb_pdf\\\'',
       'file_get_contents(',
       'file_put_contents(',
 
@@ -611,19 +646,28 @@ final class MywpLockoutList {
 
       'kjhgfdkjhgfd',
 
+      'nd_options_option_value',
+
+      ' ORDER BY ',
+
       'phpinfo',
       'phpunit.xsd',
       'print(',
 
       'QQQQQQQ',
 
+      'rdfgdfgdfg',
+
       'select unhex',
       'shell_exec',
-
-      ' UNION SELECT ',
+      'SELECT ',
+      'select ',
+      'SELECT%',
+      'union+select+',
 
       ' unhex(',
 
+      'WAITFOR DELAY ',
       'wget ',
       '`wget',
       'win.ini',
@@ -631,18 +675,24 @@ final class MywpLockoutList {
 
     );
 
-    $blacklist_get_data_find_value_list = apply_filters( 'mywp_lockout_blacklist_get_data_find_value_list' , $blacklist_get_data_find_value_list );
+    $denylist_get_data_find_value_list = apply_filters( 'mywp_lockout_denylist_get_data_find_value_list' , $denylist_get_data_find_value_list );
 
-    return $blacklist_get_data_find_value_list;
+    return $denylist_get_data_find_value_list;
 
   }
 
-  public static function get_blacklist_post_data_name_list() {
+  public static function get_denylist_post_data_name_list() {
 
-    $blacklist_post_data_name_list = array(
+    $denylist_post_data_name_list = array(
+
+      '$config',
+      '_ning_upload_image',
+
+      'asavsdvds',
 
       'cp_set_user',
 
+      'fack',
       'fuckyou',
 
       'itongtong',
@@ -661,15 +711,17 @@ final class MywpLockoutList {
 
     );
 
-    $blacklist_post_data_name_list = apply_filters( 'mywp_lockout_blacklist_post_data_name_list' , $blacklist_post_data_name_list );
+    $denylist_post_data_name_list = apply_filters( 'mywp_lockout_denylist_post_data_name_list' , $denylist_post_data_name_list );
 
-    return $blacklist_post_data_name_list;
+    return $denylist_post_data_name_list;
 
   }
 
-  public static function get_blacklist_post_data_value_list() {
+  public static function get_denylist_post_data_value_list() {
 
-    $blacklist_post_data_value_list = array(
+    $denylist_post_data_value_list = array(
+
+      'androxgh0st',
 
       'cHJpbnQobWQ1KDMyNDIzNCkpOw==',
       'cs_employer_ajax_profile',
@@ -682,41 +734,52 @@ final class MywpLockoutList {
 
       'echo(344444443+1);',
 
+      'get_currentRef',
+
+      'kiwi_social_share_get_option',
       'kiwi_social_share_set_option',
+
+      'mk_file_folder_manager',
 
       'print(md5(11111));',
 
+      'td_ajax_search',
       'td_ajax_update_panel',
       'td_mod_register',
+      'thim_login_ajax',
       'thim_update_theme_mods',
 
+      'um_fileupload',
+      'um_remove_file',
+
       'wpgdprc_process_action',
+      'wpsp_upload_attachment',
 
     );
 
-    $blacklist_post_data_value_list = apply_filters( 'mywp_lockout_blacklist_post_data_value_list' , $blacklist_post_data_value_list );
+    $denylist_post_data_value_list = apply_filters( 'mywp_lockout_denylist_post_data_value_list' , $denylist_post_data_value_list );
 
-    return $blacklist_post_data_value_list;
-
-  }
-
-  public static function get_blacklist_post_data_name_value_list() {
-
-    $blacklist_post_data_name_value_list = array();
-
-    $blacklist_post_data_name_value_list = apply_filters( 'mywp_lockout_blacklist_post_data_name_value_list' , $blacklist_post_data_name_value_list );
-
-    return $blacklist_post_data_name_value_list;
+    return $denylist_post_data_value_list;
 
   }
 
-  public static function get_blacklist_post_data_name_pattern_list() {
+  public static function get_denylist_post_data_name_value_list() {
+
+    $denylist_post_data_name_value_list = array();
+
+    $denylist_post_data_name_value_list = apply_filters( 'mywp_lockout_denylist_post_data_name_value_list' , $denylist_post_data_name_value_list );
+
+    return $denylist_post_data_name_value_list;
+
+  }
+
+  public static function get_denylist_post_data_name_pattern_list() {
 
     $patterns = array();
 
-    $blacklist_post_data_name_list = self::get_blacklist_post_data_name_list();
+    $denylist_post_data_name_list = self::get_denylist_post_data_name_list();
 
-    foreach( $blacklist_post_data_name_list as $word ) {
+    foreach( $denylist_post_data_name_list as $word ) {
 
       $patterns[] = array(
         'pattern' => sprintf( '^%s' , $word ),
@@ -735,31 +798,26 @@ final class MywpLockoutList {
       'after_delimiter' => '',
     );
 
-    $blacklist_post_data_name_pattern_list = array();
+    $denylist_post_data_name_pattern_list = array();
 
     foreach( $patterns as $pattern ) {
 
-      $blacklist_post_data_name_pattern_list[] = wp_parse_args( $pattern , $default );
+      $denylist_post_data_name_pattern_list[] = wp_parse_args( $pattern , $default );
 
     }
 
-    $blacklist_post_data_name_pattern_list = apply_filters( 'mywp_lockout_blacklist_post_data_name_pattern_list' , $blacklist_post_data_name_pattern_list );
+    $denylist_post_data_name_pattern_list = apply_filters( 'mywp_lockout_denylist_post_data_name_pattern_list' , $denylist_post_data_name_pattern_list );
 
-    return $blacklist_post_data_name_pattern_list;
+    return $denylist_post_data_name_pattern_list;
 
   }
 
-  public static function get_blacklist_post_data_find_value_list() {
+  public static function get_denylist_post_data_find_value_list() {
 
-    $blacklist_get_data_find_value_list = array(
+    $denylist_get_data_find_value_list = array(
 
       ';eval',
       '.php#.jpg',
-
-      'die(',
-
-      'fromCharCode',
-
       '[nd_booking_option_value]',
       '[nd_donations_option_value]',
       '[nd_donations_value_import_settings]',
@@ -769,42 +827,50 @@ final class MywpLockoutList {
       '[nd_stats_option_value]',
       '[nd_travel_option_value]',
 
+      '234234234234',
+
+      'die(',
+
+      'fromCharCode',
+
+      'information_schema',
+
       'location.href',
 
     );
 
-    $blacklist_get_data_find_value_list = apply_filters( 'mywp_lockout_blacklist_get_data_find_value_list' , $blacklist_get_data_find_value_list );
+    $denylist_get_data_find_value_list = apply_filters( 'mywp_lockout_denylist_get_data_find_value_list' , $denylist_get_data_find_value_list );
 
-    return $blacklist_get_data_find_value_list;
+    return $denylist_get_data_find_value_list;
 
   }
 
-  public static function get_blacklist_file_data_name_list() {
+  public static function get_denylist_file_data_name_list() {
 
-    $blacklist_file_data_name_list = array(
+    $denylist_file_data_name_list = array(
       '301_bulk_redirects',
     );
 
-    $blacklist_file_data_name_list = apply_filters( 'mywp_lockout_blacklist_file_data_name_list' , $blacklist_file_data_name_list );
+    $denylist_file_data_name_list = apply_filters( 'mywp_lockout_denylist_file_data_name_list' , $denylist_file_data_name_list );
 
-    return $blacklist_file_data_name_list;
+    return $denylist_file_data_name_list;
 
   }
 
-  public static function get_blacklist_file_data_value_list() {
+  public static function get_denylist_file_data_value_list() {
 
-    $blacklist_file_data_value_list = array(
+    $denylist_file_data_value_list = array(
     );
 
-    $blacklist_file_data_value_list = apply_filters( 'mywp_lockout_blacklist_file_data_value_list' , $blacklist_file_data_value_list );
+    $denylist_file_data_value_list = apply_filters( 'mywp_lockout_denylist_file_data_value_list' , $denylist_file_data_value_list );
 
-    return $blacklist_file_data_value_list;
+    return $denylist_file_data_value_list;
 
   }
 
-  public static function get_blacklist_file_extension_list() {
+  public static function get_denylist_file_extension_list() {
 
-    $blacklist_file_extension_list = array(
+    $denylist_file_extension_list = array(
 
       'cgi',
 
@@ -815,26 +881,28 @@ final class MywpLockoutList {
 
     );
 
-    $blacklist_file_extension_list = apply_filters( 'mywp_lockout_blacklist_file_extension_list' , $blacklist_file_extension_list );
+    $denylist_file_extension_list = apply_filters( 'mywp_lockout_denylist_file_extension_list' , $denylist_file_extension_list );
 
-    return $blacklist_file_extension_list;
+    return $denylist_file_extension_list;
 
   }
 
-  public static function get_blacklist_uri_find_list() {
+  public static function get_denylist_uri_find_list() {
 
-    $blacklist_uri_find_list = array(
+    $denylist_uri_find_list = array(
 
       '<script>',
       '</script>',
       '@eval',
       '@die',
 
+      '22c\'abikn',
+
     );
 
-    $blacklist_uri_find_list = apply_filters( 'mywp_lockout_blacklist_uri_find_list' , $blacklist_uri_find_list );
+    $denylist_uri_find_list = apply_filters( 'mywp_lockout_denylist_uri_find_list' , $denylist_uri_find_list );
 
-    return $blacklist_uri_find_list;
+    return $denylist_uri_find_list;
 
   }
 

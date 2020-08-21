@@ -217,7 +217,7 @@ final class MywpLockoutApi {
 
   }
 
-  public static function is_blacklist_get_data( $get_data = false ) {
+  public static function is_denylist_get_data( $get_data = false ) {
 
     if( empty( $get_data ) ) {
 
@@ -225,17 +225,17 @@ final class MywpLockoutApi {
 
     }
 
-    $is_blacklist = false;
+    $is_denylist = false;
 
-    $blacklist_get_data_name_list = MywpLockoutList::get_blacklist_get_data_name_list();
+    $denylist_get_data_name_list = MywpLockoutList::get_denylist_get_data_name_list();
 
     foreach( $get_data as $get_data_key => $get_data_val ) {
 
-      foreach( $blacklist_get_data_name_list as $word ) {
+      foreach( $denylist_get_data_name_list as $word ) {
 
         if( (string) $get_data_key === (string) $word ) {
 
-          $is_blacklist = true;
+          $is_denylist = true;
 
           break;
 
@@ -245,17 +245,17 @@ final class MywpLockoutApi {
 
     }
 
-    if( $is_blacklist ) {
+    if( $is_denylist ) {
 
       return true;
 
     }
 
-    $blacklist_get_data_value_list = MywpLockoutList::get_blacklist_get_data_value_list();
+    $denylist_get_data_value_list = MywpLockoutList::get_denylist_get_data_value_list();
 
     foreach( $get_data as $get_data_key => $get_data_val ) {
 
-      foreach( $blacklist_get_data_value_list as $word ) {
+      foreach( $denylist_get_data_value_list as $word ) {
 
         if( is_array( $get_data_val ) ) {
 
@@ -265,7 +265,7 @@ final class MywpLockoutApi {
 
         if( (string) $get_data_val === (string) $word ) {
 
-          $is_blacklist = true;
+          $is_denylist = true;
 
           break;
 
@@ -275,21 +275,21 @@ final class MywpLockoutApi {
 
     }
 
-    if( $is_blacklist ) {
+    if( $is_denylist ) {
 
       return true;
 
     }
 
-    $blacklist_get_data_name_value_list = MywpLockoutList::get_blacklist_get_data_name_value_list();
+    $denylist_get_data_name_value_list = MywpLockoutList::get_denylist_get_data_name_value_list();
 
     foreach( $get_data as $get_data_key => $get_data_val ) {
 
-      foreach( $blacklist_get_data_name_value_list as $name => $value ) {
+      foreach( $denylist_get_data_name_value_list as $name => $value ) {
 
         if( (string) $get_data_key === (string) $name && (string) $get_data_val === (string) $value ) {
 
-          $is_blacklist = true;
+          $is_denylist = true;
 
           break;
 
@@ -299,15 +299,15 @@ final class MywpLockoutApi {
 
     }
 
-    if( $is_blacklist ) {
+    if( $is_denylist ) {
 
       return true;
 
     }
 
-    $blacklist_get_data_name_pattern_list = MywpLockoutList::get_blacklist_get_data_name_pattern_list();
+    $denylist_get_data_name_pattern_list = MywpLockoutList::get_denylist_get_data_name_pattern_list();
 
-    foreach( $blacklist_get_data_name_pattern_list as $pattern ) {
+    foreach( $denylist_get_data_name_pattern_list as $pattern ) {
 
       if( empty( $pattern['pattern'] ) && ! isset( $pattern['after_delimiter'] ) ) {
 
@@ -323,7 +323,7 @@ final class MywpLockoutApi {
 
         if( preg_match( $pattern_str , $get_data_key ) ) {
 
-          $is_blacklist = true;
+          $is_denylist = true;
 
           break;
 
@@ -331,7 +331,7 @@ final class MywpLockoutApi {
 
       }
 
-      if( $is_blacklist ) {
+      if( $is_denylist ) {
 
         break;
 
@@ -339,21 +339,21 @@ final class MywpLockoutApi {
 
     }
 
-    if( $is_blacklist ) {
+    if( $is_denylist ) {
 
       return true;
 
     }
 
-    $blacklist_get_data_find_value_list = MywpLockoutList::get_blacklist_get_data_find_value_list();
+    $denylist_get_data_find_value_list = MywpLockoutList::get_denylist_get_data_find_value_list();
 
     $serialize_get_data = maybe_serialize( $get_data );
 
-    foreach( $blacklist_get_data_find_value_list as $word ) {
+    foreach( $denylist_get_data_find_value_list as $word ) {
 
       if( strpos( $serialize_get_data , $word ) !== false ) {
 
-        $is_blacklist = true;
+        $is_denylist = true;
 
         break;
 
@@ -361,7 +361,7 @@ final class MywpLockoutApi {
 
     }
 
-    if( $is_blacklist ) {
+    if( $is_denylist ) {
 
       return true;
 
@@ -371,7 +371,7 @@ final class MywpLockoutApi {
 
   }
 
-  public static function is_blacklist_post_data( $post_data = false ) {
+  public static function is_denylist_post_data( $post_data = false ) {
 
     if( empty( $post_data ) ) {
 
@@ -379,17 +379,17 @@ final class MywpLockoutApi {
 
     }
 
-    $is_blacklist = false;
+    $is_denylist = false;
 
-    $blacklist_post_data_name_list = MywpLockoutList::get_blacklist_post_data_name_list();
+    $denylist_post_data_name_list = MywpLockoutList::get_denylist_post_data_name_list();
 
     foreach( $post_data as $post_data_key => $post_data_val ) {
 
-      foreach( $blacklist_post_data_name_list as $word ) {
+      foreach( $denylist_post_data_name_list as $word ) {
 
         if( (string) $post_data_key === (string) $word ) {
 
-          $is_blacklist = true;
+          $is_denylist = true;
 
           break;
 
@@ -399,17 +399,17 @@ final class MywpLockoutApi {
 
     }
 
-    if( $is_blacklist ) {
+    if( $is_denylist ) {
 
       return true;
 
     }
 
-    $blacklist_post_data_value_list = MywpLockoutList::get_blacklist_post_data_value_list();
+    $denylist_post_data_value_list = MywpLockoutList::get_denylist_post_data_value_list();
 
     foreach( $post_data as $post_data_key => $post_data_val ) {
 
-      foreach( $blacklist_post_data_value_list as $word ) {
+      foreach( $denylist_post_data_value_list as $word ) {
 
         if( is_array( $post_data_val ) ) {
 
@@ -419,7 +419,7 @@ final class MywpLockoutApi {
 
         if( (string) $post_data_val === (string) $word ) {
 
-          $is_blacklist = true;
+          $is_denylist = true;
 
           break;
 
@@ -429,21 +429,21 @@ final class MywpLockoutApi {
 
     }
 
-    if( $is_blacklist ) {
+    if( $is_denylist ) {
 
       return true;
 
     }
 
-    $blacklist_post_data_name_value_list = MywpLockoutList::get_blacklist_post_data_name_value_list();
+    $denylist_post_data_name_value_list = MywpLockoutList::get_denylist_post_data_name_value_list();
 
     foreach( $post_data as $post_data_key => $post_data_val ) {
 
-      foreach( $blacklist_post_data_name_value_list as $name => $value ) {
+      foreach( $denylist_post_data_name_value_list as $name => $value ) {
 
         if( (string) $post_data_key === (string) $name && (string) $post_data_val === (string) $value ) {
 
-          $is_blacklist = true;
+          $is_denylist = true;
 
           break;
 
@@ -453,15 +453,15 @@ final class MywpLockoutApi {
 
     }
 
-    if( $is_blacklist ) {
+    if( $is_denylist ) {
 
       return true;
 
     }
 
-    $blacklist_post_data_name_pattern_list = MywpLockoutList::get_blacklist_post_data_name_pattern_list();
+    $denylist_post_data_name_pattern_list = MywpLockoutList::get_denylist_post_data_name_pattern_list();
 
-    foreach( $blacklist_post_data_name_pattern_list as $pattern ) {
+    foreach( $denylist_post_data_name_pattern_list as $pattern ) {
 
       if( empty( $pattern['pattern'] ) && ! isset( $pattern['after_delimiter'] ) ) {
 
@@ -477,14 +477,14 @@ final class MywpLockoutApi {
 
         if( preg_match( $pattern_str , $post_data_key ) ) {
 
-          $is_blacklist = true;
+          $is_denylist = true;
           break;
 
         }
 
       }
 
-      if( $is_blacklist ) {
+      if( $is_denylist ) {
 
         break;
 
@@ -492,21 +492,21 @@ final class MywpLockoutApi {
 
     }
 
-    if( $is_blacklist ) {
+    if( $is_denylist ) {
 
       return true;
 
     }
 
-    $blacklist_post_data_find_value_list = MywpLockoutList::get_blacklist_post_data_find_value_list();
+    $denylist_post_data_find_value_list = MywpLockoutList::get_denylist_post_data_find_value_list();
 
     $serialize_post_data = maybe_serialize( $post_data );
 
-    foreach( $blacklist_post_data_find_value_list as $word ) {
+    foreach( $denylist_post_data_find_value_list as $word ) {
 
       if( strpos( $serialize_post_data , $word ) !== false ) {
 
-        $is_blacklist = true;
+        $is_denylist = true;
 
         break;
 
@@ -514,7 +514,7 @@ final class MywpLockoutApi {
 
     }
 
-    if( $is_blacklist ) {
+    if( $is_denylist ) {
 
       return true;
 
@@ -524,7 +524,7 @@ final class MywpLockoutApi {
 
   }
 
-  public static function is_blacklist_file_data( $file_data = false ) {
+  public static function is_denylist_file_data( $file_data = false ) {
 
     if( empty( $file_data ) ) {
 
@@ -532,9 +532,9 @@ final class MywpLockoutApi {
 
     }
 
-    $is_blacklist = false;
+    $is_denylist = false;
 
-    $blacklist_file_data_name_list = MywpLockoutList::get_blacklist_file_data_name_list();
+    $denylist_file_data_name_list = MywpLockoutList::get_denylist_file_data_name_list();
 
     foreach( $file_data as $file_data_key => $file_data_val ) {
 
@@ -544,11 +544,11 @@ final class MywpLockoutApi {
 
       }
 
-      foreach( $blacklist_file_data_name_list as $word ) {
+      foreach( $denylist_file_data_name_list as $word ) {
 
         if( (string) $file_data_key === (string) $word ) {
 
-          $is_blacklist = true;
+          $is_denylist = true;
 
           break;
 
@@ -558,17 +558,17 @@ final class MywpLockoutApi {
 
     }
 
-    if( $is_blacklist ) {
+    if( $is_denylist ) {
 
       return true;
 
     }
 
-    $blacklist_file_data_value_list = MywpLockoutList::get_blacklist_file_data_value_list();
+    $denylist_file_data_value_list = MywpLockoutList::get_denylist_file_data_value_list();
 
     foreach( $file_data as $file_data_key => $file_data_val ) {
 
-      foreach( $blacklist_file_data_value_list as $word ) {
+      foreach( $denylist_file_data_value_list as $word ) {
 
         if( empty( $file_data_val['name'] ) ) {
 
@@ -578,7 +578,7 @@ final class MywpLockoutApi {
 
         if( (string) $file_data_val['name'] === (string) $word ) {
 
-          $is_blacklist = true;
+          $is_denylist = true;
 
           break;
 
@@ -588,17 +588,17 @@ final class MywpLockoutApi {
 
     }
 
-    if( $is_blacklist ) {
+    if( $is_denylist ) {
 
       return true;
 
     }
 
-    $blacklist_file_extension_list = MywpLockoutList::get_blacklist_file_extension_list();
+    $denylist_file_extension_list = MywpLockoutList::get_denylist_file_extension_list();
 
     foreach( $file_data as $file_data_key => $file_data_val ) {
 
-      foreach( $blacklist_file_extension_list as $word ) {
+      foreach( $denylist_file_extension_list as $word ) {
 
         if( empty( $file_data_val['name'] ) ) {
 
@@ -616,7 +616,7 @@ final class MywpLockoutApi {
 
         if( (string) $file_path_info['extension'] === (string) $word ) {
 
-          $is_blacklist = true;
+          $is_denylist = true;
 
           break;
 
@@ -626,7 +626,7 @@ final class MywpLockoutApi {
 
     }
 
-    if( $is_blacklist ) {
+    if( $is_denylist ) {
 
       return true;
 
@@ -636,7 +636,7 @@ final class MywpLockoutApi {
 
   }
 
-  public static function is_blacklist_uri( $request_uri = false ) {
+  public static function is_denylist_uri( $request_uri = false ) {
 
     if( empty( $request_uri ) ) {
 
@@ -644,17 +644,17 @@ final class MywpLockoutApi {
 
     }
 
-    $is_blacklist = false;
+    $is_denylist = false;
 
-    $blacklist_uri_find_list = MywpLockoutList::get_blacklist_uri_find_list();
+    $denylist_uri_find_list = MywpLockoutList::get_denylist_uri_find_list();
 
     $request_uri = urldecode( $request_uri );
 
-    foreach( $blacklist_uri_find_list as $word ) {
+    foreach( $denylist_uri_find_list as $word ) {
 
       if( strpos( $request_uri , $word ) !== false ) {
 
-        $is_blacklist = true;
+        $is_denylist = true;
 
         break;
 
@@ -662,7 +662,7 @@ final class MywpLockoutApi {
 
     }
 
-    if( $is_blacklist ) {
+    if( $is_denylist ) {
 
       return true;
 

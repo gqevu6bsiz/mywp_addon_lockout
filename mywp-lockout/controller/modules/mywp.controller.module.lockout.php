@@ -40,21 +40,21 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
   }
 
-  public static function get_is_whitelist() {
+  public static function get_is_allowlist() {
 
-    $is_whitelist = false;
+    $is_allowlist = false;
 
-    $is_whitelist = apply_filters( 'mywp_lockout_is_whitelist' , $is_whitelist );
+    $is_allowlist = apply_filters( 'mywp_lockout_is_allowlist' , $is_allowlist );
 
-    return $is_whitelist;
+    return $is_allowlist;
 
   }
 
   public static function fast_is_exist_lockout() {
 
-    $is_whitelist = self::get_is_whitelist();
+    $is_allowlist = self::get_is_allowlist();
 
-    if( $is_whitelist ) {
+    if( $is_allowlist ) {
 
       return false;
 
@@ -124,9 +124,9 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     }
 
-    $is_whitelist = self::get_is_whitelist();
+    $is_allowlist = self::get_is_allowlist();
 
-    if( $is_whitelist ) {
+    if( $is_allowlist ) {
 
       return false;
 
@@ -480,9 +480,9 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     self::$input_fields = array( 'get_data' => self::mask_input_fields( $get_data ) );
 
-    if( MywpLockoutApi::is_blacklist_get_data( $get_data ) ) {
+    if( MywpLockoutApi::is_denylist_get_data( $get_data ) ) {
 
-      self::set_lockout_remote_data( array( 'reason' => 'Blacklist Get Data' , 'input_fields' => self::$input_fields ) );
+      self::set_lockout_remote_data( array( 'reason' => 'Denylist Get Data' , 'input_fields' => self::$input_fields ) );
 
       return true;
 
@@ -520,9 +520,9 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     self::$input_fields = array( 'post_data' => self::mask_input_fields( $post_data ) );
 
-    if( MywpLockoutApi::is_blacklist_post_data( $post_data ) ) {
+    if( MywpLockoutApi::is_denylist_post_data( $post_data ) ) {
 
-      self::set_lockout_remote_data( array( 'reason' => 'Blacklist Post Data' , 'input_fields' => self::$input_fields ) );
+      self::set_lockout_remote_data( array( 'reason' => 'Denylist Post Data' , 'input_fields' => self::$input_fields ) );
 
       return true;
 
@@ -558,9 +558,9 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     self::$input_fields = array( 'file_data' => $file_data );
 
-    if( MywpLockoutApi::is_blacklist_file_data( $file_data ) ) {
+    if( MywpLockoutApi::is_denylist_file_data( $file_data ) ) {
 
-      self::set_lockout_remote_data( array( 'reason' => 'Blacklist Files Data' , 'input_fields' => self::$input_fields ) );
+      self::set_lockout_remote_data( array( 'reason' => 'Denylist Files Data' , 'input_fields' => self::$input_fields ) );
 
       return true;
 
@@ -596,9 +596,9 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     self::$input_fields = array( 'request_uri' => $request_uri );
 
-    if( MywpLockoutApi::is_blacklist_uri( $request_uri ) ) {
+    if( MywpLockoutApi::is_denylist_uri( $request_uri ) ) {
 
-      self::set_lockout_remote_data( array( 'reason' => 'Blacklist URI' , 'input_fields' => self::$input_fields ) );
+      self::set_lockout_remote_data( array( 'reason' => 'Denylist URI' , 'input_fields' => self::$input_fields ) );
 
       return true;
 
@@ -788,7 +788,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     if( MywpLockoutApi::is_weak_password( $password ) ) {
 
-      $errors->add( 'weak_password' , __( '<strong>ERROR</strong>: This password is weak. Please enter a stronger password.' ) , array( 'form-field' => 'pass1' ) );
+      $errors->add( 'weak_password' , __( '<strong>ERROR</strong>: This password is weak. Please enter a stronger password.' , 'mywp-lockout' ) , array( 'form-field' => 'pass1' ) );
 
     }
 
@@ -814,7 +814,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     if( MywpLockoutApi::is_weak_password( $password ) ) {
 
-      $errors->add( 'weak_password' , __( '<strong>ERROR</strong>: This password is weak. Please enter a stronger password.' ) , array( 'form-field' => 'pass1' ) );
+      $errors->add( 'weak_password' , __( '<strong>ERROR</strong>: This password is weak. Please enter a stronger password.' , 'mywp-lockout' ) , array( 'form-field' => 'pass1' ) );
 
     }
 
