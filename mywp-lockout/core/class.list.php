@@ -428,6 +428,7 @@ final class MywpLockoutList {
 
       'bataboom',
 
+      'cGluZw==',
       'config_prefer_imagemagick',
       'cperpage',
 
@@ -436,6 +437,7 @@ final class MywpLockoutList {
 
       'lgkfghdfh',
 
+      'semalt_com',
       'smt_download_export_file',
       'spanskys_filecontent',
       'swp_debug',
@@ -503,6 +505,7 @@ final class MywpLockoutList {
       'rdfgdfgdfg',
       'rms_ping_from_the_universe',
 
+      'semalt.com',
       'sssspaincett3',
 
       'testActivation',
@@ -633,6 +636,7 @@ final class MywpLockoutList {
       'eval(',
 
       'fb_pdf\\\'',
+      'fgdfgdf',
       'file_get_contents(',
       'file_put_contents(',
 
@@ -643,6 +647,7 @@ final class MywpLockoutList {
       'HttpServletResponse',
 
       'invokefunction',
+      'iva_bh_ajax_action',
 
       'kjhgfdkjhgfd',
 
@@ -733,6 +738,7 @@ final class MywpLockoutList {
       'die(\\\\\'z!a\\\\\'.\\\\\'x\\\\\');',
 
       'echo(344444443+1);',
+      'epsilon_framework_ajax_action',
 
       'get_currentRef',
 
@@ -765,7 +771,11 @@ final class MywpLockoutList {
 
   public static function get_denylist_post_data_name_value_list() {
 
-    $denylist_post_data_name_value_list = array();
+    $denylist_post_data_name_value_list = array(
+
+      'pf' => 'hrehnrhknvor',
+
+    );
 
     $denylist_post_data_name_value_list = apply_filters( 'mywp_lockout_denylist_post_data_name_value_list' , $denylist_post_data_name_value_list );
 
@@ -836,6 +846,12 @@ final class MywpLockoutList {
       'information_schema',
 
       'location.href',
+
+      ' shell_exec',
+
+      'UNION SELECT ',
+
+      'wp_ajax_try_2020_v2',
 
     );
 

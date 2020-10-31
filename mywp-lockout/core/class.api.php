@@ -600,7 +600,7 @@ final class MywpLockoutApi {
 
       foreach( $denylist_file_extension_list as $word ) {
 
-        if( empty( $file_data_val['name'] ) ) {
+        if( empty( $file_data_val['name'] ) or is_array( $file_data_val['name'] ) ) {
 
           continue;
 
