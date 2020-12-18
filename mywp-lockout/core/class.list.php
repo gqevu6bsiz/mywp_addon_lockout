@@ -488,6 +488,8 @@ final class MywpLockoutList {
 
       'dupl.txt',
 
+      'epsilon_dashboard_ajax_callback',
+      'epsilon_framework_ajax_action',
       'EWD-UFAQ-Options',
       'EWD_UFAQ_UpdateOptions',
 
@@ -495,6 +497,7 @@ final class MywpLockoutList {
 
       'initiationready',
 
+      'M;O=D',
       'mk_check_filemanager_php_syntax',
       'mk_file_folder_manager',
       'module/newsletters/news',
@@ -514,6 +517,10 @@ final class MywpLockoutList {
       'um_fileupload',
       'user/password',
 
+      'var_dump',
+
+      'wcfm_login_popup_submit',
+      'welcome_screen_ajax_callback',
       'wpfm_save_file_data',
       'wpim_manage_settings',
       'wpsm_responsive_coming_soon',
@@ -745,6 +752,9 @@ final class MywpLockoutList {
       'kiwi_social_share_get_option',
       'kiwi_social_share_set_option',
 
+      'loginchallengeresponse1requestbody',
+      'lp_cc_addons_actions',
+
       'mk_file_folder_manager',
 
       'print(md5(11111));',
@@ -836,6 +846,7 @@ final class MywpLockoutList {
       '[nd_stats_value_import_settings]',
       '[nd_stats_option_value]',
       '[nd_travel_option_value]',
+      ' -e /bin/sh',
 
       '234234234234',
 

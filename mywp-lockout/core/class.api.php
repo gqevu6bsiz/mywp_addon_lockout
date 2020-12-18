@@ -411,17 +411,35 @@ final class MywpLockoutApi {
 
       foreach( $denylist_post_data_value_list as $word ) {
 
-        if( is_array( $post_data_val ) ) {
+        if( ! is_array( $post_data_val ) ) {
 
-          continue;
+          if( (string) $post_data_val === (string) $word ) {
 
-        }
+            $is_denylist = true;
 
-        if( (string) $post_data_val === (string) $word ) {
+            break;
 
-          $is_denylist = true;
+          }
 
-          break;
+        } else {
+
+          foreach( $post_data_val as $post_data_val_k => $post_data_val_v ) {
+
+            if( is_array( $post_data_val_v ) ) {
+
+              continue;
+
+            }
+
+            if( (string) $post_data_val_v === (string) $word ) {
+
+              $is_denylist = true;
+
+              break;
+
+            }
+
+          }
 
         }
 
