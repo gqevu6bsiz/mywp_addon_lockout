@@ -474,6 +474,9 @@ final class MywpLockoutList {
       '/etc',
       ';wget',
       '../index.php',
+      '_ning_upload_image',
+      '{{$smarty.version}}',
+      '{{3 *\\\\\\\'4726531\\\\\\\'}}',
 
       '1name=alex',
 
@@ -483,6 +486,7 @@ final class MywpLockoutList {
       'br-aapf-setup',
 
       'call_user_func_array',
+      'captainform_new_users_connect',
       'com_fabrik',
       'com_jdownloads',
 
@@ -497,6 +501,9 @@ final class MywpLockoutList {
 
       'initiationready',
 
+      'lfb_upload_form',
+      'lp_cc_addons_actions',
+
       'M;O=D',
       'mk_check_filemanager_php_syntax',
       'mk_file_folder_manager',
@@ -509,7 +516,10 @@ final class MywpLockoutList {
       'rms_ping_from_the_universe',
 
       'semalt.com',
+      'set_db_option',
+      'sif_upload_file',
       'sssspaincett3',
+      'stm_listing_profile_edit',
 
       'testActivation',
 
@@ -625,6 +635,7 @@ final class MywpLockoutList {
       '/configuration.php',
       ' and ',
       '\' AnD',
+      '/hosts',
 
       'allow_url_fopen',
 
@@ -768,6 +779,7 @@ final class MywpLockoutList {
       'um_fileupload',
       'um_remove_file',
 
+      'wp-zzz',
       'wpgdprc_process_action',
       'wpsp_upload_attachment',
 
@@ -853,6 +865,8 @@ final class MywpLockoutList {
       'die(',
 
       'fromCharCode',
+
+      'hererfees.txt',
 
       'information_schema',
 
