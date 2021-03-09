@@ -424,6 +424,7 @@ final class MywpLockoutList {
       '/__/__/wp-config_php',
 
       'abc11',
+      'alg_wc_ev_verify_email',
       'asavsdvds',
 
       'bataboom',
@@ -477,6 +478,7 @@ final class MywpLockoutList {
       '_ning_upload_image',
       '{{$smarty.version}}',
       '{{3 *\\\\\\\'4726531\\\\\\\'}}',
+      '${2334-1}',
 
       '1name=alex',
 
@@ -667,7 +669,13 @@ final class MywpLockoutList {
       'invokefunction',
       'iva_bh_ajax_action',
 
+      'java.lang.Runtime',
+
       'kjhgfdkjhgfd',
+
+      'logicielreferencement.com',
+
+      'monogooglelinux.com',
 
       'nd_options_option_value',
 
@@ -695,6 +703,8 @@ final class MywpLockoutList {
       '`wget',
       'win.ini',
       'wp-config.php',
+
+      'ymwears.cn',
 
     );
 
@@ -769,6 +779,8 @@ final class MywpLockoutList {
       'mk_file_folder_manager',
 
       'print(md5(11111));',
+
+      'rms_ping_from_the_universe',
 
       'td_ajax_search',
       'td_ajax_update_panel',
