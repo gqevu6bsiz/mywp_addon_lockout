@@ -62,6 +62,7 @@ final class MywpLockoutList {
       'aaaaaa',
       'admin',
       'admin@123',
+      'admin_lin',
       'adminadmin',
       'administrador',
       'administrator',
@@ -481,7 +482,7 @@ final class MywpLockoutList {
       '${2334-1}',
 
       '1name=alex',
-
+      'ae-sync-user',
       'ajax/render/widget_php',
       'Attacker',
 
@@ -511,6 +512,8 @@ final class MywpLockoutList {
       'mk_file_folder_manager',
       'module/newsletters/news',
 
+      'named.conf',
+
       'ppom_upload_file',
       'printerInfo',
 
@@ -519,6 +522,7 @@ final class MywpLockoutList {
 
       'semalt.com',
       'set_db_option',
+      'setNewIconShare',
       'sif_upload_file',
       'sssspaincett3',
       'stm_listing_profile_edit',
@@ -527,10 +531,12 @@ final class MywpLockoutList {
 
       'ufaq_search',
       'um_fileupload',
+      'uploadFontIcon',
       'user/password',
 
       'var_dump',
 
+      'wccs_upload_file_func',
       'wcfm_login_popup_submit',
       'welcome_screen_ajax_callback',
       'wpfm_save_file_data',
@@ -633,17 +639,20 @@ final class MywpLockoutList {
 
       '<script>',
       '><script',
+      '/bin/sh',
       '/db.php',
       '/configuration.php',
       ' and ',
       '\' AnD',
       '/hosts',
+      '{endif-A}',
 
       'allow_url_fopen',
 
       'base64_decode(',
       'boot.ini',
 
+      'config_db.php',
       'curl ',
       'chmod 777',
 
@@ -659,6 +668,7 @@ final class MywpLockoutList {
       'fgdfgdf',
       'file_get_contents(',
       'file_put_contents(',
+      'fromCharCode(',
 
       'getInputStream()',
 
@@ -697,6 +707,7 @@ final class MywpLockoutList {
       'union+select+',
 
       ' unhex(',
+      'uploadpictureBase64.html',
 
       'WAITFOR DELAY ',
       'wget ',
@@ -785,6 +796,7 @@ final class MywpLockoutList {
       'td_ajax_search',
       'td_ajax_update_panel',
       'td_mod_register',
+      'theplus_google_ajax_register',
       'thim_login_ajax',
       'thim_update_theme_mods',
 
@@ -874,6 +886,8 @@ final class MywpLockoutList {
 
       '234234234234',
 
+      'anarchy99',
+
       'die(',
 
       'fromCharCode',
@@ -881,6 +895,8 @@ final class MywpLockoutList {
       'hererfees.txt',
 
       'information_schema',
+
+      'janc0xsec',
 
       'location.href',
 
