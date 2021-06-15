@@ -276,6 +276,10 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
             <code>
               <?php _e( 'Max seconds' , 'mywp-lockout' ); ?>: <?php printf( __( '%s seconds' ) , MywpLockoutApi::get_max_lockout_seconds() ); ?>
             </code>
+            <p class="mywp-description">
+              <span class="dashicons dashicons-lightbulb"></span>
+              <?php _e( 'Max seconds is setting to max_execution_time on php.ini.' , 'mywp-lockout' ); ?>
+            </p>
           </td>
         </tr>
         <tr>

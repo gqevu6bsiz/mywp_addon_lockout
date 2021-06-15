@@ -8,26 +8,6 @@ if ( ! class_exists( 'MywpLockoutList' ) ) :
 
 final class MywpLockoutList {
 
-  private static $instance;
-
-  private function __construct() {}
-
-  public static function get_instance() {
-
-    if ( !isset( self::$instance ) ) {
-
-      self::$instance = new self();
-
-    }
-
-    return self::$instance;
-
-  }
-
-  private function __clone() {}
-
-  private function __wakeup() {}
-
   public static function get_weak_password_list() {
 
     $weak_password_list = array(
@@ -437,6 +417,8 @@ final class MywpLockoutList {
       'daksldlkdsadas',
       'do_reset_wordpress',
 
+      'GOTMLS_scan',
+
       'lgkfghdfh',
 
       'semalt_com',
@@ -518,6 +500,7 @@ final class MywpLockoutList {
       'printerInfo',
 
       'rdfgdfgdfg',
+      'reads.html',
       'rms_ping_from_the_universe',
 
       'semalt.com',
@@ -539,6 +522,7 @@ final class MywpLockoutList {
       'wccs_upload_file_func',
       'wcfm_login_popup_submit',
       'welcome_screen_ajax_callback',
+      'wp-fixer.php',
       'wpfm_save_file_data',
       'wpim_manage_settings',
       'wpsm_responsive_coming_soon',
@@ -637,6 +621,7 @@ final class MywpLockoutList {
 
     $denylist_get_data_find_value_list = array(
 
+      ';\\\'',
       '<script>',
       '><script',
       '/bin/sh',
@@ -646,6 +631,7 @@ final class MywpLockoutList {
       '\' AnD',
       '/hosts',
       '{endif-A}',
+      '.my.cnf',
 
       'allow_url_fopen',
 

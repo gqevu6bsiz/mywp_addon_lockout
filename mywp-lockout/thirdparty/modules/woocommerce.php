@@ -58,6 +58,14 @@ final class MywpLockoutThirdpartyModuleWooCommerce extends MywpThirdpartyAbstrac
 
     }
 
+    $setting_data = self::get_setting_data();
+
+    if( empty( $setting_data['week_password_validate'] ) ) {
+
+      return $errors;
+
+    }
+
     $password = false;
 
     if( ! empty( $_POST['password_1'] ) ) {

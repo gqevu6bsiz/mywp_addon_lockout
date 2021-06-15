@@ -768,6 +768,14 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
   public static function user_profile_update_errors( $errors , $update , $user ) {
 
+    $setting_data = self::get_setting_data();
+
+    if( empty( $setting_data['week_password_validate'] ) ) {
+
+      return $errors;
+
+    }
+
     $password = false;
 
     if( ! empty( $user->user_pass ) ) {
@@ -797,6 +805,20 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
   }
 
   public static function validate_password_reset( $errors , $user ) {
+
+    if( empty( $_POST['wp-submit'] ) ) {
+
+      return $errors;
+
+    }
+
+    $setting_data = self::get_setting_data();
+
+    if( empty( $setting_data['week_password_validate'] ) ) {
+
+      return $errors;
+
+    }
 
     $password = false;
 
