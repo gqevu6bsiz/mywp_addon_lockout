@@ -456,8 +456,10 @@ final class MywpLockoutList {
     $denylist_get_data_value_list = array(
 
       '/etc',
+      '/imam.zoneh.php',
       ';wget',
       '../index.php',
+      '../WEB-INF',
       '_ning_upload_image',
       '{{$smarty.version}}',
       '{{3 *\\\\\\\'4726531\\\\\\\'}}',
@@ -499,6 +501,8 @@ final class MywpLockoutList {
       'ppom_upload_file',
       'printerInfo',
 
+      'qlaoxk',
+
       'rdfgdfgdfg',
       'reads.html',
       'rms_ping_from_the_universe',
@@ -511,6 +515,7 @@ final class MywpLockoutList {
       'stm_listing_profile_edit',
 
       'testActivation',
+      'tf2rghf.jpg',
 
       'ufaq_search',
       'um_fileupload',
@@ -622,18 +627,23 @@ final class MywpLockoutList {
     $denylist_get_data_find_value_list = array(
 
       ';\\\'',
+      ';alert(',
       '<script>',
+      '<?xml version=',
       '><script',
       '/bin/sh',
-      '/db.php',
       '/configuration.php',
+      '/db.php',
+      '/etc/shadow',
       ' and ',
       '\' AnD',
       '/hosts',
       '{endif-A}',
       '.my.cnf',
+      '=alert(/',
 
       'allow_url_fopen',
+      'app/etc/local.xm',
 
       'base64_decode(',
       'boot.ini',
@@ -666,6 +676,7 @@ final class MywpLockoutList {
       'iva_bh_ajax_action',
 
       'java.lang.Runtime',
+      'javascript:alert(',
 
       'kjhgfdkjhgfd',
 
@@ -767,6 +778,8 @@ final class MywpLockoutList {
 
       'get_currentRef',
 
+      'Hoping to connect re texting',
+
       'kiwi_social_share_get_option',
       'kiwi_social_share_set_option',
 
@@ -775,6 +788,7 @@ final class MywpLockoutList {
 
       'mk_file_folder_manager',
 
+      'pp_ajax_signup',
       'print(md5(11111));',
 
       'rms_ping_from_the_universe',
@@ -869,28 +883,44 @@ final class MywpLockoutList {
       '[nd_stats_option_value]',
       '[nd_travel_option_value]',
       ' -e /bin/sh',
+      '>>>>>>>>>>',
 
       '234234234234',
 
+      'Altcoins ',
       'anarchy99',
 
-      'die(',
+      'Best of Ali',
 
+      'cialis ',
+
+      'die(',
+      'delta 8 CBD',
+
+      'finasteride ',
       'fromCharCode',
 
       'hererfees.txt',
+      'Here is a list of 18 free traffic sources ',
 
       'information_schema',
 
       'janc0xsec',
 
+      'levitra ',
       'location.href',
+
+      'Negative SEO Services',
+
+      'priligy',
 
       ' shell_exec',
 
       'UNION SELECT ',
 
       'wp_ajax_try_2020_v2',
+
+      'zithromax ',
 
     );
 
