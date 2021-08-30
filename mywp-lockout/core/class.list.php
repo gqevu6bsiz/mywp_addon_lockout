@@ -401,9 +401,11 @@ final class MywpLockoutList {
     $denylist_get_data_name_list = array(
 
       '_escaped_fragment_',
-
       '/__/__/wp-config_php',
+      '-Menu-',
+      '$fallback_url',
 
+      'aam-media',
       'abc11',
       'alg_wc_ev_verify_email',
       'asavsdvds',
@@ -459,6 +461,7 @@ final class MywpLockoutList {
       '/imam.zoneh.php',
       ';wget',
       '../index.php',
+      '../WEB-IN',
       '../WEB-INF',
       '_ning_upload_image',
       '{{$smarty.version}}',
@@ -466,7 +469,9 @@ final class MywpLockoutList {
       '${2334-1}',
 
       '1name=alex',
+
       'ae-sync-user',
+      'alert(xss)>',
       'ajax/render/widget_php',
       'Attacker',
 
@@ -508,6 +513,7 @@ final class MywpLockoutList {
       'rms_ping_from_the_universe',
 
       'semalt.com',
+      'servicesshdisable',
       'set_db_option',
       'setNewIconShare',
       'sif_upload_file',
@@ -572,6 +578,7 @@ final class MywpLockoutList {
       'mstshash' => 'Administr',
 
       'x' => '',
+      'XDEBUG_SESSION_START' => 'phpstorm',
 
       'yt' => 'echo',
 
@@ -658,6 +665,7 @@ final class MywpLockoutList {
 
       'echo(',
       'etc/passwd',
+      'etc\\\\passwd',
       'eval(',
 
       'fb_pdf\\\'',
@@ -891,7 +899,9 @@ final class MywpLockoutList {
       'anarchy99',
 
       'Best of Ali',
+      'Buy quality dofollow links from us',
 
+      'Casino Consumers',
       'cialis ',
 
       'die(',
@@ -910,11 +920,16 @@ final class MywpLockoutList {
       'levitra ',
       'location.href',
 
+      'Make a 10,000% return',
+      'maeng da gold',
+
       'Negative SEO Services',
 
       'priligy',
 
       ' shell_exec',
+
+      'trazodone oral suspension',
 
       'UNION SELECT ',
 
