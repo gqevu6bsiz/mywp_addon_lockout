@@ -421,6 +421,8 @@ final class MywpLockoutList {
 
       'GOTMLS_scan',
 
+      'https://ya.ru',
+
       'lgkfghdfh',
 
       'semalt_com',
@@ -434,6 +436,7 @@ final class MywpLockoutList {
 
       'url../../../../wp-config.php',
 
+      'wdbgppb',
       'wppcp-security-settings-page',
       'wppcp-settings',
 
@@ -467,12 +470,14 @@ final class MywpLockoutList {
       '{{$smarty.version}}',
       '{{3 *\\\\\\\'4726531\\\\\\\'}}',
       '${2334-1}',
+      '%{233*233}',
 
       '1name=alex',
 
       'ae-sync-user',
       'alert(xss)>',
       'ajax/render/widget_php',
+      'AsAjfkel!@',
       'Attacker',
 
       'br-aapf-setup',
@@ -488,8 +493,11 @@ final class MywpLockoutList {
       'epsilon_framework_ajax_action',
       'EWD-UFAQ-Options',
       'EWD_UFAQ_UpdateOptions',
+      'exif.SwitchDetailMode',
 
       'getJSONExportTable',
+
+      'https://ya.ru',
 
       'initiationready',
 
@@ -648,6 +656,10 @@ final class MywpLockoutList {
       '{endif-A}',
       '.my.cnf',
       '=alert(/',
+      '%2522%2529%2520',
+      '@DEFAULT_MEMBER_ACCESS',
+      '@evil.corp',
+      '@1337.com',
 
       'allow_url_fopen',
       'app/etc/local.xm',
@@ -660,10 +672,10 @@ final class MywpLockoutList {
       'chmod 777',
 
       'die(',
-      '@DEFAULT_MEMBER_ACCESS',
       'drupal_aja',
 
       'echo(',
+      'echo voip\\',
       'etc/passwd',
       'etc\\\\passwd',
       'eval(',
@@ -680,6 +692,7 @@ final class MywpLockoutList {
       'HelloThinkPHP',
       'HttpServletResponse',
 
+      'iblock/04f/32/accesson.txt',
       'invokefunction',
       'iva_bh_ajax_action',
 
@@ -709,8 +722,9 @@ final class MywpLockoutList {
       'SELECT ',
       'select ',
       'SELECT%',
-      'union+select+',
 
+      'union+select+',
+      'union all select',
       ' unhex(',
       'uploadpictureBase64.html',
 
@@ -748,6 +762,7 @@ final class MywpLockoutList {
 
       'pwidget',
 
+      'search_pinger',
       'spanskys_filecontent',
 
       'theendding',
@@ -993,6 +1008,7 @@ final class MywpLockoutList {
 
       '<script>',
       '</script>',
+      '}}).then',
       '@eval',
       '@die',
 
