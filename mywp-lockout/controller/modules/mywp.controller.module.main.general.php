@@ -76,9 +76,9 @@ final class MywpControllerModuleLockoutMainGeneral extends MywpControllerAbstrac
 
     }
 
-    add_action( 'in_plugin_update_message-' . MYWP_LOCKOUT_PLUGIN_BASENAME , array( __CLASS__ , 'in_plugin_update_message' ) , 10 , 2 );
+    //add_action( 'in_plugin_update_message-' . MYWP_LOCKOUT_PLUGIN_BASENAME , array( __CLASS__ , 'in_plugin_update_message' ) , 10 , 2 );
 
-    add_action( 'admin_print_footer_scripts' , array( __CLASS__ , 'admin_print_footer_scripts' ) );
+    //add_action( 'admin_print_footer_scripts' , array( __CLASS__ , 'admin_print_footer_scripts' ) );
 
   }
 

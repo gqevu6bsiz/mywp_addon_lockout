@@ -15,6 +15,7 @@ final class MywpLockoutApi {
       'document_url' => 'https://mywpcustomize.com/add_ons/my-wp-add-on-lockout',
       'website_url' => 'https://mywpcustomize.com/',
       'github' => 'https://github.com/gqevu6bsiz/mywp_addon_lockout',
+      'github_raw' => 'https://raw.githubusercontent.com/gqevu6bsiz/mywp_addon_lockout/',
       'github_tags' => 'https://api.github.com/repos/gqevu6bsiz/mywp_addon_lockout/tags',
     );
 

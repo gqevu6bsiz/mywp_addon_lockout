@@ -511,6 +511,8 @@ final class MywpLockoutList {
 
       'named.conf',
 
+      'OpenMarket/Xcelerate/Admin/WebReferences',
+
       'ppom_upload_file',
       'printerInfo',
 
@@ -654,9 +656,11 @@ final class MywpLockoutList {
       '\' AnD',
       '/hosts',
       '{endif-A}',
+      '.Dockerfile',
       '.my.cnf',
       '=alert(/',
       '%2522%2529%2520',
+      '${jndi',
       '@DEFAULT_MEMBER_ACCESS',
       '@evil.corp',
       '@1337.com',
@@ -704,9 +708,11 @@ final class MywpLockoutList {
       'logicielreferencement.com',
 
       'monogooglelinux.com',
+      'multimon.cgi',
 
       'nd_options_option_value',
 
+      'onload=alert(',
       ' ORDER BY ',
 
       'phpinfo',
@@ -727,6 +733,7 @@ final class MywpLockoutList {
       'union all select',
       ' unhex(',
       'uploadpictureBase64.html',
+      '/usr/bin/id',
 
       'WAITFOR DELAY ',
       'wget ',
@@ -928,6 +935,8 @@ final class MywpLockoutList {
       'hererfees.txt',
       'Here is a list of 18 free traffic sources ',
 
+      'I am sending you my intimate photos',
+
       'information_schema',
 
       'janc0xsec',
@@ -1009,10 +1018,13 @@ final class MywpLockoutList {
       '<script>',
       '</script>',
       '}}).then',
+      '{jndi:',
       '@eval',
       '@die',
 
       '22c\'abikn',
+
+      'onerror=alert(',
 
     );
 

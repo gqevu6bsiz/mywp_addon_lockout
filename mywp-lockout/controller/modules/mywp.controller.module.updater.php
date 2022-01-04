@@ -70,7 +70,11 @@ final class MywpControllerModuleLockoutUpdater extends MywpControllerAbstractMod
       'plugin' => MYWP_LOCKOUT_PLUGIN_BASENAME,
       'new_version' => $latest,
       'url' => $plugin_info['github'],
-      'package' => '',
+      'package' => $plugin_info['github_raw'] . $latest . '/' . MYWP_LOCKOUT_PLUGIN_DIRNAME . '.zip',
+      'icons' => array(),
+      'banners' => array(),
+      'banners_rtl' => array(),
+      'requires' => false,
       'tested' => false,
       'compatibility' => false,
     );
