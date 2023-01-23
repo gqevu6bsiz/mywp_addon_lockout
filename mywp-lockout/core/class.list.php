@@ -405,6 +405,7 @@ final class MywpLockoutList {
       '-Menu-',
       '$fallback_url',
 
+      'a__foo_var/owa/?',
       'aam-media',
       'abc11',
       'alg_wc_ev_verify_email',
@@ -470,6 +471,7 @@ final class MywpLockoutList {
       '{{$smarty.version}}',
       '{{3 *\\\\\\\'4726531\\\\\\\'}}',
       '${2334-1}',
+      '${system(cat',
       '%{233*233}',
 
       '1name=alex',
@@ -530,6 +532,8 @@ final class MywpLockoutList {
       'sssspaincett3',
       'stm_listing_profile_edit',
 
+      'td_ajax_fb_login_get_credentials',
+      'td_ajax_fb_login_user',
       'testActivation',
       'tf2rghf.jpg',
 
@@ -652,23 +656,32 @@ final class MywpLockoutList {
       '/configuration.php',
       '/db.php',
       '/etc/shadow',
-      ' and ',
       '\' AnD',
       '/hosts',
       '{endif-A}',
       '.Dockerfile',
       '.my.cnf',
       '=alert(/',
-      '%2522%2529%2520',
+      '--exec=`',
+      ') and 1=',
+      ') or(1=',
       '${jndi',
       '@DEFAULT_MEMBER_ACCESS',
       '@evil.corp',
       '@1337.com',
+      ' AND ',
+      ' ORDER BY ',
+
+      '【✔️推荐',
+      '【✔️推薦',
+      '【✔️官網',
+      '【✔️官网',
 
       'allow_url_fopen',
       'app/etc/local.xm',
 
       'base64_decode(',
+      'blackjack',
       'boot.ini',
 
       'config_db.php',
@@ -705,18 +718,21 @@ final class MywpLockoutList {
 
       'kjhgfdkjhgfd',
 
+      'localconfig.xml',
       'logicielreferencement.com',
 
+      'macau slot',
       'monogooglelinux.com',
       'multimon.cgi',
 
       'nd_options_option_value',
 
       'onload=alert(',
-      ' ORDER BY ',
 
       'phpinfo',
       'phpunit.xsd',
+      'poker atlas',
+      'poker festival',
       'print(',
 
       'QQQQQQQ',
@@ -728,10 +744,15 @@ final class MywpLockoutList {
       'SELECT ',
       'select ',
       'SELECT%',
+      'seven card stud',
+      'slavepoker',
+
+      'TomcatBypass/Command',
 
       'union+select+',
       'union all select',
       ' unhex(',
+      'updatexml(0x23,',
       'uploadpictureBase64.html',
       '/usr/bin/id',
 
@@ -742,6 +763,42 @@ final class MywpLockoutList {
       'wp-config.php',
 
       'ymwears.cn',
+
+      '黑卡',
+      '撲克',
+      '麻将',
+      '麻將',
+      '賭場',
+      '赌博',
+      '賽馬',
+      '賭馬',
+      '赌球',
+      '博彩',
+      '賭王',
+      '赌场',
+      '賠率',
+      '直播',
+      '转盘',
+      '彩票',
+      '老虎機',
+      '老虎机',
+      '娛樂城',
+      '娱乐城',
+      '百家乐',
+      '百家樂',
+      '輪盤的',
+      '投注網',
+      '扑克牌',
+      '競彩網',
+      '決勝21點',
+      '德州扑克',
+      '福利彩票',
+      '现金娱乐',
+      '澳门博彩业',
+      '拉斯维加斯',
+      '拉斯維加斯',
+      '网上娱乐场',
+      '網絡博彩遊戲',
 
     );
 
@@ -1024,7 +1081,13 @@ final class MywpLockoutList {
 
       '22c\'abikn',
 
+      'java.lang.Runtime',
+      'javax.script.ScriptEngineManager',
+      'JMXConfigurator',
+
       'onerror=alert(',
+
+      'Set-Cookie:CRLFInjection',
 
     );
 
