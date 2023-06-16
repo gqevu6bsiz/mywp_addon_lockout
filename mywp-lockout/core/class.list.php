@@ -491,6 +491,7 @@ final class MywpLockoutList {
 
       'dupl.txt',
 
+      'ELISQLREPORTS-settings',
       'epsilon_dashboard_ajax_callback',
       'epsilon_framework_ajax_action',
       'EWD-UFAQ-Options',
@@ -578,6 +579,7 @@ final class MywpLockoutList {
       'enpl' => 'OEhIJw==',
 
       'font' => '/../../../../caches/bakup/default/0<<.sql',
+      'fuck' => 'you',
 
       'gf_page' => 'upload',
 
@@ -647,11 +649,22 @@ final class MywpLockoutList {
 
     $denylist_get_data_find_value_list = array(
 
+      '\\x5Cpasswd',
+
+      ',concat(',
+      ',concat_ws(',
+      ',(SELECT/',
+      ',unhex(',
+      '\'alert(',
       ';\\\'',
       ';alert(',
-      '<script>',
+      ';base64,',
+      '<!>usin prompt(',
+      '<?php ',
       '<?xml version=',
+      '<script>',
       '><script',
+      '/><svg/',
       '/bin/sh',
       '/configuration.php',
       '/db.php',
@@ -661,9 +674,11 @@ final class MywpLockoutList {
       '{endif-A}',
       '.Dockerfile',
       '.my.cnf',
-      '=alert(/',
+      '=alert(',
+      '=php://input',
       '--exec=`',
       ') and 1=',
+      ') OR ',
       ') or(1=',
       '${jndi',
       '@DEFAULT_MEMBER_ACCESS',
@@ -701,6 +716,7 @@ final class MywpLockoutList {
       'fgdfgdf',
       'file_get_contents(',
       'file_put_contents(',
+      'fn_sqlvarbasetostr(',
       'fromCharCode(',
 
       'getInputStream()',
@@ -726,8 +742,7 @@ final class MywpLockoutList {
       'multimon.cgi',
 
       'nd_options_option_value',
-
-      'onload=alert(',
+      'newmax.click',
 
       'phpinfo',
       'phpunit.xsd',
@@ -743,7 +758,9 @@ final class MywpLockoutList {
       'shell_exec',
       'SELECT ',
       'select ',
+      'select*',
       'SELECT%',
+      'select(',
       'seven card stud',
       'slavepoker',
 
@@ -752,7 +769,7 @@ final class MywpLockoutList {
       'union+select+',
       'union all select',
       ' unhex(',
-      'updatexml(0x23,',
+      'updatexml(',
       'uploadpictureBase64.html',
       '/usr/bin/id',
 
@@ -760,6 +777,7 @@ final class MywpLockoutList {
       'wget ',
       '`wget',
       'win.ini',
+      'Windows/system.ini',
       'wp-config.php',
 
       'ymwears.cn',
@@ -859,6 +877,7 @@ final class MywpLockoutList {
       'die(md5(34563));',
       'die(\'z!a\'.\'x\');',
       'die(\\\\\'z!a\\\\\'.\\\\\'x\\\\\');',
+      'doctreat_award_temp_file_uploader',
 
       'echo(344444443+1);',
       'epsilon_framework_ajax_action',
@@ -867,12 +886,17 @@ final class MywpLockoutList {
 
       'Hoping to connect re texting',
 
+      'iva_bh_ajax_action',
+      'iva_bhl_ajax_action',
+
       'kiwi_social_share_get_option',
       'kiwi_social_share_set_option',
 
+      'listingo_temp_uploader',
       'loginchallengeresponse1requestbody',
       'lp_cc_addons_actions',
 
+      'me_upload_demo',
       'mk_file_folder_manager',
 
       'pp_ajax_signup',
@@ -880,6 +904,7 @@ final class MywpLockoutList {
 
       'rms_ping_from_the_universe',
 
+      'td_ajax_fb_login_user',
       'td_ajax_search',
       'td_ajax_update_panel',
       'td_mod_register',
@@ -890,6 +915,7 @@ final class MywpLockoutList {
       'um_fileupload',
       'um_remove_file',
 
+      'workreap_temp_uploader',
       'wp-zzz',
       'wpgdprc_process_action',
       'wpsp_upload_attachment',
@@ -972,15 +998,22 @@ final class MywpLockoutList {
       ' -e /bin/sh',
       '>>>>>>>>>>',
 
+      '-1 union select',
+
       '234234234234',
 
       'Altcoins ',
       'anarchy99',
 
+      'BACCARAT EVO',
       'Best of Ali',
+      'bettop88.com',
+      'bettop888.com',
       'Buy quality dofollow links from us',
 
       'Casino Consumers',
+      'Casino online',
+      'Casino Player',
       'cialis ',
 
       'die(',
@@ -988,6 +1021,8 @@ final class MywpLockoutList {
 
       'finasteride ',
       'fromCharCode',
+
+      'GameSlot',
 
       'hererfees.txt',
       'Here is a list of 18 free traffic sources ',
@@ -1003,12 +1038,18 @@ final class MywpLockoutList {
 
       'Make a 10,000% return',
       'maeng da gold',
+      'movecasinoin.com',
 
       'Negative SEO Services',
 
       'priligy',
 
       ' shell_exec',
+      'SLOT ONLINE ',
+      'slotbet',
+      'slotcomment.com',
+      'SLOTPG',
+      'slotsonline',
 
       'trazodone oral suspension',
 
@@ -1017,6 +1058,10 @@ final class MywpLockoutList {
       'wp_ajax_try_2020_v2',
 
       'zithromax ',
+
+      '메이저카지노',
+      '온라인바카라',
+      '카지노사이트',
 
     );
 
@@ -1076,16 +1121,22 @@ final class MywpLockoutList {
       '</script>',
       '}}).then',
       '{jndi:',
+      ').getMethod(',
       '@eval',
       '@die',
+      '=sysdate(',
+      '=wget ',
 
       '22c\'abikn',
+      '=8\'\'&',
 
       'java.lang.Runtime',
       'javax.script.ScriptEngineManager',
       'JMXConfigurator',
 
       'onerror=alert(',
+
+      'Program Files',
 
       'Set-Cookie:CRLFInjection',
 
