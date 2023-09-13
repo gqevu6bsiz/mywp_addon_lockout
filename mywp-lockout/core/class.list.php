@@ -426,6 +426,8 @@ final class MywpLockoutList {
 
       'lgkfghdfh',
 
+      'mla_stream_file',
+
       'semalt_com',
       'smt_download_export_file',
       'spanskys_filecontent',
@@ -488,6 +490,7 @@ final class MywpLockoutList {
       'captainform_new_users_connect',
       'com_fabrik',
       'com_jdownloads',
+      'config/frontend_dev.php',
 
       'dupl.txt',
 
@@ -500,11 +503,18 @@ final class MywpLockoutList {
 
       'getJSONExportTable',
 
+      'htmega_ajax_register',
       'https://ya.ru',
 
       'initiationready',
+      'inpost_gallery_get_gallery',
+      'iva_bh_import_ajax_action',
+      'iws_gff_fetch_states',
+
+      'kb_process_advanced_form_submit',
 
       'lfb_upload_form',
+      'likebtn_prx',
       'lp_cc_addons_actions',
 
       'M;O=D',
@@ -529,12 +539,14 @@ final class MywpLockoutList {
       'servicesshdisable',
       'set_db_option',
       'setNewIconShare',
+      'showbiz_ajax_action',
       'sif_upload_file',
       'sssspaincett3',
       'stm_listing_profile_edit',
 
       'td_ajax_fb_login_get_credentials',
       'td_ajax_fb_login_user',
+      'tdb_user_form_on_submit',
       'testActivation',
       'tf2rghf.jpg',
 
@@ -549,8 +561,10 @@ final class MywpLockoutList {
       'wcfm_login_popup_submit',
       'welcome_screen_ajax_callback',
       'wp-fixer.php',
+      'wp_ajax_rsvp-form',
       'wpfm_save_file_data',
       'wpim_manage_settings',
+      'wps_membership_csv_file_upload',
       'wpsm_responsive_coming_soon',
       'wpuf_file_upload',
       'www.exp2redir2.com',
@@ -656,6 +670,7 @@ final class MywpLockoutList {
       ',(SELECT/',
       ',unhex(',
       '\'alert(',
+      '\' AnD',
       ';\\\'',
       ';alert(',
       ';base64,',
@@ -668,10 +683,11 @@ final class MywpLockoutList {
       '/bin/sh',
       '/configuration.php',
       '/db.php',
+      '/DBMS_PIPE.RECEIVE_MESSAGE(',
       '/etc/shadow',
-      '\' AnD',
       '/hosts',
       '{endif-A}',
+      '{{interactsh-url}}',
       '.Dockerfile',
       '.my.cnf',
       '=alert(',
@@ -680,11 +696,12 @@ final class MywpLockoutList {
       ') and 1=',
       ') OR ',
       ') or(1=',
+      '${{<%[}}%',
       '${jndi',
       '@DEFAULT_MEMBER_ACCESS',
       '@evil.corp',
+      '@GrabResolver(',
       '@1337.com',
-      ' AND ',
       ' ORDER BY ',
 
       '【✔️推荐',
@@ -718,6 +735,7 @@ final class MywpLockoutList {
       'file_put_contents(',
       'fn_sqlvarbasetostr(',
       'fromCharCode(',
+      'from%20wp_users%20where',
 
       'getInputStream()',
 
@@ -742,6 +760,7 @@ final class MywpLockoutList {
       'multimon.cgi',
 
       'nd_options_option_value',
+      'newdumpspdf.com',
       'newmax.click',
 
       'phpinfo',
@@ -818,6 +837,9 @@ final class MywpLockoutList {
       '网上娱乐场',
       '網絡博彩遊戲',
 
+      'คาสิโนออน์',
+      'เว็บสล็อต',
+
     );
 
     $denylist_get_data_find_value_list = apply_filters( 'mywp_lockout_denylist_get_data_find_value_list' , $denylist_get_data_find_value_list );
@@ -867,6 +889,8 @@ final class MywpLockoutList {
 
     $denylist_post_data_value_list = array(
 
+      '88slotgame.com',
+
       'androxgh0st',
 
       'cHJpbnQobWQ1KDMyNDIzNCkpOw==',
@@ -881,6 +905,8 @@ final class MywpLockoutList {
 
       'echo(344444443+1);',
       'epsilon_framework_ajax_action',
+
+      'fusion_form_update_view',
 
       'get_currentRef',
 
@@ -898,6 +924,11 @@ final class MywpLockoutList {
 
       'me_upload_demo',
       'mk_file_folder_manager',
+
+      'nf_ajax_submit',
+
+      'onlinecasino',
+      'onlinepoker',
 
       'pp_ajax_signup',
       'print(md5(11111));',
@@ -919,6 +950,8 @@ final class MywpLockoutList {
       'wp-zzz',
       'wpgdprc_process_action',
       'wpsp_upload_attachment',
+
+      '바카라',
 
     );
 
@@ -1135,6 +1168,7 @@ final class MywpLockoutList {
       'JMXConfigurator',
 
       'onerror=alert(',
+      'org.jenkinsci.plugins.github.config.GitHubTokenCredentialsCreator/createTokenByPassword',
 
       'Program Files',
 
