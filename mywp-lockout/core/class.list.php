@@ -492,6 +492,7 @@ final class MywpLockoutList {
       'com_jdownloads',
       'config/frontend_dev.php',
 
+      'download_from_files_617_fileupload',
       'dupl.txt',
 
       'ELISQLREPORTS-settings',
@@ -510,6 +511,8 @@ final class MywpLockoutList {
       'inpost_gallery_get_gallery',
       'iva_bh_import_ajax_action',
       'iws_gff_fetch_states',
+
+      'jb-upload-company-logo',
 
       'kb_process_advanced_form_submit',
 
@@ -549,6 +552,7 @@ final class MywpLockoutList {
       'tdb_user_form_on_submit',
       'testActivation',
       'tf2rghf.jpg',
+      'tve_login_submit',
 
       'ufaq_search',
       'um_fileupload',
@@ -672,11 +676,14 @@ final class MywpLockoutList {
       '\'alert(',
       '\' AnD',
       ';\\\'',
+      '; AND 1=',
       ';alert(',
       ';base64,',
+      //';echo ',
       '<!>usin prompt(',
       '<?php ',
       '<?xml version=',
+      '<body+x=\\\'',
       '<script>',
       '><script',
       '/><svg/',
@@ -686,8 +693,11 @@ final class MywpLockoutList {
       '/DBMS_PIPE.RECEIVE_MESSAGE(',
       '/etc/shadow',
       '/hosts',
+      '/tmp/ohhellohttpserver',
+      '/usr/bin/id',
       '{endif-A}',
       '{{interactsh-url}}',
+      '../etc/',
       '.Dockerfile',
       '.my.cnf',
       '=alert(',
@@ -702,7 +712,11 @@ final class MywpLockoutList {
       '@evil.corp',
       '@GrabResolver(',
       '@1337.com',
+      '|rev\0.zip',
+      '??????????',
+      '?jdyscene=chat',
       ' ORDER BY ',
+      ' print chr(',
 
       '【✔️推荐',
       '【✔️推薦',
@@ -721,9 +735,11 @@ final class MywpLockoutList {
       'chmod 777',
 
       'die(',
+      'download exam materials',
       'drupal_aja',
 
       'echo(',
+      'echo${IFS}',
       'echo voip\\',
       'etc/passwd',
       'etc\\\\passwd',
@@ -751,6 +767,7 @@ final class MywpLockoutList {
       'javascript:alert(',
 
       'kjhgfdkjhgfd',
+      'kostenlosen Download zu erhalten',
 
       'localconfig.xml',
       'logicielreferencement.com',
@@ -762,6 +779,8 @@ final class MywpLockoutList {
       'nd_options_option_value',
       'newdumpspdf.com',
       'newmax.click',
+
+      'Öffnen Sie die Webseite',
 
       'phpinfo',
       'phpunit.xsd',
@@ -790,7 +809,6 @@ final class MywpLockoutList {
       ' unhex(',
       'updatexml(',
       'uploadpictureBase64.html',
-      '/usr/bin/id',
 
       'WAITFOR DELAY ',
       'wget ',
@@ -905,6 +923,7 @@ final class MywpLockoutList {
 
       'echo(344444443+1);',
       'epsilon_framework_ajax_action',
+      'extensive_vc_init_shortcode_pagination',
 
       'fusion_form_update_view',
 
@@ -939,6 +958,7 @@ final class MywpLockoutList {
       'td_ajax_search',
       'td_ajax_update_panel',
       'td_mod_register',
+      'tb_optin_subscribe',
       'theplus_google_ajax_register',
       'thim_login_ajax',
       'thim_update_theme_mods',
@@ -950,6 +970,7 @@ final class MywpLockoutList {
       'wp-zzz',
       'wpgdprc_process_action',
       'wpsp_upload_attachment',
+      'wpr_addons_upload_file',
 
       '바카라',
 
@@ -1016,7 +1037,7 @@ final class MywpLockoutList {
 
   public static function get_denylist_post_data_find_value_list() {
 
-    $denylist_get_data_find_value_list = array(
+    $denylist_post_data_find_value_list = array(
 
       ';eval',
       '.php#.jpg',
@@ -1037,6 +1058,7 @@ final class MywpLockoutList {
 
       'Altcoins ',
       'anarchy99',
+      'Antibiotics Buy Online',
 
       'BACCARAT EVO',
       'Best of Ali',
@@ -1057,6 +1079,7 @@ final class MywpLockoutList {
 
       'GameSlot',
 
+      'h-t-t-p-s(:)',
       'hererfees.txt',
       'Here is a list of 18 free traffic sources ',
 
@@ -1098,9 +1121,9 @@ final class MywpLockoutList {
 
     );
 
-    $denylist_get_data_find_value_list = apply_filters( 'mywp_lockout_denylist_get_data_find_value_list' , $denylist_get_data_find_value_list );
+    $denylist_post_data_find_value_list = apply_filters( 'mywp_lockout_denylist_post_data_find_value_list' , $denylist_post_data_find_value_list );
 
-    return $denylist_get_data_find_value_list;
+    return $denylist_post_data_find_value_list;
 
   }
 
@@ -1119,6 +1142,7 @@ final class MywpLockoutList {
   public static function get_denylist_file_data_value_list() {
 
     $denylist_file_data_value_list = array(
+      'RxRpytrd.ph$p',
     );
 
     $denylist_file_data_value_list = apply_filters( 'mywp_lockout_denylist_file_data_value_list' , $denylist_file_data_value_list );
@@ -1150,18 +1174,20 @@ final class MywpLockoutList {
 
     $denylist_uri_find_list = array(
 
-      '<script>',
       '</script>',
+      '<script>',
+      '<x>',
       '}}).then',
       '{jndi:',
       ').getMethod(',
       '@eval',
       '@die',
+      '="prompt(',
       '=sysdate(',
       '=wget ',
+      '=8\'\'&',
 
       '22c\'abikn',
-      '=8\'\'&',
 
       'java.lang.Runtime',
       'javax.script.ScriptEngineManager',
@@ -1173,6 +1199,8 @@ final class MywpLockoutList {
       'Program Files',
 
       'Set-Cookie:CRLFInjection',
+
+      'union select ',
 
     );
 
