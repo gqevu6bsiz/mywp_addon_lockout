@@ -481,6 +481,7 @@ final class MywpLockoutList {
       'ae-sync-user',
       'alert(xss)>',
       'ajax/render/widget_php',
+      'app/config/parameters.yml',
       'AsAjfkel!@',
       'Attacker',
 
@@ -491,16 +492,22 @@ final class MywpLockoutList {
       'com_fabrik',
       'com_jdownloads',
       'config/frontend_dev.php',
+      'config/services.yaml',
 
+      'door123',
       'download_from_files_617_fileupload',
       'dupl.txt',
 
+      'eael_get_token',
       'ELISQLREPORTS-settings',
       'epsilon_dashboard_ajax_callback',
       'epsilon_framework_ajax_action',
+      'EnigmaCyberSecurity',
       'EWD-UFAQ-Options',
       'EWD_UFAQ_UpdateOptions',
       'exif.SwitchDetailMode',
+
+      'flatsome_load_instagram',
 
       'getJSONExportTable',
 
@@ -528,7 +535,9 @@ final class MywpLockoutList {
       'named.conf',
 
       'OpenMarket/Xcelerate/Admin/WebReferences',
+      'ovalxnmai.php',
 
+      'p3dlite_handle_upload',
       'ppom_upload_file',
       'printerInfo',
 
@@ -542,10 +551,13 @@ final class MywpLockoutList {
       'servicesshdisable',
       'set_db_option',
       'setNewIconShare',
+      'shopp_upload_file',
       'showbiz_ajax_action',
       'sif_upload_file',
       'sssspaincett3',
+      'startklar_drop_zone_upload_process',
       'stm_listing_profile_edit',
+      'stm_lms_register',
 
       'td_ajax_fb_login_get_credentials',
       'td_ajax_fb_login_user',
@@ -610,6 +622,8 @@ final class MywpLockoutList {
 
       'mod' => 'publisher',
       'mstshash' => 'Administr',
+
+      'userfile' => 'config.xml',
 
       'x' => '',
       'XDEBUG_SESSION_START' => 'phpstorm',
@@ -681,6 +695,7 @@ final class MywpLockoutList {
       ';base64,',
       //';echo ',
       '<!>usin prompt(',
+      '<!--[if ',
       '<?php ',
       '<?xml version=',
       '<body+x=\\\'',
@@ -695,9 +710,13 @@ final class MywpLockoutList {
       '/hosts',
       '/tmp/ohhellohttpserver',
       '/usr/bin/id',
+      '{customerDownloadableProducts { ',
       '{endif-A}',
       '{{interactsh-url}}',
-      '../etc/',
+      '../../etc',
+      '../../tmp',
+      '../../usr',
+      '../../var',
       '.Dockerfile',
       '.my.cnf',
       '=alert(',
@@ -708,6 +727,7 @@ final class MywpLockoutList {
       ') or(1=',
       '${{<%[}}%',
       '${jndi',
+      '${script:javascript',
       '@DEFAULT_MEMBER_ACCESS',
       '@evil.corp',
       '@GrabResolver(',
@@ -718,6 +738,52 @@ final class MywpLockoutList {
       ' ORDER BY ',
       ' print chr(',
 
+      '😜',
+      '🤤',
+      '🤔',
+      '😍',
+      '😓',
+      '😏',
+      '🐾',
+      '🐧',
+      '🧞',
+      '🧵',
+      '🧳',
+      '🧉',
+      '⭐',
+      '🚼',
+      '🚺',
+      '🩸',
+      '📥',
+      '🕥',
+      '🍓',
+      '🧷',
+      '🟤',
+      '☢',
+      '💈',
+      '🥉',
+      '🆖',
+      '🕊',
+      '🏘',
+      '🔦',
+      '☀',
+      '👈',
+      '▛',
+      '▟',
+      '➥',
+      '⇛',
+      '➽',
+      '➤',
+      '➠',
+      '⏩',
+      '🡄',
+      '⇚',
+      '🢪',
+      '⬅',
+      '🠰',
+      '⮘',
+      '⏪',
+
       '【✔️推荐',
       '【✔️推薦',
       '【✔️官網',
@@ -725,6 +791,7 @@ final class MywpLockoutList {
 
       'allow_url_fopen',
       'app/etc/local.xm',
+      'auto_prepend_file=php://input',
 
       'base64_decode(',
       'blackjack',
@@ -880,6 +947,8 @@ final class MywpLockoutList {
       'fack',
       'fuckyou',
 
+      'ger3imopdfm0sdf',
+
       'itongtong',
 
       'pwidget',
@@ -966,6 +1035,7 @@ final class MywpLockoutList {
       'um_fileupload',
       'um_remove_file',
 
+      'wc_nf_submit',
       'workreap_temp_uploader',
       'wp-zzz',
       'wpgdprc_process_action',
@@ -1064,6 +1134,7 @@ final class MywpLockoutList {
       'Best of Ali',
       'bettop88.com',
       'bettop888.com',
+      'bp_caver_avatar_handle_upload',
       'Buy quality dofollow links from us',
 
       'Casino Consumers',
@@ -1118,6 +1189,8 @@ final class MywpLockoutList {
       '메이저카지노',
       '온라인바카라',
       '카지노사이트',
+
+      'займы без процентов',
 
     );
 
@@ -1186,12 +1259,16 @@ final class MywpLockoutList {
       '=sysdate(',
       '=wget ',
       '=8\'\'&',
+      ';curl ',
+      'Set-Cookie:param=',
 
       '22c\'abikn',
 
       'java.lang.Runtime',
       'javax.script.ScriptEngineManager',
       'JMXConfigurator',
+
+      'LanDhcpServerRpm',
 
       'onerror=alert(',
       'org.jenkinsci.plugins.github.config.GitHubTokenCredentialsCreator/createTokenByPassword',
@@ -1200,7 +1277,11 @@ final class MywpLockoutList {
 
       'Set-Cookie:CRLFInjection',
 
+      '/TomcatBypass/Command/Base64/',
+
       'union select ',
+
+      'WanDynamicIpCfgRpm',
 
     );
 

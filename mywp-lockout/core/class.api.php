@@ -575,6 +575,12 @@ final class MywpLockoutApi {
 
         }
 
+        if( is_array( $file_data_val['name'] ) ) {
+
+          continue;
+
+        }
+
         if( (string) $file_data_val['name'] === (string) $word ) {
 
           $is_denylist = true;
