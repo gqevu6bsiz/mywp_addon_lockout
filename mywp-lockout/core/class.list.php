@@ -419,6 +419,7 @@ final class MywpLockoutList {
 
       'daksldlkdsadas',
       'do_reset_wordpress',
+      'doors-test-article',
 
       'GOTMLS_scan',
 
@@ -483,6 +484,7 @@ final class MywpLockoutList {
       'ajax/render/widget_php',
       'app/config/parameters.yml',
       'AsAjfkel!@',
+      'async_litespeed',
       'Attacker',
 
       'br-aapf-setup',
@@ -520,6 +522,7 @@ final class MywpLockoutList {
       'iws_gff_fetch_states',
 
       'jb-upload-company-logo',
+      'jsticket_ajax',
 
       'kb_process_advanced_form_submit',
 
@@ -528,6 +531,7 @@ final class MywpLockoutList {
       'lp_cc_addons_actions',
 
       'M;O=D',
+      'mec_fes_form',
       'mk_check_filemanager_php_syntax',
       'mk_file_folder_manager',
       'module/newsletters/news',
@@ -538,6 +542,7 @@ final class MywpLockoutList {
       'ovalxnmai.php',
 
       'p3dlite_handle_upload',
+      'porte_plume_previsu',
       'ppom_upload_file',
       'printerInfo',
 
@@ -547,6 +552,8 @@ final class MywpLockoutList {
       'reads.html',
       'rms_ping_from_the_universe',
 
+      'sb_fav_ad',
+      'sb_login_user_with_otp',
       'semalt.com',
       'servicesshdisable',
       'set_db_option',
@@ -572,6 +579,7 @@ final class MywpLockoutList {
       'user/password',
 
       'var_dump',
+      'vibebp_register_user',
 
       'wccs_upload_file_func',
       'wcfm_login_popup_submit',
@@ -580,6 +588,8 @@ final class MywpLockoutList {
       'wp_ajax_rsvp-form',
       'wpfm_save_file_data',
       'wpim_manage_settings',
+      'wpjobportal_ajax_popup_action',
+      'wplms_register_user',
       'wps_membership_csv_file_upload',
       'wpsm_responsive_coming_soon',
       'wpuf_file_upload',
@@ -702,6 +712,7 @@ final class MywpLockoutList {
       '<script>',
       '><script',
       '/><svg/',
+      '<svg/onload=confirm(',
       '/bin/sh',
       '/configuration.php',
       '/db.php',
@@ -744,6 +755,11 @@ final class MywpLockoutList {
       '😍',
       '😓',
       '😏',
+      '🤮',
+      '😞',
+      '🤐',
+      '🤨',
+      '😎',
       '🐾',
       '🐧',
       '🧞',
@@ -751,18 +767,39 @@ final class MywpLockoutList {
       '🧳',
       '🧉',
       '⭐',
+      '🔆',
+      '🕞',
       '🚼',
       '🚺',
+      '⬛',
       '🩸',
       '📥',
       '🕥',
       '🍓',
+      '☕',
       '🧷',
       '🟤',
       '☢',
       '💈',
       '🥉',
+      '💒',
+      '🧚',
+      '📗',
+      '⛴',
+      '✏',
+      '🔤',
+      '🍚',
+      '🔇',
+      '🖼',
+      '🧸',
+      '🦹',
+      '📹',
+      '🥕',
+      '🦎',
+      '🚶',
+      '⌛',
       '🆖',
+      '🦘',
       '🕊',
       '🏘',
       '🔦',
@@ -776,6 +813,8 @@ final class MywpLockoutList {
       '➤',
       '➠',
       '⏩',
+      '⮆',
+      '▶',
       '🡄',
       '⇚',
       '🢪',
@@ -783,6 +822,8 @@ final class MywpLockoutList {
       '🠰',
       '⮘',
       '⏪',
+      '⮄',
+      '◀',
 
       '【✔️推荐',
       '【✔️推薦',
@@ -949,6 +990,7 @@ final class MywpLockoutList {
 
       'ger3imopdfm0sdf',
 
+      'ibk_restore_migrate_action',
       'itongtong',
 
       'pwidget',
@@ -979,6 +1021,8 @@ final class MywpLockoutList {
       '88slotgame.com',
 
       'androxgh0st',
+
+      'biagiotti_membership_check_facebook_user',
 
       'cHJpbnQobWQ1KDMyNDIzNCkpOw==',
       'cs_employer_ajax_profile',
@@ -1041,6 +1085,7 @@ final class MywpLockoutList {
       'wpgdprc_process_action',
       'wpsp_upload_attachment',
       'wpr_addons_upload_file',
+      'wpw_auto_poster_map_wordpress_post_type',
 
       '바카라',
 
@@ -1109,6 +1154,7 @@ final class MywpLockoutList {
 
     $denylist_post_data_find_value_list = array(
 
+      '; exec master.dbo.xp_dirtree',
       ';eval',
       '.php#.jpg',
       '[nd_booking_option_value]',
