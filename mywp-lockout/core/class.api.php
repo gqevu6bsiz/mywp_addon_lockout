@@ -15,8 +15,8 @@ final class MywpLockoutApi {
       'document_url' => 'https://mywpcustomize.com/add_ons/my-wp-add-on-lockout',
       'website_url' => 'https://mywpcustomize.com/',
       'github' => 'https://github.com/gqevu6bsiz/mywp_addon_lockout',
-      'github_raw' => 'https://raw.githubusercontent.com/gqevu6bsiz/mywp_addon_lockout/',
-      'github_tags' => 'https://api.github.com/repos/gqevu6bsiz/mywp_addon_lockout/tags',
+      'github_releases' => 'https://github.com/gqevu6bsiz/mywp_addon_lockout/releases',
+      'github_release_latest' => 'https://api.github.com/repos/gqevu6bsiz/mywp_addon_lockout/releases/latest',
     );
 
     if( is_multisite() ) {
@@ -53,9 +53,29 @@ final class MywpLockoutApi {
 
     $remote_ip = false;
 
-    if( isset( $_SERVER['REMOTE_ADDR'] ) ) {
+    if( getenv( 'HTTP_CLIENT_IP' ) ) {
 
-      $remote_ip = $_SERVER['REMOTE_ADDR'];
+      $remote_ip = getenv( 'HTTP_CLIENT_IP' );
+
+    } elseif( getenv( 'HTTP_X_FORWARDED_FOR' ) ) {
+
+      $remote_ip = getenv( 'HTTP_X_FORWARDED_FOR' );
+
+    } elseif( getenv( 'HTTP_X_FORWARDED' ) ) {
+
+      $remote_ip = getenv( 'HTTP_X_FORWARDED' );
+
+    } elseif( getenv( 'HTTP_FORWARDED_FOR' ) ) {
+
+      $remote_ip = getenv( 'HTTP_FORWARDED_FOR' );
+
+    } elseif( getenv( 'HTTP_FORWARDED' ) ) {
+
+      $remote_ip = getenv( 'HTTP_FORWARDED' );
+
+    } elseif( getenv( 'REMOTE_ADDR' ) ) {
+
+      $remote_ip = getenv( 'REMOTE_ADDR' );
 
     }
 
@@ -73,39 +93,51 @@ final class MywpLockoutApi {
 
   }
 
-  public static function get_lockout_default_page() {
+  public static function get_lockout_default_content() {
 
-    $lockout_default_page = '<h1>403 Forbidden</h1>';
+    $lockout_default_content = '<h1>403 Forbidden</h1>';
 
-    return $lockout_default_page;
-
-  }
-
-  public static function get_lockout_page() {
-
-    $lockout_page = self::get_lockout_default_page();
-
-    $mywp_controller = MywpController::get_controller( 'lockout' );
-
-    if( empty( $mywp_controller ) ) {
-
-      return $lockout_page;
-
-    }
-
-    $option = $mywp_controller['model']->get_option();
-
-    if( empty( $option['lockout_page'] ) ) {
-
-      return $lockout_page;
-
-    }
-
-    return $option['lockout_page'];
+    return $lockout_default_content;
 
   }
 
-  public static function is_weak_password( $password = false ) {
+  public static function get_lockout_setting_data() {
+
+    $controller = MywpController::get_controller( 'lockout' );
+
+    $called_text = sprintf( '%s::%s( %s )' , __CLASS__ , __FUNCTION__ , 'lockout' );
+
+    if( empty( $controller['model'] ) ) {
+
+      MywpHelper::error_require_message( '$controller["model"]' , $called_text );
+
+      return false;
+
+    }
+
+    $model = $controller['model'];
+
+    $setting_data = $model->get_setting_data();
+
+    return $setting_data;
+
+  }
+
+  public static function get_lockout_content() {
+
+    $lockout_setting_data = self::get_lockout_setting_data();
+
+    if( empty( $lockout_setting_data['lockout_page'] ) ) {
+
+      return self::get_lockout_default_content();
+
+    }
+
+    return $lockout_setting_data['lockout_page'];
+
+  }
+
+  public static function is_weak_password( $password = false , $user_name = false ) {
 
     if( $password === false ) {
 
@@ -194,6 +226,104 @@ final class MywpLockoutApi {
 
     }
 
+    if( empty( $user_name ) ) {
+
+      return false;
+
+    }
+
+    $user_name = strip_tags( $user_name );
+
+    if( $user_name === $password ) {
+
+      return true;
+
+    }
+
+    return false;
+
+  }
+
+  public static function is_denylist_action_data( $request_data = false ) {
+
+    if( empty( $request_data['action'] ) ) {
+
+      return false;
+
+    }
+
+    $action = $request_data['action'];
+
+    if( ! is_string( $action ) ) {
+
+      return true;
+
+    }
+
+    $is_denylist = false;
+
+    $denylist_action_value_list = MywpLockoutList::get_denylist_action_value_list();
+
+    foreach( $denylist_action_value_list as $word ) {
+
+      if( (string) $action === (string) $word ) {
+
+        $is_denylist = true;
+
+        break;
+
+      }
+
+    }
+
+    if( $is_denylist ) {
+
+      return true;
+
+    }
+
+    return false;
+
+  }
+
+  public static function is_denylist_search_data( $get_data = false ) {
+
+    if( empty( $get_data['s'] ) ) {
+
+      return false;
+
+    }
+
+    $search_word = $get_data['s'];
+
+    if( ! is_string( $search_word ) ) {
+
+      return true;
+
+    }
+
+    $is_denylist = false;
+
+    $denylist_search_value_list = MywpLockoutList::get_denylist_search_value_list();
+
+    foreach( $denylist_search_value_list as $word ) {
+
+      if( strpos( $search_word , $word ) !== false ) {
+
+        $is_denylist = true;
+
+        break;
+
+      }
+
+    }
+
+    if( $is_denylist ) {
+
+      return true;
+
+    }
+
     return false;
 
   }
@@ -202,7 +332,7 @@ final class MywpLockoutApi {
 
     if( empty( $get_data ) ) {
 
-      return true;
+      return false;
 
     }
 
@@ -356,7 +486,7 @@ final class MywpLockoutApi {
 
     if( empty( $post_data ) ) {
 
-      return true;
+      return false;
 
     }
 
@@ -527,7 +657,7 @@ final class MywpLockoutApi {
 
     if( empty( $file_data ) ) {
 
-      return true;
+      return false;
 
     }
 
@@ -645,7 +775,7 @@ final class MywpLockoutApi {
 
     if( empty( $request_uri ) ) {
 
-      return true;
+      return false;
 
     }
 
@@ -699,28 +829,6 @@ final class MywpLockoutApi {
 
   }
 
-  public static function mywp_lockout_get_login_thirdparty( $login ) {
-
-    if( ! empty( $_POST['woocommerce-login-nonce'] ) ) {
-
-      if( ! empty( $_POST['username'] ) ) {
-
-        $login['name'] = $_POST['username'];
-
-      }
-
-      if( ! empty( $_POST['password'] ) ) {
-
-        $login['password'] = $_POST['password'];
-
-      }
-
-    }
-
-    return $login;
-
-  }
-
   public static function get_max_lockout_seconds() {
 
     $max_lockout_seconds = -1;
@@ -733,7 +841,7 @@ final class MywpLockoutApi {
 
     if( ! empty( $max_lockout_seconds ) && $max_lockout_seconds > 0 ) {
 
-      $max_lockout_seconds = intval( $max_lockout_seconds );
+      $max_lockout_seconds = (int) $max_lockout_seconds;
 
     }
 
@@ -743,7 +851,7 @@ final class MywpLockoutApi {
 
   public static function get_mask_fields() {
 
-    $mask_fields = array( 'password' );
+    $mask_fields = array( 'password' , 'pwd' );
 
     $mask_fields = apply_filters( 'mywp_lockout_get_mask_fields' , $mask_fields );
 

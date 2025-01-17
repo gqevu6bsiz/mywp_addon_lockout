@@ -32,15 +32,13 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     if( ! empty( $setting_data['already_early_lockout'] ) ) {
 
-      add_action( 'mywp_setup_theme' , array( __CLASS__ , 'fast_is_exist_lockout' ) , 1000 );
+      add_action( 'mywp_setup_theme' , array( __CLASS__ , 'fast_lockout' ) , 1000 );
 
     }
 
-    add_filter( 'mywp_lockout_get_login' , array( 'MywpLockoutApi' , 'mywp_lockout_get_login_thirdparty' ) );
-
   }
 
-  public static function get_is_allowlist() {
+  private static function get_is_allowlist() {
 
     $is_allowlist = false;
 
@@ -50,7 +48,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
   }
 
-  public static function fast_is_exist_lockout() {
+  public static function fast_lockout() {
 
     $is_allowlist = self::get_is_allowlist();
 
@@ -71,16 +69,18 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
   public static function mywp_controller_initial_data( $initial_data ) {
 
     $initial_data['expire_timeout'] = '';
+    $initial_data['already_early_lockout'] = '';
+
     $initial_data['weak_password_lockout'] = '';
     $initial_data['specific_get_lockout'] = '';
     $initial_data['specific_post_lockout'] = '';
     $initial_data['specific_file_lockout'] = '';
     $initial_data['specific_uri_lockout'] = '';
     $initial_data['unknown_plugin_theme_lockout'] = '';
-    $initial_data['week_password_validate'] = '';
-    $initial_data['already_early_lockout'] = '';
-    $initial_data['sleep_lockout'] = '';
 
+    $initial_data['week_password_validate'] = '';
+    $initial_data['comment_validate_lockout'] = '';
+    $initial_data['sleep_lockout'] = '';
     $initial_data['send_mail'] = '';
     $initial_data['send_to_email'] = '';
     $initial_data['send_email_with_input'] = '';
@@ -94,23 +94,25 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
   public static function mywp_controller_default_data( $default_data ) {
 
-    $default_data['expire_timeout'] = '10';
+    $default_data['expire_timeout'] = '';
+    $default_data['already_early_lockout'] = false;
+
     $default_data['weak_password_lockout'] = false;
     $default_data['specific_get_lockout'] = false;
     $default_data['specific_post_lockout'] = false;
     $default_data['specific_file_lockout'] = false;
     $default_data['specific_uri_lockout'] = false;
     $default_data['unknown_plugin_theme_lockout'] = false;
-    $default_data['week_password_validate'] = false;
-    $default_data['already_early_lockout'] = false;
-    $default_data['sleep_lockout'] = 0;
 
+    $default_data['week_password_validate'] = false;
+    $initial_data['comment_validate_lockout'] = false;
+    $default_data['sleep_lockout'] = 0;
     $default_data['send_mail'] = false;
     $default_data['send_to_email'] = '';
-    $default_data['send_email_with_input'] = '';
-    $default_data['send_email_with_server'] = '';
+    $default_data['send_email_with_input'] = false;
+    $default_data['send_email_with_server'] = false;
 
-    $default_data['lockout_page'] = MywpLockoutApi::get_lockout_default_page();
+    $default_data['lockout_page'] = MywpLockoutApi::get_lockout_default_content();
 
     return $default_data;
 
@@ -132,67 +134,69 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     }
 
-    add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_logged_in' ) , 5 );
+    //add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_logged_in' ) , 5 );
 
     add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_exist_lockout' ) , 20 );
 
     add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_login_lockout' ) , 30 );
 
-    add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_get_data_lockout' ) , 40 );
+    add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_action_data_lockout' ) , 40 );
 
-    add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_post_data_lockout' ) , 50 );
+    add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_search_data_lockout' ) , 50 );
 
-    add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_file_data_lockout' ) , 60 );
+    add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_get_data_lockout' ) , 60 );
 
-    add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_uri_lockout' ) , 70 );
+    add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_post_data_lockout' ) , 70 );
 
-    add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_unknown_plugin_theme_lockout' ) , 80 );
+    add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_file_data_lockout' ) , 80 );
+
+    add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_uri_lockout' ) , 90 );
+
+    add_filter( 'mywp_lockout_is_lockout' , array( __CLASS__ , 'is_unknown_plugin_theme_lockout' ) , 100 );
 
     add_action( 'mywp_lockout_do_lockout' , array( __CLASS__ , 'lockout_send_email' ) , 20 );
 
     self::lockout();
 
-    add_action( 'user_profile_update_errors' , array( __CLASS__ , 'user_profile_update_errors' ) , 10 , 3 );
-
-    add_action( 'validate_password_reset' , array( __CLASS__ , 'validate_password_reset' ) , 10 , 2 );
-
   }
 
-  private static function lockout() {
+  public static function lockout() {
+
+    $setting_data = self::get_setting_data();
 
     self::$current_date = array( 'date' => current_time( 'mysql' ) , 'timestamp' => current_time( 'timestamp' ) );
 
-    self::$remote_ip = MywpLockoutApi::get_remote_ip();
+    if( ! empty( $setting_data['expire_timeout'] ) ) {
+
+      self::$remote_ip = MywpLockoutApi::get_remote_ip();
+
+    }
 
     $is_lockout = apply_filters( 'mywp_lockout_is_lockout' , false );
 
-    if( $is_lockout ) {
+    if( ! $is_lockout ) {
 
-      $setting_data = self::get_setting_data();
+      return false;
 
-      if( ! empty( $setting_data['sleep_lockout'] ) ) {
+    }
 
-        $seconds = intval( $setting_data['sleep_lockout'] );
+    $delay_lockout_seconds = 0;
 
-        if( ! empty( $seconds ) ) {
+    if( ! empty( $setting_data['sleep_lockout'] ) ) {
 
-          $max_lockout_seconds = MywpLockoutApi::get_max_lockout_seconds();
+      $sleep_lockout = (int) $setting_data['sleep_lockout'];
 
-          if( ! empty( $max_lockout_seconds ) ) {
+      if( ! empty( $sleep_lockout ) ) {
 
-            if( $max_lockout_seconds < $seconds ) {
+        $delay_lockout_seconds = $sleep_lockout;
 
-              sleep( $max_lockout_seconds );
+        $max_lockout_seconds = MywpLockoutApi::get_max_lockout_seconds();
 
-            } else {
+        if( ! empty( $max_lockout_seconds ) ) {
 
-              sleep( $seconds );
+          if( $max_lockout_seconds < $sleep_lockout ) {
 
-            }
-
-          } else {
-
-            sleep( $seconds );
+            $delay_lockout_seconds = $max_lockout_seconds;
 
           }
 
@@ -200,9 +204,15 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
       }
 
-      self::do_lockedout();
+    }
+
+    if( $delay_lockout_seconds > 0 ) {
+
+      sleep( $delay_lockout_seconds );
 
     }
+
+    self::do_lockedout();
 
   }
 
@@ -210,15 +220,15 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     do_action( 'mywp_lockout_do_lockout' );
 
-    add_filter( 'mywp_do_lockout_page' , 'wptexturize' );
-    add_filter( 'mywp_do_lockout_page' , 'convert_smilies' , 20 );
-    add_filter( 'mywp_do_lockout_page' , 'wpautop' );
-    add_filter( 'mywp_do_lockout_page' , 'shortcode_unautop' );
-    add_filter( 'mywp_do_lockout_page' , 'prepend_attachment' );
+    add_filter( 'mywp_lockout_do_lockout_content' , 'wptexturize' );
+    add_filter( 'mywp_lockout_do_lockout_content' , 'convert_smilies' , 20 );
+    add_filter( 'mywp_lockout_do_lockout_content' , 'wpautop' );
+    add_filter( 'mywp_lockout_do_lockout_content' , 'shortcode_unautop' );
+    add_filter( 'mywp_lockout_do_lockout_content' , 'prepend_attachment' );
 
     $lockout_header = 'HTTP/1.1 403 Forbidden';
 
-    $lockout_header = apply_filters( 'mywp_do_lockout_page_header' , $lockout_header );
+    $lockout_header = apply_filters( 'mywp_lockout_do_lockout_header' , $lockout_header );
 
     if( ! empty( $lockout_header ) ) {
 
@@ -226,9 +236,9 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     }
 
-    $lockout_page = apply_filters( 'mywp_do_lockout_page' , MywpLockoutApi::get_lockout_page() );
+    $lockout_content = apply_filters( 'mywp_lockout_do_lockout_content' , MywpLockoutApi::get_lockout_content() );
 
-    echo $lockout_page;
+    echo $lockout_content;
 
     exit;
 
@@ -236,15 +246,15 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
   private static function get_lockout_remote_data() {
 
-    if( empty( self::$remote_ip ) ) {
-
-      return false;
-
-    }
-
     if( ! empty( self::$lockout_remote_data ) ) {
 
       return self::$lockout_remote_data;
+
+    }
+
+    if( empty( self::$remote_ip ) ) {
+
+      return false;
 
     }
 
@@ -312,13 +322,19 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     $transient_key = sprintf( 'mywp_lockout_%s' , self::$remote_ip );
 
-    $lockout_expire = 10 * MINUTE_IN_SECONDS;
+    $lockout_expire = 0;
 
     $setting_data = self::get_setting_data();
 
     if( ! empty( $setting_data['expire_timeout'] ) ) {
 
-      $lockout_expire = intval( $setting_data['expire_timeout'] ) * MINUTE_IN_SECONDS;
+      $lockout_expire = (int) ( (int) $setting_data['expire_timeout'] * MINUTE_IN_SECONDS );
+
+    }
+
+    if( empty( $lockout_expire ) ) {
+
+      return false;
 
     }
 
@@ -341,6 +357,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
   }
 
+  /*
   public static function is_logged_in( $is_lockout ) {
 
     if( $is_lockout ) {
@@ -358,6 +375,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
     return $is_lockout;
 
   }
+  */
 
   public static function is_exist_lockout( $is_lockout ) {
 
@@ -385,8 +403,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     }
 
-
-    self::$input_fields = array( 'get_data' => $get_data , 'post_data' => $post_data );
+    self::$input_fields = array( 'get_data' => self::mask_input_fields( $get_data ) , 'post_data' => self::mask_input_fields(  $post_data ) );
 
     if( ! empty( $lockout_remote_data ) ) {
 
@@ -408,6 +425,14 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     }
 
+    $setting_data = self::get_setting_data();
+
+    if( empty( $setting_data['weak_password_lockout'] ) ) {
+
+      return $is_lockout;
+
+    }
+
     $login = MywpLockoutApi::get_login();
 
     if( empty( $login['name'] ) && empty( $login['password'] ) ) {
@@ -418,35 +443,93 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     self::$input_fields = self::mask_input_fields( array( 'login_name' => $login['name'] , 'password' => $login['password'] ) );
 
-    if( ! empty( $login['name'] ) && $login['name'] === $login['password'] ) {
+    if( MywpLockoutApi::is_weak_password( $login['password'] , $login['name'] ) ) {
 
-      self::set_lockout_remote_data( array( 'reason' => 'Same Login name and Password' , 'input_fields' => self::$input_fields ) );
+      self::set_lockout_remote_data( array( 'reason' => 'Weak password' , 'input_fields' => self::$input_fields ) );
 
       return true;
 
     }
 
-    $login['name'] .= '123';
+    return $is_lockout;
 
-    if( $login['name'] === $login['password'] ) {
+  }
 
-      self::set_lockout_remote_data( array( 'reason' => 'Similar Login name and Password' , 'input_fields' => self::$input_fields ) );
+  public static function is_action_data_lockout( $is_lockout ) {
 
-      return true;
+    if( $is_lockout ) {
+
+      return $is_lockout;
 
     }
 
     $setting_data = self::get_setting_data();
 
-    if( ! empty( $setting_data['weak_password_lockout'] ) ) {
+    if( empty( $setting_data['specific_get_lockout'] ) && empty( $setting_data['specific_post_lockout'] ) ) {
 
-      if( MywpLockoutApi::is_weak_password( $login['password'] ) ) {
+      return $is_lockout;
 
-        self::set_lockout_remote_data( array( 'reason' => 'Weak password' , 'input_fields' => self::$input_fields ) );
+    }
 
-        return true;
+    $request_data = false;
 
-      }
+    if( ! empty( $_REQUEST ) ) {
+
+      $request_data = $_REQUEST;
+
+    }
+
+    self::$input_fields = array( 'request_data' => self::mask_input_fields( $request_data ) );
+
+    if( MywpLockoutApi::is_denylist_action_data( $request_data ) ) {
+
+      self::set_lockout_remote_data( array( 'reason' => 'Denylist action' , 'input_fields' => self::$input_fields ) );
+
+      return true;
+
+    }
+
+    return $is_lockout;
+
+  }
+
+  public static function is_search_data_lockout( $is_lockout ) {
+
+    if( is_admin() ) {
+
+      return $is_lockout;
+
+    }
+
+    if( $is_lockout ) {
+
+      return $is_lockout;
+
+    }
+
+    $setting_data = self::get_setting_data();
+
+    if( empty( $setting_data['specific_get_lockout'] ) ) {
+
+      return $is_lockout;
+
+    }
+
+    $get_data = false;
+
+    if( ! empty( $_GET ) ) {
+
+      $get_data = $_GET;
+
+    }
+
+    self::$input_fields = array( 'get_data' => self::mask_input_fields( $get_data ) );
+
+    if( MywpLockoutApi::is_denylist_search_data( $get_data ) ) {
+
+      self::set_lockout_remote_data( array( 'reason' => 'Denylist search' , 'input_fields' => self::$input_fields ) );
+
+      return true;
 
     }
 
@@ -515,8 +598,6 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
     }
 
     $post_data = $_POST;
-
-
 
     self::$input_fields = array( 'post_data' => self::mask_input_fields( $post_data ) );
 
@@ -682,13 +763,19 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     $setting_data = self::get_setting_data();
 
-    if( empty( $setting_data['send_mail'] ) or empty( $setting_data['send_to_email'] ) ) {
+    if( empty( $setting_data['send_mail'] ) ) {
 
       return false;
 
     }
 
-    $to = $setting_data['send_to_email'];
+    $to = false;
+
+    if( ! empty( $setting_data['send_to_email'] ) ) {
+
+      $to = $setting_data['send_to_email'];
+
+    }
 
     if( ! is_email( $to ) ) {
 
@@ -716,13 +803,19 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     $messages .= sprintf( 'Site: %s' , $site_name ) . "\n\n";
 
+    if( is_multisite() ) {
+
+      $messages .= sprintf( 'Blog ID: %s' , get_current_blog_id() ) . "\n\n";
+
+    }
+
     $messages .= sprintf( 'Date: %s (%s)' , self::$current_date['date'] , get_option( 'timezone_string' ) ) . "\n\n";
 
     $messages .= sprintf( 'Remote IP: %s' , self::$remote_ip ) . "\n\n";
 
-    $input_fields = map_deep( self::$input_fields , 'esc_html' );
-
     if( ! empty( $setting_data['send_email_with_input'] ) ) {
+
+      $input_fields = map_deep( self::$input_fields , 'esc_html' );
 
       $messages .= sprintf( 'Input: %s' , print_r( $input_fields , true ) ) . "\n\n";
 
@@ -763,84 +856,6 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
       restore_current_blog();
 
     }
-
-  }
-
-  public static function user_profile_update_errors( $errors , $update , $user ) {
-
-    $setting_data = self::get_setting_data();
-
-    if( empty( $setting_data['week_password_validate'] ) ) {
-
-      return $errors;
-
-    }
-
-    $password = false;
-
-    if( ! empty( $user->user_pass ) ) {
-
-      $password = $user->user_pass;
-
-    } elseif( ! empty( $_POST['pass1'] ) ) {
-
-      $password = $_POST['pass1'];
-
-    }
-
-    if( empty( $password ) ) {
-
-      return $errors;
-
-    }
-
-    if( MywpLockoutApi::is_weak_password( $password ) ) {
-
-      $errors->add( 'weak_password' , __( '<strong>ERROR</strong>: This password is weak. Please enter a stronger password.' , 'mywp-lockout' ) , array( 'form-field' => 'pass1' ) );
-
-    }
-
-    return $errors;
-
-  }
-
-  public static function validate_password_reset( $errors , $user ) {
-
-    if( empty( $_POST['wp-submit'] ) ) {
-
-      return $errors;
-
-    }
-
-    $setting_data = self::get_setting_data();
-
-    if( empty( $setting_data['week_password_validate'] ) ) {
-
-      return $errors;
-
-    }
-
-    $password = false;
-
-    if( ! empty( $_POST['pass1'] ) ) {
-
-      $password = $_POST['pass1'];
-
-    }
-
-    if( empty( $password ) ) {
-
-      return $errors;
-
-    }
-
-    if( MywpLockoutApi::is_weak_password( $password ) ) {
-
-      $errors->add( 'weak_password' , __( '<strong>ERROR</strong>: This password is weak. Please enter a stronger password.' , 'mywp-lockout' ) , array( 'form-field' => 'pass1' ) );
-
-    }
-
-    return $errors;
 
   }
 

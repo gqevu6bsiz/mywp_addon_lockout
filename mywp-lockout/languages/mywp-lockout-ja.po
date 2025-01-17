@@ -1,20 +1,69 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: My WP Add-on Lockout\n"
-"POT-Creation-Date: 2021-06-15 14:56+0900\n"
-"PO-Revision-Date: 2021-06-15 14:59+0900\n"
+"POT-Creation-Date: 2025-01-17 09:49+0900\n"
+"PO-Revision-Date: 2025-01-17 09:49+0900\n"
 "Last-Translator: gqevu6bsiz <gqevu6bsiz@gmail.com>\n"
 "Language-Team: gqevu6bsiz@gmail.com\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.4.3\n"
-"X-Poedit-Basepath: .\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.4.4\n"
+"X-Poedit-Basepath: .\n"
 
-#: controller/modules/mywp.controller.module.lockout.php:799
-#: controller/modules/mywp.controller.module.lockout.php:839
+#: controller/modules/mywp.controller.module.frontend-comment.php:143
+#: controller/modules/mywp.controller.module.frontend-comment.php:151
+#: controller/modules/mywp.controller.module.frontend-comment.php:159
+msgid ""
+"There are no required fields. Please submit your comments using the official "
+"comment form."
+msgstr "必須フィールドがありません、フォームから正しく送信してください。"
+
+#: controller/modules/mywp.controller.module.frontend-comment.php:171
+msgid "Do not enter anything into the dummy field."
+msgstr "ダミーフィールドには何も入力しないでください。"
+
+#: controller/modules/mywp.controller.module.frontend-comment.php:219
+#: thirdparty/modules/contact-form-7.php:191
+msgid "Require field"
+msgstr "必須フィールド"
+
+#: controller/modules/mywp.controller.module.frontend-comment.php:229
+#: thirdparty/modules/contact-form-7.php:201
+msgid "Dummy field"
+msgstr "ダミーフィールド"
+
+#: controller/modules/mywp.controller.module.main.general.php:97
+#: setting/modules/mywp.setting.lockout.php:386
+#: setting/modules/mywp.setting.lockout.php:388
+msgid "Documents"
+msgstr "ドキュメント"
+
+#: controller/modules/mywp.controller.module.main.general.php:119
+#: setting/modules/mywp.setting.lockout.php:150
+msgid "Settings"
+msgstr "設定"
+
+#: controller/modules/mywp.controller.module.updater.php:120
+#: controller/modules/mywp.controller.module.updater.php:157
+msgid "Connection lost or the server is busy. Please try again later."
+msgstr "サーバに接続できませんでした。 時間をおいてもう一度お試しください。"
+
+#: controller/modules/mywp.controller.module.updater.php:151
+#: controller/modules/mywp.controller.module.updater.php:167
+msgid "An error has occurred. Please reload the page and try again."
+msgstr ""
+"予期しないエラーが発生しました。ページをリロードして、もう一度お試しくださ"
+"い。"
+
+#: controller/modules/mywp.controller.module.updater.php:255
+msgid "Invalid remote Json data. Please try again."
+msgstr "リモートのJsonデータエラー。 もう一度お試しください。"
+
+#: controller/modules/mywp.controller.module.validate.php:87
+#: controller/modules/mywp.controller.module.validate.php:131
 msgid ""
 "<strong>ERROR</strong>: This password is weak. Please enter a stronger "
 "password."
@@ -22,180 +71,166 @@ msgstr ""
 "<strong>エラー</strong>: 簡易なパスワードです。パスワードは推測されにくいもの"
 "を入力してください。"
 
-#: controller/modules/mywp.controller.module.main.general.php:97
-msgid "Documents"
-msgstr "ドキュメント"
-
-#: controller/modules/mywp.controller.module.main.general.php:119
-#: setting/modules/mywp.setting.lockout.php:128
-msgid "Settings"
-msgstr "設定"
-
-#: controller/modules/mywp.controller.module.main.general.php:145
-#, php-format
-msgid ""
-"There is a new version of %1$s available. <a href=\"%2$s\" %3$s>View version "
-"%4$s details</a>."
-msgstr ""
-
-#: controller/modules/mywp.controller.module.updater.php:106
-#: controller/modules/mywp.controller.module.updater.php:143
-msgid "Connection lost or the server is busy. Please try again later."
-msgstr "サーバに接続できませんでした。 時間をおいてもう一度お試しください。"
-
-#: controller/modules/mywp.controller.module.updater.php:137
-#: controller/modules/mywp.controller.module.updater.php:153
-#: setting/modules/mywp.setting.lockout.php:490
-#: setting/modules/mywp.setting.lockout.php:524
-msgid "An error has occurred. Please reload the page and try again."
-msgstr ""
-"予期しないエラーが発生しました。ページをリロードして、もう一度お試しくださ"
-"い。"
-
-#: controller/modules/mywp.controller.module.updater.php:189
-msgid "Invalid remote Json data. Please try again in an hour."
-msgstr "リモートのJsonデータエラー。 約1時間後に、もう一度お試しください。"
-
-#: controller/modules/mywp.controller.module.updater.php:199
-msgid "Invalid results. Sorry maybe update format changed."
-msgstr "形式エラー。アップデートの形式が変更された可能性があります。"
-
 #: setting/modules/mywp.setting.lockout.php:24
 #: setting/modules/mywp.setting.lockout.php:43
-#: setting/modules/mywp.setting.lockout.php:154
-#: setting/modules/mywp.setting.lockout.php:169
-#: setting/modules/mywp.setting.lockout.php:184
-#: setting/modules/mywp.setting.lockout.php:199
-#: setting/modules/mywp.setting.lockout.php:214
-#: setting/modules/mywp.setting.lockout.php:229
+#: setting/modules/mywp.setting.lockout.php:205
 msgid "Lockout"
 msgstr "ロックアウト"
 
-#: setting/modules/mywp.setting.lockout.php:117
-#: setting/modules/mywp.setting.lockout.php:381
+#: setting/modules/mywp.setting.lockout.php:118
+#: setting/modules/mywp.setting.lockout.php:374
 msgid "Using a latest version."
 msgstr "最新版をご利用中です。"
 
-#: setting/modules/mywp.setting.lockout.php:133
-msgid "Lockout time"
-msgstr "ロックアウト時間"
+#: setting/modules/mywp.setting.lockout.php:130
+msgid "Weak password when login"
+msgstr "ログイン時に弱いパスワードをロックアウト"
 
-#: setting/modules/mywp.setting.lockout.php:140
-msgid "Minute"
-msgstr "分"
+#: setting/modules/mywp.setting.lockout.php:133
+msgid "Specific get($_GET) request"
+msgstr "特定の get($_GET) リクエスト"
+
+#: setting/modules/mywp.setting.lockout.php:136
+msgid "Specific post($_POST) request"
+msgstr "特定の post($_POST) リクエスト"
+
+#: setting/modules/mywp.setting.lockout.php:139
+msgid "Specific upload file($_FILES) request"
+msgstr "特定のアップロードファイル($_FILES) リクエスト"
+
+#: setting/modules/mywp.setting.lockout.php:142
+msgid "Specific URI"
+msgstr "特定のURI"
 
 #: setting/modules/mywp.setting.lockout.php:145
-msgid "Weak password lockout"
-msgstr "弱いパスワードのロックアウト"
-
-#: setting/modules/mywp.setting.lockout.php:160
-msgid "Specific GET data lockout"
-msgstr "特定の GET データロックアウト"
-
-#: setting/modules/mywp.setting.lockout.php:175
-msgid "Specific POST data lockout"
-msgstr "特定の POST データロックアウト"
-
-#: setting/modules/mywp.setting.lockout.php:190
-msgid "Specific FILES data lockout"
-msgstr "特定の FILES データロックアウト"
-
-#: setting/modules/mywp.setting.lockout.php:205
-msgid "Specific URI lockout"
-msgstr "特定のURI ロックアウト"
-
-#: setting/modules/mywp.setting.lockout.php:220
 msgid "Unknown plugins/themes access lockout"
 msgstr "存在しない不明なプラグイン/テーマへのアクセスロックアウト"
 
-#: setting/modules/mywp.setting.lockout.php:235
-msgid "Weak password validate"
-msgstr "弱いパスワードバリデーション"
+#: setting/modules/mywp.setting.lockout.php:156
+msgid "Lockout time"
+msgstr "ロックアウト時間"
 
-#: setting/modules/mywp.setting.lockout.php:244
+#: setting/modules/mywp.setting.lockout.php:163
+msgid "Minute"
+msgstr "分"
+
+#: setting/modules/mywp.setting.lockout.php:166
+msgid ""
+"If set to 0 minute or blank, the time limit lockout will not be applied."
+msgstr "0秒または空白にすると、時間制限のロックアウトをしません。"
+
+#: setting/modules/mywp.setting.lockout.php:176
+msgid "Lockout at an early action hook(mywp_setup_theme)"
+msgstr "早いアクションフック(mywp_setup_theme)でのロックアウト"
+
+#: setting/modules/mywp.setting.lockout.php:187
+msgid "Lockout Targets"
+msgstr "ロックアウトターゲット"
+
+#: setting/modules/mywp.setting.lockout.php:217
+#: thirdparty/modules/contact-form-7.php:73
+msgid "Other"
+msgstr "その他"
+
+#: setting/modules/mywp.setting.lockout.php:223
+msgid "Weak password validate when account register"
+msgstr "アカウント作成時の弱いパスワードバリデーション"
+
+#: setting/modules/mywp.setting.lockout.php:232
+#: setting/modules/mywp.setting.lockout.php:247
+#: thirdparty/modules/contact-form-7.php:88
 msgid "Activate"
 msgstr "有効化"
 
-#: setting/modules/mywp.setting.lockout.php:250
-msgid "Already lockout early action"
-msgstr "ロックアウト中の早いアクション段階でのロックアウト"
+#: setting/modules/mywp.setting.lockout.php:238
+msgid "Comment form validate and lockout"
+msgstr "コメントフォームのバリデーションとロックアウト"
 
-#: setting/modules/mywp.setting.lockout.php:259
-msgid "Early action lockout"
-msgstr "早いアクション段階でのでのロックアウト"
-
-#: setting/modules/mywp.setting.lockout.php:265
+#: setting/modules/mywp.setting.lockout.php:253
 msgid "Slow response"
 msgstr "レスポンスをわざと遅くする"
 
-#: setting/modules/mywp.setting.lockout.php:274
+#: setting/modules/mywp.setting.lockout.php:262
 msgid "Seconds"
 msgstr "秒"
 
-#: setting/modules/mywp.setting.lockout.php:277
+#: setting/modules/mywp.setting.lockout.php:265
 msgid "Max seconds"
 msgstr "最大秒数"
 
-#: setting/modules/mywp.setting.lockout.php:277
+#: setting/modules/mywp.setting.lockout.php:265
 #, php-format
 msgid "%s seconds"
 msgstr "%s 秒"
 
-#: setting/modules/mywp.setting.lockout.php:281
+#: setting/modules/mywp.setting.lockout.php:270
 msgid "Max seconds is setting to max_execution_time on php.ini."
 msgstr "最大秒数は php.ini の max_execution_time の設定になります。"
 
-#: setting/modules/mywp.setting.lockout.php:287
+#: setting/modules/mywp.setting.lockout.php:276
 msgid "Email me whenever"
 msgstr "自分宛のメール通知"
 
-#: setting/modules/mywp.setting.lockout.php:296
-msgid "Send email when Locked out"
+#: setting/modules/mywp.setting.lockout.php:285
+msgid "Send an email when locked out"
 msgstr "ロックアウト時にメールする"
 
-#: setting/modules/mywp.setting.lockout.php:300
+#: setting/modules/mywp.setting.lockout.php:289
 msgid "From"
 msgstr "差出人"
 
-#: setting/modules/mywp.setting.lockout.php:304
+#: setting/modules/mywp.setting.lockout.php:293
 msgid "To"
 msgstr "宛先"
 
-#: setting/modules/mywp.setting.lockout.php:318
+#: setting/modules/mywp.setting.lockout.php:307
 msgid "Send with Input data"
 msgstr "入力されたデータも送信"
 
-#: setting/modules/mywp.setting.lockout.php:328
+#: setting/modules/mywp.setting.lockout.php:317
 msgid "Send with Server data"
 msgstr "サーバのデータも送信"
 
-#: setting/modules/mywp.setting.lockout.php:336
+#: setting/modules/mywp.setting.lockout.php:325
 msgid "Lockout page"
 msgstr "ロックアウトページ"
 
-#: setting/modules/mywp.setting.lockout.php:373
+#: setting/modules/mywp.setting.lockout.php:365
 msgid "Plugin info"
 msgstr "プラグイン情報"
 
-#: setting/modules/mywp.setting.lockout.php:377
+#: setting/modules/mywp.setting.lockout.php:370
 #, php-format
 msgid "Version %s"
 msgstr "%s バージョン"
 
-#: setting/modules/mywp.setting.lockout.php:380
+#: setting/modules/mywp.setting.lockout.php:373
 #, php-format
 msgid "Get Version %s"
 msgstr "%s バージョンを取得"
 
-#: setting/modules/mywp.setting.lockout.php:386
+#: setting/modules/mywp.setting.lockout.php:378
 msgid "Check latest"
 msgstr "最新版をチェック"
 
-#: setting/modules/mywp.setting.lockout.php:388
+#: setting/modules/mywp.setting.lockout.php:380
 msgid "Check latest version"
 msgstr "最新版をチェック"
 
-#: thirdparty/modules/woocommerce.php:45 thirdparty/modules/woocommerce.php:85
+#: thirdparty/modules/contact-form-7.php:79
+msgid "Contact form 7 form validate and lockout"
+msgstr "Contact Form7 のバリデーションとロックアウト"
+
+#: thirdparty/modules/contact-form-7.php:245
+#: thirdparty/modules/contact-form-7.php:253
+#: thirdparty/modules/contact-form-7.php:261
+msgid ""
+"There are no required fields. Please submit your contact using the official "
+"contact form."
+msgstr "必須フィールドがありません、フォームから正しく送信してください。"
+
+#: thirdparty/modules/woocommerce.php:97 thirdparty/modules/woocommerce.php:117
+#: thirdparty/modules/woocommerce.php:163
 msgid "This password is weak. Please enter a stronger password."
 msgstr ""
 "簡易なパスワードです。パスワードは推測されにくいものを入力してください。"

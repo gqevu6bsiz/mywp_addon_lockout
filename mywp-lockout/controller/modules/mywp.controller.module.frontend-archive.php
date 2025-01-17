@@ -52,11 +52,11 @@ final class MywpControllerModuleLockoutFrontendArchive extends MywpControllerAbs
 
   }
 
-  private static function do_lockedout( $args ) {
+  private static function do_lockout( $args ) {
 
     MywpControllerModuleLockout::set_lockout_remote_data( $args );
 
-    MywpControllerModuleLockout::do_lockedout();
+    MywpControllerModuleLockout::lockout();
 
   }
 
@@ -70,7 +70,7 @@ final class MywpControllerModuleLockoutFrontendArchive extends MywpControllerAbs
 
     $args = array( 'reason' => 'Disable Author Archive' );
 
-    self::do_lockedout( $args );
+    self::do_lockout( $args );
 
   }
 
@@ -84,7 +84,7 @@ final class MywpControllerModuleLockoutFrontendArchive extends MywpControllerAbs
 
     $args = array( 'reason' => 'Disable Taxonomy Archive' );
 
-    self::do_lockedout( $args );
+    self::do_lockout( $args );
 
   }
 
@@ -98,7 +98,7 @@ final class MywpControllerModuleLockoutFrontendArchive extends MywpControllerAbs
 
     $args = array( 'reason' => 'Disable Date Archive' );
 
-    self::do_lockedout( $args );
+    self::do_lockout( $args );
 
   }
 

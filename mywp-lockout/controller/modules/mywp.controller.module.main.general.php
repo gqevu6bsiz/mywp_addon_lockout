@@ -128,6 +128,7 @@ final class MywpControllerModuleLockoutMainGeneral extends MywpControllerAbstrac
 
   }
 
+  /*
   public static function in_plugin_update_message( $plugin_data , $response ) {
 
     if( empty( $response->new_version ) ) {
@@ -156,6 +157,7 @@ final class MywpControllerModuleLockoutMainGeneral extends MywpControllerAbstrac
     echo '</style>';
 
   }
+  */
 
 }
 

@@ -18,29 +18,81 @@ final class MywpLockoutThirdpartyModuleWooCommerce extends MywpThirdpartyAbstrac
 
   protected static $name = 'WooCommerce';
 
-  protected static function after_init() {
+  public static function mywp_init() {
 
-    add_action( 'wp_loaded' , array( __CLASS__ , 'wp_loaded' ) );
+    add_action( 'mywp_wp_loaded' , array( __CLASS__ , 'mywp_wp_loaded' ) );
 
   }
 
-  public static function wp_loaded() {
+  public static function mywp_wp_loaded() {
 
-    if( ! MywpThirdparty::is_plugin_activate( self::$base_name ) ) {
-
-      return false;
-
-    }
+    add_filter( 'mywp_lockout_get_login' , array( __CLASS__ , 'mywp_lockout_get_login' ) );
 
     add_filter( 'woocommerce_process_registration_errors' , array( __CLASS__ , 'woocommerce_process_registration_errors' ) , 10 , 4 );
+
+    add_filter( 'woocommerce_save_account_details_errors' , array( __CLASS__ , 'woocommerce_save_account_details_errors' ) , 10 , 2 );
 
     add_action( 'validate_password_reset' , array( __CLASS__ , 'validate_password_reset' ) );
 
   }
 
+  private static function is_check_week_password() {
+
+    $setting_data = MywpLockoutApi::get_lockout_setting_data();
+
+    if( empty( $setting_data['week_password_validate'] ) ) {
+
+      return false;
+
+    }
+
+    return true;
+
+  }
+
+  public static function mywp_lockout_get_login( $login ) {
+
+    if( empty( $_POST ) ) {
+
+      return $login;
+
+    }
+
+    if( ! empty( $_POST['woocommerce-login-nonce'] ) ) {
+
+      if( ! empty( $_POST['username'] ) ) {
+
+        $login['name'] = $_POST['username'];
+
+      }
+
+      if( ! empty( $_POST['password'] ) ) {
+
+        $login['password'] = $_POST['password'];
+
+      }
+
+    }
+
+    return $login;
+
+  }
+
   public static function woocommerce_process_registration_errors( $validation_error , $username , $password , $email ) {
 
-    if( MywpLockoutApi::is_weak_password( $password ) ) {
+    if( ! self::is_check_week_password() ) {
+
+      return $validation_error;
+
+    }
+
+    if( empty( $username ) ) {
+
+      $username = wc_create_new_customer_username( $email );
+
+    }
+
+    if( MywpLockoutApi::is_weak_password( $password , $username ) ) {
 
       $validation_error->add( 'weak_password' , __( 'This password is weak. Please enter a stronger password.' , 'mywp-lockout' ) );
 
@@ -50,17 +102,35 @@ final class MywpLockoutThirdpartyModuleWooCommerce extends MywpThirdpartyAbstrac
 
   }
 
-  public static function validate_password_reset( $errors ) {
+  public static function woocommerce_save_account_details_errors( $errors , $temp_user ) {
 
-    if( empty( $_REQUEST['woocommerce-reset-password-nonce'] ) ) {
+    if( ! self::is_check_week_password() ) {
 
       return $errors;
 
     }
 
-    $setting_data = self::get_setting_data();
+    $user = get_user_by( 'id' , $temp_user->ID );
 
-    if( empty( $setting_data['week_password_validate'] ) ) {
+    if( MywpLockoutApi::is_weak_password( $temp_user->user_pass , $user->user_login ) ) {
+
+      $errors->add( 'weak_password' , __( 'This password is weak. Please enter a stronger password.' , 'mywp-lockout' ) );
+
+    }
+
+    return $errors;
+
+  }
+
+  public static function validate_password_reset( $errors ) {
+
+    if( ! self::is_check_week_password() ) {
+
+      return $errors;
+
+    }
+
+    if( empty( $_POST['woocommerce-reset-password-nonce'] ) ) {
 
       return $errors;
 
@@ -80,7 +150,15 @@ final class MywpLockoutThirdpartyModuleWooCommerce extends MywpThirdpartyAbstrac
 
     }
 
-    if( MywpLockoutApi::is_weak_password( $password ) ) {
+    $user_name = false;
+
+    if( ! empty( $_POST['reset_login'] ) ) {
+
+      $user_name = $_POST['reset_login'];
+
+    }
+
+    if( MywpLockoutApi::is_weak_password( $password , $user_name ) ) {
 
       $errors->add( 'weak_password' , __( 'This password is weak. Please enter a stronger password.' , 'mywp-lockout' ) );
 
