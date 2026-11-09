@@ -36,7 +36,15 @@ final class MywpControllerModuleLockoutUpdater extends MywpControllerAbstractMod
 
   public static function site_transient_update_plugins( $site_transient ) {
 
-    if( empty( $site_transient ) or ! isset( $site_transient->response ) ) {
+    $called_text = sprintf( '%s::%s( $site_transient )' , __CLASS__ , __FUNCTION__ );
+
+    if( empty( $site_transient ) ) {
+
+      return $site_transient;
+
+    }
+
+    if( ! isset( $site_transient->response ) ) {
 
       return $site_transient;
 
@@ -45,6 +53,8 @@ final class MywpControllerModuleLockoutUpdater extends MywpControllerAbstractMod
     $is_latest = self::is_latest();
 
     if( is_wp_error( $is_latest ) ) {
+
+      MywpHelper::error_returned_message( '$is_latest' , $is_latest->get_error_message() , $called_text );
 
       return $site_transient;
 
@@ -60,15 +70,19 @@ final class MywpControllerModuleLockoutUpdater extends MywpControllerAbstractMod
 
     if( is_wp_error( $latest ) ) {
 
+      MywpHelper::error_returned_message( '$latest' , $latest->get_error_message() , $called_text );
+
       return $site_transient;
 
     }
 
     $plugin_info = MywpLockoutApi::plugin_info();
 
-    $remote = self::get_remote();
+    $remote_json = self::get_remote_json();
 
-    if( empty( $remote ) or is_wp_error( $remote ) ) {
+    if( empty( $remote_json ) ) {
+
+      MywpHelper::error_not_found_message( '$remote_json' , $called_text );
 
       return $site_transient;
 
@@ -97,6 +111,8 @@ final class MywpControllerModuleLockoutUpdater extends MywpControllerAbstractMod
 
   public static function get_remote() {
 
+    $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
+
     $transient_key = 'mywp_' . self::$id . '_remote';
 
     $transient = get_site_transient( $transient_key );
@@ -117,6 +133,8 @@ final class MywpControllerModuleLockoutUpdater extends MywpControllerAbstractMod
 
     if( empty( $remote_result ) ) {
 
+      MywpHelper::error_not_found_message( '$remote_result' , $called_text );
+
       $error->add( 'not_results' , __( 'Connection lost or the server is busy. Please try again later.' , 'mywp-lockout' ) );
 
       return $error;
@@ -125,6 +143,8 @@ final class MywpControllerModuleLockoutUpdater extends MywpControllerAbstractMod
 
     if( is_wp_error( $remote_result ) ) {
 
+      MywpHelper::error_returned_message( '$remote_result' , $remote_result->get_error_message() , $called_text );
+
       $error->add( 'invalid_remote' , $remote_result->get_error_message() );
 
       return $error;
@@ -132,11 +152,14 @@ final class MywpControllerModuleLockoutUpdater extends MywpControllerAbstractMod
     }
 
     $remote_code = wp_remote_retrieve_response_code( $remote_result );
+
     $remote_body = wp_remote_retrieve_body( $remote_result );
 
     set_site_transient( $transient_key , $remote_body , DAY_IN_SECONDS );
 
     if( $remote_code !== 200 ) {
+
+      MywpHelper::error_invalid_message( '$remote_code' , '200' , $called_text );
 
       if( ! empty( $remote_body ) ) {
 
@@ -164,6 +187,8 @@ final class MywpControllerModuleLockoutUpdater extends MywpControllerAbstractMod
 
     if( empty( $remote_body ) ) {
 
+      MywpHelper::error_not_found_message( '$remote_body' , $called_text );
+
       $error->add( 'invalid_remote_body' , __( 'An error has occurred. Please reload the page and try again.' , 'mywp-lockout' ) );
 
       return $error;
@@ -174,19 +199,75 @@ final class MywpControllerModuleLockoutUpdater extends MywpControllerAbstractMod
 
   }
 
-  private static function get_remote_download_link() {
+  public static function get_remote_json() {
+
+    $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
 
     $remote = self::get_remote();
 
-    if( empty( $remote ) or is_wp_error( $remote ) ) {
+    if( empty( $remote ) ) {
+
+      MywpHelper::error_not_found_message( '$remote' , $called_text );
 
       return false;
 
     }
 
-    $maybe_remote_json = json_decode( $remote );
+    if( is_wp_error( $remote ) ) {
 
-    if( empty( $maybe_remote_json->assets ) or ! is_array( $maybe_remote_json->assets ) ) {
+      MywpHelper::error_returned_message( '$remote' , $remote->get_error_message() , $called_text );
+
+      return false;
+
+    }
+
+    $remote_json = json_decode( $remote );
+
+    if( empty( $remote_json->assets ) ) {
+
+      MywpHelper::error_not_found_message( '$remote_json->assets' , $called_text );
+
+      return false;
+
+    }
+
+    if( ! is_object( $remote_json ) ) {
+
+      MywpHelper::error_invalid_message( '$remote_json' , 'is_object()' , $called_text );
+
+      return false;
+
+    }
+
+    if( ! isset( $remote_json->tag_name ) ) {
+
+      MywpHelper::error_not_found_message( '$remote_json->tag_name' , $called_text );
+
+      return false;
+
+    }
+
+    if( ! is_array( $remote_json->assets ) ) {
+
+      MywpHelper::error_invalid_message( '$remote_json->assets' , 'is_array()' , $called_text );
+
+      return false;
+
+    }
+
+    return $remote_json;
+
+  }
+
+  private static function get_remote_download_link() {
+
+    $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
+
+    $remote_json = self::get_remote_json();
+
+    if( empty( $remote_json ) ) {
+
+      MywpHelper::error_not_found_message( '$remote_json' , $called_text );
 
       return false;
 
@@ -196,9 +277,11 @@ final class MywpControllerModuleLockoutUpdater extends MywpControllerAbstractMod
 
     $download_file_path = sprintf( '%s.%s.zip' , MYWP_LOCKOUT_PLUGIN_DIRNAME , self::get_latest() );
 
-    foreach( $maybe_remote_json->assets as $asset ) {
+    foreach( $remote_json->assets as $asset ) {
 
       if( ! isset( $asset->name ) ) {
+
+        MywpHelper::error_not_found_message( '$asset->name' , $called_text );
 
         continue;
 
@@ -211,6 +294,8 @@ final class MywpControllerModuleLockoutUpdater extends MywpControllerAbstractMod
       }
 
       if( empty( $asset->browser_download_url ) ) {
+
+        MywpHelper::error_not_found_message( '$asset->browser_download_url' , $called_text );
 
         continue;
 
@@ -228,6 +313,8 @@ final class MywpControllerModuleLockoutUpdater extends MywpControllerAbstractMod
 
   public static function get_latest() {
 
+    $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
+
     $transient_key = 'mywp_' . self::$id;
 
     $transient = get_site_transient( $transient_key );
@@ -238,29 +325,21 @@ final class MywpControllerModuleLockoutUpdater extends MywpControllerAbstractMod
 
     }
 
-    $remote = self::get_remote();
+    $remote_json = self::get_remote_json();
 
-    if( empty( $remote ) or is_wp_error( $remote ) ) {
+    if( empty( $remote_json ) ) {
 
-      return $remote;
+      MywpHelper::error_not_found_message( '$remote_json' , $called_text );
 
-    }
-
-    $error = new WP_Error();
-
-    $maybe_remote_json = json_decode( $remote );
-
-    if( ! is_object( $maybe_remote_json ) or ! isset( $maybe_remote_json->tag_name ) ) {
-
-      $error->add( 'invalid_remote_json' , __( 'Invalid remote Json data. Please try again.' , 'mywp-lockout' ) );
-
-      return $error;
+      return false;
 
     }
 
-    $latest = $maybe_remote_json->tag_name;
+    $latest = $remote_json->tag_name;
 
-    $transient = array( 'latest' => $latest );
+    $transient = array(
+      'latest' => $latest,
+    );
 
     set_site_transient( $transient_key , $transient , DAY_IN_SECONDS );
 
@@ -278,13 +357,19 @@ final class MywpControllerModuleLockoutUpdater extends MywpControllerAbstractMod
 
   public static function is_latest() {
 
+    $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
+
     $latest = self::get_latest();
 
-    $error = new WP_Error();
+    if( empty( $latest ) ) {
 
-    if( is_wp_error( $latest ) ) {
+      MywpHelper::error_not_found_message( '$latest' , $called_text );
 
-      return $latest;
+      $error = new WP_Error();
+
+      $error->add( 'invalid_latest' , __( 'Failed to check for the latest version.' , 'mywp-lockout' ) );
+
+      return $error;
 
     }
 
@@ -295,6 +380,8 @@ final class MywpControllerModuleLockoutUpdater extends MywpControllerAbstractMod
   }
 
   public static function plugins_api( $false , $action , $args ) {
+
+    $called_text = sprintf( '%s::%s( $false , $action , $args )' , __CLASS__ , __FUNCTION__ );
 
     if( ! in_array( $action , array( 'query_plugins' , 'plugin_information' ) , true ) ) {
 
@@ -314,17 +401,11 @@ final class MywpControllerModuleLockoutUpdater extends MywpControllerAbstractMod
 
     }
 
-    $remote = self::get_remote();
+    $remote_json = self::get_remote_json();
 
-    if( empty( $remote ) or is_wp_error( $remote ) ) {
+    if( empty( $remote_json ) ) {
 
-      return $false;
-
-    }
-
-    $maybe_remote_json = json_decode( $remote );
-
-    if( ! is_object( $maybe_remote_json ) or ! isset( $maybe_remote_json->tag_name ) ) {
+      MywpHelper::error_not_found_message( '$remote_json' , $called_text );
 
       return $false;
 
@@ -350,7 +431,7 @@ final class MywpControllerModuleLockoutUpdater extends MywpControllerAbstractMod
       //'support_threads' => '',
       //'support_threads_resolved' => '',
       //'active_installs' => '',
-      'last_updated' => $maybe_remote_json->published_at,
+      'last_updated' => $remote_json->published_at,
       //'added' => '',
       'homepage' => $plugin_info['website_url'],
       'sections' => array(

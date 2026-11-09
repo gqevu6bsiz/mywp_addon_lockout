@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: My WP Add-on Lockout\n"
-"POT-Creation-Date: 2025-01-17 09:49+0900\n"
+"POT-Creation-Date: 2026-11-09 14:45+0900\n"
 "PO-Revision-Date: 2017-12-24 21:21+0900\n"
 "Last-Translator: \n"
 "Language-Team: info@mywpcustomize.com\n"
@@ -10,62 +10,61 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"X-Generator: Poedit 3.4.4\n"
+"X-Generator: Poedit 3.10\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-Flags-xgettext: --add-comments=translators:\n"
 "X-Poedit-WPHeader: mywp-lockout.php\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;"
-"_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
 "X-Poedit-SearchPath-0: .\n"
 "X-Poedit-SearchPathExcluded-0: *.js\n"
 
-#: controller/modules/mywp.controller.module.frontend-comment.php:143
-#: controller/modules/mywp.controller.module.frontend-comment.php:151
-#: controller/modules/mywp.controller.module.frontend-comment.php:159
+#: controller/modules/mywp.controller.module.frontend-comment.php:141
+#: controller/modules/mywp.controller.module.frontend-comment.php:149
+#: controller/modules/mywp.controller.module.frontend-comment.php:157
 msgid ""
 "There are no required fields. Please submit your comments using the "
 "official comment form."
 msgstr ""
 
-#: controller/modules/mywp.controller.module.frontend-comment.php:171
+#: controller/modules/mywp.controller.module.frontend-comment.php:169
 msgid "Do not enter anything into the dummy field."
 msgstr ""
 
-#: controller/modules/mywp.controller.module.frontend-comment.php:219
-#: thirdparty/modules/contact-form-7.php:191
+#: controller/modules/mywp.controller.module.frontend-comment.php:220
+#: thirdparty/modules/contact-form-7.php:196
 msgid "Require field"
 msgstr ""
 
-#: controller/modules/mywp.controller.module.frontend-comment.php:229
-#: thirdparty/modules/contact-form-7.php:201
+#: controller/modules/mywp.controller.module.frontend-comment.php:240
+#: thirdparty/modules/contact-form-7.php:205
 msgid "Dummy field"
 msgstr ""
 
 #: controller/modules/mywp.controller.module.main.general.php:97
-#: setting/modules/mywp.setting.lockout.php:386
-#: setting/modules/mywp.setting.lockout.php:388
+#: setting/modules/mywp.setting.lockout.php:451
+#: setting/modules/mywp.setting.lockout.php:455
 msgid "Documents"
 msgstr ""
 
 #: controller/modules/mywp.controller.module.main.general.php:119
-#: setting/modules/mywp.setting.lockout.php:150
+#: setting/modules/mywp.setting.lockout.php:149
 msgid "Settings"
 msgstr ""
 
-#: controller/modules/mywp.controller.module.updater.php:120
-#: controller/modules/mywp.controller.module.updater.php:157
+#: controller/modules/mywp.controller.module.updater.php:138
+#: controller/modules/mywp.controller.module.updater.php:180
 msgid "Connection lost or the server is busy. Please try again later."
 msgstr ""
 
-#: controller/modules/mywp.controller.module.updater.php:151
-#: controller/modules/mywp.controller.module.updater.php:167
+#: controller/modules/mywp.controller.module.updater.php:174
+#: controller/modules/mywp.controller.module.updater.php:192
 msgid "An error has occurred. Please reload the page and try again."
 msgstr ""
 
-#: controller/modules/mywp.controller.module.updater.php:255
-msgid "Invalid remote Json data. Please try again."
+#: controller/modules/mywp.controller.module.updater.php:370
+msgid "Failed to check for the latest version."
 msgstr ""
 
 #: controller/modules/mywp.controller.module.validate.php:87
@@ -75,38 +74,45 @@ msgid ""
 "password."
 msgstr ""
 
+#: core/class.imcompatible.php:39
+#, php-format
+msgid ""
+"Sorry, %s is <strong>Incompatible</strong> with your version of My WP "
+"Customize. Require version  %s."
+msgstr ""
+
 #: setting/modules/mywp.setting.lockout.php:24
 #: setting/modules/mywp.setting.lockout.php:43
-#: setting/modules/mywp.setting.lockout.php:205
+#: setting/modules/mywp.setting.lockout.php:233
 msgid "Lockout"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:118
-#: setting/modules/mywp.setting.lockout.php:374
+#: setting/modules/mywp.setting.lockout.php:109
+#: setting/modules/mywp.setting.lockout.php:435
 msgid "Using a latest version."
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:130
+#: setting/modules/mywp.setting.lockout.php:123
 msgid "Weak password when login"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:133
+#: setting/modules/mywp.setting.lockout.php:126
 msgid "Specific get($_GET) request"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:136
+#: setting/modules/mywp.setting.lockout.php:129
 msgid "Specific post($_POST) request"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:139
+#: setting/modules/mywp.setting.lockout.php:132
 msgid "Specific upload file($_FILES) request"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:142
+#: setting/modules/mywp.setting.lockout.php:135
 msgid "Specific URI"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:145
+#: setting/modules/mywp.setting.lockout.php:138
 msgid "Unknown plugins/themes access lockout"
 msgstr ""
 
@@ -114,120 +120,124 @@ msgstr ""
 msgid "Lockout time"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:163
+#: setting/modules/mywp.setting.lockout.php:167
 msgid "Minute"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:166
+#: setting/modules/mywp.setting.lockout.php:170
 msgid ""
 "If set to 0 minute or blank, the time limit lockout will not be applied."
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:176
+#: setting/modules/mywp.setting.lockout.php:183
 msgid "Lockout at an early action hook(mywp_setup_theme)"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:187
+#: setting/modules/mywp.setting.lockout.php:189
+msgid "How to get an IP address"
+msgstr ""
+
+#: setting/modules/mywp.setting.lockout.php:211
 msgid "Lockout Targets"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:217
-#: thirdparty/modules/contact-form-7.php:73
+#: setting/modules/mywp.setting.lockout.php:246
+#: thirdparty/modules/contact-form-7.php:74
 msgid "Other"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:223
+#: setting/modules/mywp.setting.lockout.php:253
 msgid "Weak password validate when account register"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:232
-#: setting/modules/mywp.setting.lockout.php:247
-#: thirdparty/modules/contact-form-7.php:88
+#: setting/modules/mywp.setting.lockout.php:265
+#: setting/modules/mywp.setting.lockout.php:283
+#: thirdparty/modules/contact-form-7.php:93
 msgid "Activate"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:238
+#: setting/modules/mywp.setting.lockout.php:271
 msgid "Comment form validate and lockout"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:253
+#: setting/modules/mywp.setting.lockout.php:289
 msgid "Slow response"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:262
+#: setting/modules/mywp.setting.lockout.php:301
 msgid "Seconds"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:265
+#: setting/modules/mywp.setting.lockout.php:304
 msgid "Max seconds"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:265
+#: setting/modules/mywp.setting.lockout.php:305
 #, php-format
 msgid "%s seconds"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:270
+#: setting/modules/mywp.setting.lockout.php:310
 msgid "Max seconds is setting to max_execution_time on php.ini."
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:276
+#: setting/modules/mywp.setting.lockout.php:316
 msgid "Email me whenever"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:285
+#: setting/modules/mywp.setting.lockout.php:328
 msgid "Send an email when locked out"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:289
+#: setting/modules/mywp.setting.lockout.php:332
 msgid "From"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:293
+#: setting/modules/mywp.setting.lockout.php:336
 msgid "To"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:307
+#: setting/modules/mywp.setting.lockout.php:356
 msgid "Send with Input data"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:317
+#: setting/modules/mywp.setting.lockout.php:369
 msgid "Send with Server data"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:325
+#: setting/modules/mywp.setting.lockout.php:377
 msgid "Lockout page"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:365
+#: setting/modules/mywp.setting.lockout.php:423
 msgid "Plugin info"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:370
+#: setting/modules/mywp.setting.lockout.php:429
 #, php-format
 msgid "Version %s"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:373
+#: setting/modules/mywp.setting.lockout.php:432
 #, php-format
 msgid "Get Version %s"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:378
+#: setting/modules/mywp.setting.lockout.php:440
 msgid "Check latest"
 msgstr ""
 
-#: setting/modules/mywp.setting.lockout.php:380
+#: setting/modules/mywp.setting.lockout.php:444
 msgid "Check latest version"
 msgstr ""
 
-#: thirdparty/modules/contact-form-7.php:79
+#: thirdparty/modules/contact-form-7.php:81
 msgid "Contact form 7 form validate and lockout"
 msgstr ""
 
-#: thirdparty/modules/contact-form-7.php:245
-#: thirdparty/modules/contact-form-7.php:253
-#: thirdparty/modules/contact-form-7.php:261
+#: thirdparty/modules/contact-form-7.php:250
+#: thirdparty/modules/contact-form-7.php:258
+#: thirdparty/modules/contact-form-7.php:266
 msgid ""
 "There are no required fields. Please submit your contact using the "
 "official contact form."
@@ -237,10 +247,4 @@ msgstr ""
 #: thirdparty/modules/woocommerce.php:117
 #: thirdparty/modules/woocommerce.php:163
 msgid "This password is weak. Please enter a stronger password."
-msgstr ""
-
-#. Description of the plugin/theme
-msgid ""
-"My WP Add-on Lockout is blocks to specific requests and weak login "
-"passwords."
 msgstr ""

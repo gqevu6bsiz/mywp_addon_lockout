@@ -64,11 +64,11 @@ final class MywpControllerModuleLockoutFrontendComment extends MywpControllerAbs
 
   private static function get_require_field_key() {
 
+    $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
+
     $field_key = MywpLockoutForm::get_field_key( 'comment_require_field_key' );
 
     if( empty( $field_key ) ) {
-
-      $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
 
       MywpHelper::error_not_found_message( '$field_key' , $called_text );
 
@@ -82,11 +82,11 @@ final class MywpControllerModuleLockoutFrontendComment extends MywpControllerAbs
 
   private static function get_dummy_field_key() {
 
+    $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
+
     $field_key = MywpLockoutForm::get_field_key( 'comment_dummy_field_key' );
 
     if( empty( $field_key ) ) {
-
-      $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
 
       MywpHelper::error_not_found_message( '$field_key' , $called_text );
 
@@ -99,6 +99,8 @@ final class MywpControllerModuleLockoutFrontendComment extends MywpControllerAbs
   }
 
   public static function pre_comment_approved( $approved , $comment_data ) {
+
+    $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
 
     if( is_user_logged_in() ) {
 
@@ -116,8 +118,6 @@ final class MywpControllerModuleLockoutFrontendComment extends MywpControllerAbs
 
     if( empty( $require_field_key ) ) {
 
-      $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
-
       MywpHelper::error_not_found_message( '$require_field_key' , $called_text );
 
       return $approved;
@@ -127,8 +127,6 @@ final class MywpControllerModuleLockoutFrontendComment extends MywpControllerAbs
     $dummy_field_key = self::get_dummy_field_key();
 
     if( empty( $dummy_field_key ) ) {
-
-      $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
 
       MywpHelper::error_not_found_message( '$dummy_field_key' , $called_text );
 
@@ -146,7 +144,7 @@ final class MywpControllerModuleLockoutFrontendComment extends MywpControllerAbs
 
     }
 
-    if( ! MywpLockoutForm::is_validate_check_nonce( $_POST[ $require_field_key ] , $require_field_key ) ){
+    if( ! MywpLockoutForm::is_validate_check_nonce( wp_unslash( $_POST[ $require_field_key ] ) , $require_field_key ) ){
 
       $WP_Error->add( 'mywp_lockout_frontend_comment_validate_require_field' , __( 'There are no required fields. Please submit your comments using the official comment form.' , 'mywp-lockout') , 403 );
 
@@ -170,7 +168,9 @@ final class MywpControllerModuleLockoutFrontendComment extends MywpControllerAbs
 
     $WP_Error->add( 'mywp_lockout_frontend_comment_validate_dummy_field' , __( 'Do not enter anything into the dummy field.' , 'mywp-lockout') , 403 );
 
-    $args = array( 'reason' => 'Dummy field input on Comment form' );
+    $args = array(
+      'reason' => 'Dummy field input on Comment form',
+    );
 
     MywpControllerModuleLockout::set_lockout_remote_data( $args );
 
@@ -182,6 +182,8 @@ final class MywpControllerModuleLockoutFrontendComment extends MywpControllerAbs
 
   public static function comment_form_default_fields( $fields ) {
 
+    $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
+
     if( is_user_logged_in() ) {
 
       return $fields;
@@ -191,8 +193,6 @@ final class MywpControllerModuleLockoutFrontendComment extends MywpControllerAbs
     $require_field_key = self::get_require_field_key();
 
     if( empty( $require_field_key ) ) {
-
-      $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
 
       MywpHelper::error_not_found_message( '$require_field_key' , $called_text );
 
@@ -204,37 +204,53 @@ final class MywpControllerModuleLockoutFrontendComment extends MywpControllerAbs
 
     if( empty( $dummy_field_key ) ) {
 
-      $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
-
       MywpHelper::error_not_found_message( '$dummy_field_key' , $called_text );
 
       return $fields;
 
     }
 
-    $html = '';
+    ob_start();
 
-    $html = sprintf( '<p class="comment-form-%s" style="display: none;">' , esc_attr( $require_field_key ) );
+    ?>
 
-    $html .= sprintf( '<label for="%s">%s</label>' , esc_html( $require_field_key ) , esc_html( __( 'Require field' , 'mywp-lockout' ) ) );
+    <p class="comment-form-<?php echo esc_attr( $require_field_key ); ?>" style="display: none;">
 
-    $html .= sprintf( '<input id="%1$s" name="%1$s" type="text" />' , esc_attr( $require_field_key ) );
+      <label for="<?php echo esc_attr( $require_field_key ); ?>">
+        <?php echo esc_html( __( 'Require field' , 'mywp-lockout' ) ); ?>
+      </label>
 
-    $html .= '</p>';
+      <input id="<?php echo esc_attr( $require_field_key ); ?>" name="<?php echo esc_attr( $require_field_key ); ?>" type="text" />
 
-    $fields['mywp_lockout_comment_require_field'] = $html;
+    </p>
 
-    $html = sprintf( '<p class="comment-form-%s" style="display: none;">' , esc_attr( $dummy_field_key ) );
+    <?php
 
-    $html .= sprintf( '<label for="%s">%s</label>' , esc_html( $dummy_field_key ) , esc_html( __( 'Dummy field' , 'mywp-lockout' ) ) );
+    $fields['mywp_lockout_comment_require_field'] = ob_get_contents();
 
-    $html .= sprintf( '<input id="%1$s" name="%1$s" type="text" />' , esc_attr( $dummy_field_key ) );
+    ob_end_clean();
 
-    $html .= '</p>';
+    ob_start();
 
-    $html .= MywpLockoutForm::get_require_field_script( $require_field_key );
+    ?>
 
-    $fields['mywp_lockout_comment_dummy_field'] = $html;
+    <p class="comment-form-<?php echo esc_attr( $dummy_field_key ); ?>" style="display: none;">
+
+      <label for="<?php echo esc_attr( $dummy_field_key ); ?>">
+        <?php echo esc_html( __( 'Dummy field' , 'mywp-lockout' ) ); ?>
+      </label>
+
+      <input id="<?php echo esc_attr( $dummy_field_key ); ?>" name="<?php echo esc_attr( $dummy_field_key ); ?>" type="text" />
+
+    </p>
+
+    <?php echo MywpLockoutForm::get_require_field_script( $require_field_key ); ?>
+
+    <?php
+
+    $fields['mywp_lockout_comment_dummy_field'] = ob_get_contents();
+
+    ob_end_clean();
 
     return $fields;
 

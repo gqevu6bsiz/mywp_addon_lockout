@@ -72,7 +72,7 @@ final class MywpControllerModuleLockoutValidate extends MywpControllerAbstractMo
 
     } elseif( ! empty( $_POST['pass1'] ) ) {
 
-      $password = $_POST['pass1'];
+      $password = wp_unslash( $_POST['pass1'] );
 
     }
 
@@ -94,13 +94,13 @@ final class MywpControllerModuleLockoutValidate extends MywpControllerAbstractMo
 
   public static function validate_password_reset( $errors , $user ) {
 
-    if( empty( $_POST['wp-submit'] ) ) {
+    if( ! isset( $_POST['wp-submit'] ) ) {
 
       return $errors;
 
     }
 
-    if( empty( $_POST['rp_key'] ) ) {
+    if( ! isset( $_POST['rp_key'] ) ) {
 
       return $errors;
 
@@ -116,7 +116,7 @@ final class MywpControllerModuleLockoutValidate extends MywpControllerAbstractMo
 
     if( ! empty( $_POST['pass1'] ) ) {
 
-      $password = $_POST['pass1'];
+      $password = wp_unslash( $_POST['pass1'] );
 
     }
 

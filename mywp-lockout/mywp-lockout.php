@@ -3,12 +3,12 @@
 Plugin Name: My WP Add-on Lockout
 Plugin URI: https://mywpcustomize.com/add_ons/my-wp-add-on-lockout/
 Description: My WP Add-on Lockout is blocks to specific requests and weak login passwords.
-Version: 1.11.0
+Version: 1.12.0
 Author: gqevu6bsiz
 Author URI: https://mywpcustomize.com
 Text Domain: mywp-lockout
 Domain Path: /languages
-My WP Test working: 1.24
+My WP Test working: 1.28
 */
 
 if ( ! defined( 'ABSPATH' ) ) {
@@ -31,7 +31,7 @@ final class MywpLockout {
   private static function define_constants() {
 
     define( 'MYWP_LOCKOUT_NAME' , 'My WP Add-On Lockout' );
-    define( 'MYWP_LOCKOUT_VERSION' , '1.11.0' );
+    define( 'MYWP_LOCKOUT_VERSION' , '1.12.0' );
     define( 'MYWP_LOCKOUT_PLUGIN_FILE' , __FILE__ );
     define( 'MYWP_LOCKOUT_PLUGIN_BASENAME' , plugin_basename( MYWP_LOCKOUT_PLUGIN_FILE ) );
     define( 'MYWP_LOCKOUT_PLUGIN_DIRNAME' , dirname( MYWP_LOCKOUT_PLUGIN_BASENAME ) );
@@ -45,6 +45,7 @@ final class MywpLockout {
     $dir = MYWP_LOCKOUT_PLUGIN_PATH . 'core/';
 
     require_once( $dir . 'class.api.php' );
+    require_once( $dir . 'class.imcompatible.php' );
     require_once( $dir . 'class.list.php' );
     require_once( $dir . 'class.form.php' );
 
@@ -60,11 +61,21 @@ final class MywpLockout {
 
   public static function mywp_plugins_loaded() {
 
-    add_filter( 'mywp_controller_plugins_loaded_include_modules' , array( __CLASS__ , 'mywp_controller_plugins_loaded_include_modules' ) );
+    $version_compare = version_compare( MYWP_VERSION , '1.28.0' , '>=' );
 
-    add_filter( 'mywp_setting_plugins_loaded_include_modules' , array( __CLASS__ , 'mywp_setting_plugins_loaded_include_modules' ) );
+    if( ! $version_compare ) {
 
-    add_filter( 'mywp_thirdparty_plugins_loaded_include_modules' , array( __CLASS__ , 'mywp_thirdparty_plugins_loaded_include_modules' ) );
+      add_action( 'mywp_wp_loaded' , array( 'MywpLockoutIncompatible' , 'init' ) );
+
+    } else {
+
+      add_filter( 'mywp_controller_plugins_loaded_include_modules' , array( __CLASS__ , 'mywp_controller_plugins_loaded_include_modules' ) );
+
+      add_filter( 'mywp_setting_plugins_loaded_include_modules' , array( __CLASS__ , 'mywp_setting_plugins_loaded_include_modules' ) );
+
+      add_filter( 'mywp_thirdparty_plugins_loaded_include_modules' , array( __CLASS__ , 'mywp_thirdparty_plugins_loaded_include_modules' ) );
+
+    }
 
   }
 

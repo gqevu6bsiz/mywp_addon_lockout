@@ -62,13 +62,13 @@ final class MywpLockoutThirdpartyModuleWooCommerce extends MywpThirdpartyAbstrac
 
       if( ! empty( $_POST['username'] ) ) {
 
-        $login['name'] = $_POST['username'];
+        $login['name'] = wp_unslash( $_POST['username'] );
 
       }
 
       if( ! empty( $_POST['password'] ) ) {
 
-        $login['password'] = $_POST['password'];
+        $login['password'] = wp_unslash( $_POST['password'] );
 
       }
 
@@ -140,7 +140,7 @@ final class MywpLockoutThirdpartyModuleWooCommerce extends MywpThirdpartyAbstrac
 
     if( ! empty( $_POST['password_1'] ) ) {
 
-      $password = $_POST['password_1'];
+      $password = wp_unslash( $_POST['password_1'] );
 
     }
 
@@ -154,7 +154,7 @@ final class MywpLockoutThirdpartyModuleWooCommerce extends MywpThirdpartyAbstrac
 
     if( ! empty( $_POST['reset_login'] ) ) {
 
-      $user_name = $_POST['reset_login'];
+      $user_name = wp_unslash( $_POST['reset_login'] );
 
     }
 

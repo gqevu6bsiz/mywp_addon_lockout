@@ -69,33 +69,17 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
   public static function check_latest() {
 
+    $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
+
     $action_name = MywpSetting::get_ajax_action_name( self::$id , 'check_latest' );
 
-    if( empty( $_POST[ $action_name ] ) ) {
+    if( ! isset( $_POST[ $action_name ] ) ) {
 
       return false;
 
     }
 
     check_ajax_referer( $action_name , $action_name );
-
-    if( is_multisite() ) {
-
-      if( ! MywpLockoutApi::is_network_manager() ) {
-
-        return false;
-
-      }
-
-    } else {
-
-      if( ! MywpLockoutApi::is_manager() ) {
-
-        return false;
-
-      }
-
-    }
 
     delete_site_transient( 'mywp_lockout_updater' );
 
@@ -109,13 +93,22 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
     }
 
+    $results = array(
+      'is_latest' => 0,
+      'message' => '',
+    );
+
     if( ! $is_latest ) {
 
-      wp_send_json_success( array( 'is_latest' => 0 ) );
+      wp_send_json_success( $results );
 
     } else {
 
-      wp_send_json_success( array( 'is_latest' => 1 , 'message' => sprintf( '<p>%s</p>' , '<span class="dashicons dashicons-yes"></span> ' . __( 'Using a latest version.' , 'mywp-lockout' ) ) ) );
+      $results['is_latest'] = 1;
+
+      $results['message'] = sprintf( '<p><span class="dashicons dashicons-yes"></span> %s</p>' , esc_html( __( 'Using a latest version.' , 'mywp-lockout' ) ) );
+
+      wp_send_json_success( $results );
 
     }
 
@@ -146,8 +139,15 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
       ),
     );
 
+    $ip_gets = array(
+      'x_forwarded_for' => 'HTTP_X_FORWARDED_FOR',
+      'cf_connecting_ip' => 'HTTP_CF_CONNECTING_IP',
+    );
+
     ?>
-    <h3 class="mywp-setting-screen-subtitle"><?php echo esc_html( __( 'Settings' ) ); ?></h3>
+    <h3 class="mywp-setting-screen-subtitle">
+      <?php echo esc_html( __( 'Settings' ) ); ?>
+    </h3>
 
     <table class="form-table">
       <tbody>
@@ -157,10 +157,14 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
           </th>
           <td>
             <?php $val = false; ?>
+
             <?php if( ! empty( $setting_data['expire_timeout'] ) ) : ?>
+
               <?php $val = $setting_data['expire_timeout']; ?>
+
             <?php endif; ?>
-            <input type="number" name="mywp[data][expire_timeout]" class="small-text expire_timeout" id="expire_timeout" value="<?php echo esc_attr( $val ); ?>" placeholder="<?php echo esc_attr( '10' ); ?>" min="0" /> <?php echo esc_html( __( 'Minute' ) ); ?><br />
+            <input type="number" name="mywp[data][expire_timeout]" class="small-text expire_timeout" id="expire_timeout" value="<?php echo esc_attr( $val ); ?>" placeholder="<?php echo esc_attr( '10' ); ?>" min="0" />
+            <?php echo esc_html( __( 'Minute' ) ); ?><br />
             <p class="mywp-description">
               <span class="dashicons dashicons-lightbulb"></span>
               <?php echo esc_html( __( 'If set to 0 minute or blank, the time limit lockout will not be applied.' , 'mywp-lockout' ) ); ?>
@@ -168,13 +172,32 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
             <div id="already-early-lockout" class="more-option-fields">
               <p>
                 <?php $checked = false; ?>
+
                 <?php if( ! empty( $setting_data['already_early_lockout'] ) ) : ?>
+
                   <?php $checked = $setting_data['already_early_lockout']; ?>
+
                 <?php endif; ?>
                 <label>
                   <input type="checkbox" name="mywp[data][already_early_lockout]" class="already_early_lockout" id="already_early_lockout" value="1" <?php checked( $checked , 1 ); ?> />
                   <?php echo esc_html( __( 'Lockout at an early action hook(mywp_setup_theme)' , 'mywp-lockout' ) ); ?>
                 </label>
+              </p>
+            </div>
+            <div id="ip-get" class="more-option-fields">
+              <p>
+                <?php echo esc_html( __( 'How to get an IP address' , 'mywp-lockout' ) ); ?>:
+                <select name="mywp[data][ip_get]" class="ip_get small-text" id="ip_get">
+                  <option value=""><?php echo esc_html( 'REMOTE_ADDR' ); ?></option>
+                  <?php foreach( $ip_gets as $ip_get_key => $ip_get_label ) : ?>
+
+                    <option value="<?php echo esc_attr( $ip_get_key ); ?>" <?php selected( $ip_get_key , $setting_data['ip_get'] ); ?>>
+                      <?php echo esc_html( $ip_get_label ); ?>
+                    </option>
+
+                  <?php endforeach; ?>
+
+                </select>
               </p>
             </div>
           </td>
@@ -184,7 +207,9 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
     <p>&nbsp;</p>
 
-    <h3 class="mywp-setting-screen-subtitle"><?php echo esc_html( __( 'Lockout Targets' , 'mywp-lockout' ) ); ?></h3>
+    <h3 class="mywp-setting-screen-subtitle">
+      <?php echo esc_html( __( 'Lockout Targets' , 'mywp-lockout' ) ); ?>
+    </h3>
 
     <table class="form-table">
       <tbody>
@@ -197,8 +222,11 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
             </th>
             <td>
               <?php $checked = false; ?>
+
               <?php if( ! empty( $setting_data[ $lockout_target_id ] ) ) : ?>
+
                 <?php $checked = $setting_data[ $lockout_target_id ]; ?>
+
               <?php endif; ?>
               <label>
                 <input type="checkbox" name="mywp[data][<?php echo esc_attr( $lockout_target_id ); ?>]" class="<?php echo esc_attr( $lockout_target_id ); ?>" id="<?php echo esc_attr( $lockout_target_id ); ?>" value="1" <?php checked( $checked , 1 ); ?> />
@@ -214,7 +242,9 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
     <p>&nbsp;</p>
 
-    <h3 class="mywp-setting-screen-subtitle"><?php echo esc_html( __( 'Other' , 'mywp-lockout' ) ); ?></h3>
+    <h3 class="mywp-setting-screen-subtitle">
+      <?php echo esc_html( __( 'Other' , 'mywp-lockout' ) ); ?>
+    </h3>
 
     <table class="form-table">
       <tbody>
@@ -224,8 +254,11 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
           </th>
           <td>
             <?php $checked = false; ?>
+
             <?php if( ! empty( $setting_data['week_password_validate'] ) ) : ?>
+
               <?php $checked = $setting_data['week_password_validate']; ?>
+
             <?php endif; ?>
             <label>
               <input type="checkbox" name="mywp[data][week_password_validate]" class="week_password_validate" id="week_password_validate" value="1" <?php checked( $checked , 1 ); ?> />
@@ -239,8 +272,11 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
           </th>
           <td>
             <?php $checked = false; ?>
+
             <?php if( ! empty( $setting_data['comment_validate_lockout'] ) ) : ?>
+
               <?php $checked = $setting_data['comment_validate_lockout']; ?>
+
             <?php endif; ?>
             <label>
               <input type="checkbox" name="mywp[data][comment_validate_lockout]" class="comment_validate_lockout" id="comment_validate_lockout" value="1" <?php checked( $checked , 1 ); ?> />
@@ -254,15 +290,19 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
           </th>
           <td>
             <?php $number = 0; ?>
+
             <?php if( ! empty( $setting_data['sleep_lockout'] ) ) : ?>
+
               <?php $number = (int) $setting_data['sleep_lockout']; ?>
+
             <?php endif; ?>
             <label>
               <input type="number" name="mywp[data][sleep_lockout]" class="sleep_lockout small-text" id="sleep_lockout" value="<?php echo esc_attr( $number ); ?>" min="0" />
               <?php echo esc_html( __( 'Seconds' , 'mywp-lockout' ) ); ?>
             </label>
             <code>
-              <?php echo esc_html( __( 'Max seconds' , 'mywp-lockout' ) ); ?>: <?php echo esc_html( sprintf( __( '%s seconds' ) , MywpLockoutApi::get_max_lockout_seconds() ) ); ?>
+              <?php echo esc_html( __( 'Max seconds' , 'mywp-lockout' ) ); ?>:
+              <?php echo esc_html( sprintf( __( '%s seconds' ) , MywpLockoutApi::get_max_lockout_seconds() ) ); ?>
             </code>
             <br />
             <p class="mywp-description">
@@ -278,8 +318,11 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
           <td>
             <label>
               <?php $checked = false; ?>
+
               <?php if( ! empty( $setting_data['send_mail'] ) ) : ?>
+
                 <?php $checked = true; ?>
+
               <?php endif; ?>
               <input type="checkbox" name="mywp[data][send_mail]" class="send_mail" id="send_mail" value="1" <?php checked( $checked , true ); ?> />
               <?php echo esc_html( __( 'Send an email when locked out' , 'mywp-lockout' ) ); ?>
@@ -287,21 +330,27 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
             <div id="send-mail-option" class="more-option-fields">
               <p>
                 <?php echo esc_html( __( 'From' , 'mywp-lockout' ) ); ?>:
-                <code><?php echo MywpLockoutApi::get_send_from_email(); ?></code>
+                <code><?php echo esc_html( MywpLockoutApi::get_send_from_email() ); ?></code>
               </p>
               <p>
                 <?php echo esc_html( __( 'To' , 'mywp-lockout' ) ); ?>:
                 <?php $val = false; ?>
+
                 <?php if( ! empty( $setting_data['send_to_email'] ) ) : ?>
+
                   <?php $val = $setting_data['send_to_email']; ?>
+
                 <?php endif; ?>
                 <input type="text" name="mywp[data][send_to_email]" class="regular-text send_to_email" id="send_to_email" value="<?php echo esc_attr( $val ); ?>" placeholder="<?php echo esc_attr( 'example@example.com,two@example.com...' ); ?>" />
               </p>
               <p>
                 <label>
                   <?php $checked = false; ?>
+
                   <?php if( ! empty( $setting_data['send_email_with_input'] ) ) : ?>
+
                     <?php $checked = true; ?>
+
                   <?php endif; ?>
                   <input type="checkbox" name="mywp[data][send_email_with_input]" class="send_email_with_input" id="send_email_with_input" value="1" <?php checked( $checked , true ); ?> />
                   <?php echo esc_html( __( 'Send with Input data' , 'mywp-lockout' ) ); ?>
@@ -310,8 +359,11 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
               <p>
                 <label>
                   <?php $checked = false; ?>
+
                   <?php if( ! empty( $setting_data['send_email_with_server'] ) ) : ?>
+
                     <?php $checked = true; ?>
+
                   <?php endif; ?>
                   <input type="checkbox" name="mywp[data][send_email_with_server]" class="send_email_with_server" id="send_email_with_server" value="1" <?php checked( $checked , true ); ?> />
                   <?php echo esc_html( __( 'Send with Server data' , 'mywp-lockout' ) ); ?>
@@ -341,43 +393,56 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
     $is_latest = MywpControllerModuleLockoutUpdater::is_latest();
 
-    $have_latest = false;
+    $latest_version = false;
 
-    if( ! is_wp_error( $is_latest ) && ! $is_latest ) {
+    if( ! is_wp_error( $is_latest ) ) {
 
-      $have_latest = MywpControllerModuleLockoutUpdater::get_latest();
+      if( ! $is_latest ) {
+
+        $latest_version = MywpControllerModuleLockoutUpdater::get_latest();
+
+      }
 
     }
 
     $plugin_info = MywpLockoutApi::plugin_info();
 
-    $class_have_latest = '';
+    $class_latest_version = '';
 
-    if( $have_latest ) {
+    if( $latest_version ) {
 
-      $class_have_latest = 'have-latest';
+      $class_latest_version = 'have-latest';
 
     }
 
     ?>
+
     <p>&nbsp;</p>
 
-    <h3><?php echo esc_html( __( 'Plugin info' , 'my-wp' ) ); ?></h3>
+    <h3>
+      <?php echo esc_html( __( 'Plugin info' , 'my-wp' ) ); ?>
+    </h3>
 
-    <table class="form-table <?php echo esc_attr( $class_have_latest ); ?>" id="version-check-table">
+    <table class="form-table <?php echo esc_attr( $class_latest_version ); ?>" id="version-check-table">
       <tbody>
         <tr>
           <th><?php echo esc_html( sprintf( __( 'Version %s' ) , '' ) ); ?></th>
           <td>
             <code><?php echo esc_html( MYWP_LOCKOUT_VERSION ); ?></code>
-            <a href="<?php echo esc_url( $plugin_info['github'] ); ?>" target="_blank" class="button button-primary link-latest"><?php echo esc_html( sprintf( __( 'Get Version %s' ) , $have_latest )); ?></a>
-            <p class="already-latest"><span class="dashicons dashicons-yes"></span> <?php _e( 'Using a latest version.' , 'mywp-lockout' ); ?></p>
+            <a href="<?php echo esc_url( $plugin_info['github'] ); ?>" target="_blank" class="button button-primary link-latest"><?php echo esc_html( sprintf( __( 'Get Version %s' ) , $latest_version )); ?></a>
+            <p class="already-latest">
+              <span class="dashicons dashicons-yes"></span>
+              <?php echo esc_html( __( 'Using a latest version.' , 'mywp-lockout' ) ); ?>
+            </p>
           </td>
         </tr>
         <tr>
           <th><?php echo esc_html( __( 'Check latest' , 'mywp-lockout' ) ); ?></th>
           <td>
-            <button type="button" id="check-latest-version" class="button button-secondary check-latest"><span class="dashicons dashicons-update"></span> <?php echo esc_html( __( 'Check latest version' , 'mywp-lockout' ) ); ?></button>
+            <button type="button" id="check-latest-version" class="button button-secondary check-latest">
+              <span class="dashicons dashicons-update"></span>
+              <?php echo esc_html( __( 'Check latest version' , 'mywp-lockout' ) ); ?>
+            </button>
             <span class="spinner"></span>
             <div id="check-latest-result"></div>
           </td>
@@ -385,13 +450,17 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
         <tr>
           <th><?php echo esc_html( __( 'Documents' , 'my-wp' ) ); ?></th>
           <td>
-            <a href="<?php echo esc_url( $plugin_info['document_url'] ); ?>" class="button button-secondary" target="_blank"><span class="dashicons dashicons-book"></span> <?php echo esc_html( __( 'Documents' , 'my-wp' ) ); ?>
+            <a href="<?php echo esc_url( $plugin_info['document_url'] ); ?>" class="button button-secondary" target="_blank">
+              <span class="dashicons dashicons-book"></span>
+              <?php echo esc_html( __( 'Documents' , 'my-wp' ) ); ?>
+            </a>
           </td>
         </tr>
       </tbody>
     </table>
 
     <p>&nbsp;</p>
+
     <?php
 
   }
@@ -440,21 +509,21 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
       if( expire_timeout !== '' && expire_timeout > 0 ) {
 
-        already_early_lockout( true );
+        more_option_fields( true );
 
       }
 
-      function already_early_lockout( is_true = false ) {
+      function more_option_fields( is_true = false ) {
 
-        let $already_early_lockout = $('#already-early-lockout');
+        let $more_option_fields = $('.more-option-fields');
 
         if( is_true ) {
 
-          $already_early_lockout.addClass('active');
+          $more_option_fields.addClass('active');
 
         } else {
 
-          $already_early_lockout.removeClass('active');
+          $more_option_fields.removeClass('active');
 
         }
 
@@ -464,11 +533,11 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
         if( $(this).val() === '' || $(this).val() < 1 ) {
 
-          already_early_lockout();
+          more_option_fields();
 
         } else {
 
-          already_early_lockout( true );
+          more_option_fields( true );
 
         }
 
@@ -573,6 +642,8 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
   public static function mywp_current_setting_post_data_format_update( $formatted_data ) {
 
+    $called_text = sprintf( '%s::%s( $formatted_data )' , __CLASS__ , __FUNCTION__ );
+
     $mywp_model = self::get_model();
 
     if( empty( $mywp_model ) ) {
@@ -587,7 +658,7 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
     if( ! empty( $formatted_data['expire_timeout'] ) ) {
 
-      $new_formatted_data['expire_timeout'] = (int) $formatted_data['expire_timeout'];
+      $new_formatted_data['expire_timeout'] = MywpHelper::sanitize_number( $formatted_data['expire_timeout'] );
 
     }
 
@@ -597,9 +668,15 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
     }
 
+    if( ! empty( $formatted_data['ip_get'] ) ) {
+
+      $new_formatted_data['ip_get'] = MywpHelper::sanitize_text( $formatted_data['ip_get'] );
+
+    }
+
     if( ! empty( $formatted_data['sleep_lockout'] ) ) {
 
-      $new_formatted_data['sleep_lockout'] = (int) $formatted_data['sleep_lockout'];
+      $new_formatted_data['sleep_lockout'] = MywpHelper::sanitize_number( $formatted_data['sleep_lockout'] );
 
     }
 
@@ -659,25 +736,21 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
     if( ! empty( $formatted_data['send_to_email'] ) ) {
 
-      $formatted_data['send_to_email'] = preg_replace( '/\s+/' , '' , $formatted_data['send_to_email'] );
+      $send_to_email = preg_replace( '/\s+/' , '' , $formatted_data['send_to_email'] );
 
-      $formatted_data['send_to_email'] = strip_tags( $formatted_data['send_to_email'] );
+      if( strpos( $send_to_email , ',' ) === false ) {
 
-      if( strpos( $formatted_data['send_to_email'] , ',' ) === false ) {
-
-        if( is_email( $formatted_data['send_to_email'] ) ) {
-
-          $new_formatted_data['send_to_email'] = $formatted_data['send_to_email'];
-
-        }
+        $new_formatted_data['send_to_email'] = MywpHelper::sanitize_email( $send_to_email );
 
       } else {
 
-        $emails = explode( ',' , $formatted_data['send_to_email'] );
+        $emails = explode( ',' , $send_to_email );
 
         foreach( $emails as $key => $email ) {
 
-          if( ! is_email( $email ) ) {
+          $email = MywpHelper::sanitize_email( $email );
+
+          if( empty( $email ) ) {
 
             unset( $emails[ $key ] );
 
@@ -709,7 +782,7 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
     if( ! empty( $formatted_data['lockout_page'] ) ) {
 
-      $new_formatted_data['lockout_page'] = wp_unslash( $formatted_data['lockout_page'] );
+      $new_formatted_data['lockout_page'] = wp_kses_post( $formatted_data['lockout_page'] );
 
     }
 

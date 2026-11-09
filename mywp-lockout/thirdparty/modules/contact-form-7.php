@@ -70,7 +70,9 @@ final class MywpLockoutThirdpartyModuleContactForm7 extends MywpThirdpartyAbstra
 
     ?>
 
-    <h3 class="mywp-setting-screen-subtitle"><?php echo esc_html( __( 'Other' , 'mywp-lockout' ) ); ?></h3>
+    <h3 class="mywp-setting-screen-subtitle">
+      <?php echo esc_html( __( 'Other' , 'mywp-lockout' ) ); ?>
+    </h3>
 
     <table class="form-table">
       <tbody>
@@ -80,8 +82,11 @@ final class MywpLockoutThirdpartyModuleContactForm7 extends MywpThirdpartyAbstra
           </th>
           <td>
             <?php $checked = false; ?>
+
             <?php if( ! empty( $setting_data['contact_form_7_validate_lockout'] ) ) : ?>
+
               <?php $checked = $setting_data['contact_form_7_validate_lockout']; ?>
+
             <?php endif; ?>
             <label>
               <input type="checkbox" name="mywp[data][contact_form_7_validate_lockout]" class="contact_form_7_validate_lockout" id="contact_form_7_validate_lockout" value="1" <?php checked( $checked , 1 ); ?> />
@@ -100,11 +105,11 @@ final class MywpLockoutThirdpartyModuleContactForm7 extends MywpThirdpartyAbstra
 
   private static function get_require_field_key() {
 
+    $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
+
     $field_key = MywpLockoutForm::get_field_key( 'cf7_require_field_key' );
 
     if( empty( $field_key ) ) {
-
-      $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
 
       MywpHelper::error_not_found_message( '$field_key' , $called_text );
 
@@ -118,11 +123,11 @@ final class MywpLockoutThirdpartyModuleContactForm7 extends MywpThirdpartyAbstra
 
   private static function get_dummy_field_key() {
 
+    $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
+
     $field_key = MywpLockoutForm::get_field_key( 'cf7_dummy_field_key' );
 
     if( empty( $field_key ) ) {
-
-      $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
 
       MywpHelper::error_not_found_message( '$field_key' , $called_text );
 
@@ -160,11 +165,11 @@ final class MywpLockoutThirdpartyModuleContactForm7 extends MywpThirdpartyAbstra
 
   public static function wpcf7_form_elements( $form_elements ) {
 
+    $called_text = sprintf( '%s::%s( $form_elements )' , __CLASS__ , __FUNCTION__ );
+
     $require_field_key = self::get_require_field_key();
 
     if( empty( $require_field_key ) ) {
-
-      $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
 
       MywpHelper::error_not_found_message( '$require_field_key' , $called_text );
 
@@ -176,39 +181,41 @@ final class MywpLockoutThirdpartyModuleContactForm7 extends MywpThirdpartyAbstra
 
     if( empty( $dummy_field_key ) ) {
 
-      $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
-
       MywpHelper::error_not_found_message( '$dummy_field_key' , $called_text );
 
       return $form_elements;
 
     }
 
-    $html = '';
+    ob_start();
 
-    $html .= '<p style="display: none;">';
+    ?>
 
-    $html .= sprintf( '<label> %s' , esc_html( __( 'Require field' , 'mywp-lockout' ) ) );
+    <p style="display: none;">
+      <label>
+        <?php echo esc_html( __( 'Require field' , 'mywp-lockout' ) ); ?>
+        <span class="wpcf7-form-control-wrap" data-name="<?php echo esc_attr( $require_field_key ); ?>">
+          <input class="wpcf7-form-control wpcf7-text" type="text" name="<?php echo esc_attr( $require_field_key ); ?>" value="" />
+        </span>
+      </label>
+    </p>
 
-    $html .= sprintf( '<span class="wpcf7-form-control-wrap" data-name="%1$s"><input class="wpcf7-form-control wpcf7-text" type="text" name="%1$s" value="" /></span>' , esc_attr( $require_field_key ) );
+    <p style="display: none;">
+      <label>
+        <?php echo esc_html( __( 'Dummy field' , 'mywp-lockout' ) ); ?>
+        <span class="wpcf7-form-control-wrap" data-name="<?php echo esc_attr( $dummy_field_key ); ?>">
+          <input class="wpcf7-form-control wpcf7-text" type="text" name="<?php echo esc_attr( $dummy_field_key ); ?>" value="" />
+        </span>
+      </label>
+    </p>
 
-    $html .= '</label>';
+    <?php echo MywpLockoutForm::get_require_field_script( $require_field_key ); ?>
 
-    $html .= '</p>';
+    <?php
 
-    $html .= '<p style="display: none;">';
+    $form_elements .= ob_get_contents();
 
-    $html .= sprintf( '<label> %s' , esc_html( __( 'Dummy field' , 'mywp-lockout' ) ) );
-
-    $html .= sprintf( '<span class="wpcf7-form-control-wrap" data-name="%1$s"><input class="wpcf7-form-control wpcf7-text" type="text" name="%1$s" value="" /></span>' , esc_attr( $dummy_field_key ) );
-
-    $html .= '</label>';
-
-    $html .= '</p>';
-
-    $html .= MywpLockoutForm::get_require_field_script( $require_field_key );
-
-    $form_elements .= $html;
+    ob_end_clean();
 
     return $form_elements;
 
@@ -216,11 +223,11 @@ final class MywpLockoutThirdpartyModuleContactForm7 extends MywpThirdpartyAbstra
 
   public static function wpcf7_validate( $result , $tags ) {
 
+    $called_text = sprintf( '%s::%s( $result , $tags )' , __CLASS__ , __FUNCTION__ );
+
     $require_field_key = self::get_require_field_key();
 
     if( empty( $require_field_key ) ) {
-
-      $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
 
       MywpHelper::error_not_found_message( '$require_field_key' , $called_text );
 
@@ -231,8 +238,6 @@ final class MywpLockoutThirdpartyModuleContactForm7 extends MywpThirdpartyAbstra
     $dummy_field_key = self::get_dummy_field_key();
 
     if( empty( $dummy_field_key ) ) {
-
-      $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
 
       MywpHelper::error_not_found_message( '$dummy_field_key' , $called_text );
 
@@ -248,7 +253,7 @@ final class MywpLockoutThirdpartyModuleContactForm7 extends MywpThirdpartyAbstra
 
     }
 
-    if( ! MywpLockoutForm::is_validate_check_nonce( $_POST[ $require_field_key ] , $require_field_key ) ) {
+    if( ! MywpLockoutForm::is_validate_check_nonce( wp_unslash( $_POST[ $require_field_key ] ) , $require_field_key ) ) {
 
       $result->invalidate( '' , __( 'There are no required fields. Please submit your contact using the official contact form.' , 'mywp-lockout' ) );
 
@@ -270,11 +275,11 @@ final class MywpLockoutThirdpartyModuleContactForm7 extends MywpThirdpartyAbstra
 
   public static function wpcf7_spam( $spam , $WPCF7_Submission ) {
 
+    $called_text = sprintf( '%s::%s( $spam , $WPCF7_Submission )' , __CLASS__ , __FUNCTION__ );
+
     $dummy_field_key = self::get_dummy_field_key();
 
     if( empty( $dummy_field_key ) ) {
-
-      $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
 
       MywpHelper::error_not_found_message( '$dummy_field_key' , $called_text );
 
@@ -304,7 +309,9 @@ final class MywpLockoutThirdpartyModuleContactForm7 extends MywpThirdpartyAbstra
 
     $WPCF7_ContactForm = $WPCF7_Submission->get_contact_form();
 
-    $args = array( 'reason' => sprintf( 'Dummy field input on Contact form 7 [%s]' , $WPCF7_ContactForm->id() ) );
+    $args = array(
+      'reason' => sprintf( 'Dummy field input on Contact form 7 [%s]' , $WPCF7_ContactForm->id() ),
+    );
 
     MywpControllerModuleLockout::set_lockout_remote_data( $args );
 

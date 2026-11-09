@@ -16,7 +16,7 @@ final class MywpLockoutForm {
 
     $str_shuffle = str_shuffle( $str );
 
-    $random_num = rand( 8 , 12 );
+    $random_num = wp_rand( 8 , 12 );
 
     $random_key = substr( $str_shuffle , 0 , $random_num );
 
@@ -26,23 +26,17 @@ final class MywpLockoutForm {
 
   public static function get_field_key( $field_key_name = false ) {
 
+    $called_text = sprintf( '%s::%s( $field_key_name )' , __CLASS__ , __FUNCTION__ );
+
+    $field_key_name = MywpHelper::sanitize_text( $field_key_name );
+
     if( empty( $field_key_name ) ) {
 
-      $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
-
-      MywpHelper::error_not_found_message( '$field_key_name' , $called_text );
+      MywpHelper::error_require_message( '$field_key_name' , $called_text );
 
       return false;
 
     }
-
-    if( ! is_string( $field_key_name ) ) {
-
-      return false;
-
-    }
-
-    $field_key_name = strip_tags( $field_key_name );
 
     $MywpTransient = new MywpTransient( 'lockout_' . $field_key_name , 'other' );
 
@@ -56,7 +50,7 @@ final class MywpLockoutForm {
 
     $random_key = self::get_random_key();
 
-    $MywpTransient->update_data( $random_key , 24 * HOUR_IN_SECONDS );
+    $MywpTransient->update_data( $random_key , 2 * HOUR_IN_SECONDS );
 
     return $random_key;
 
@@ -64,34 +58,28 @@ final class MywpLockoutForm {
 
   public static function get_require_field_script( $require_field_key = false ) {
 
+    $called_text = sprintf( '%s::%s( $require_field_key )' , __CLASS__ , __FUNCTION__ );
+
+    $require_field_key = MywpHelper::sanitize_text( $require_field_key );
+
     if( empty( $require_field_key ) ) {
 
-      $called_text = sprintf( '%s::%s()' , __CLASS__ , __FUNCTION__ );
-
-      MywpHelper::error_not_found_message( '$require_field_key' , $called_text );
+      MywpHelper::error_require_message( '$require_field_key' , $called_text );
 
       return false;
 
     }
 
-    if( ! is_string( $require_field_key ) ) {
+    $nonce_key = self::$nonce_field_base_name . $require_field_key;
 
-      return false;
-
-    }
-
-    $require_field_key = strip_tags( $require_field_key );
-
-    $require_field_value = wp_create_nonce( self::$nonce_field_base_name . $require_field_key );
+    $require_field_value = wp_create_nonce( $nonce_key );
 
     $require_field_script = '
     <script>
     window.addEventListener("load", function() {
 
       window.setTimeout( function() {
-
         document.getElementsByName( "' . esc_js( $require_field_key ) . '" )[0].value = "' . esc_js( $require_field_value ) . '";
-
       }, 3000 );
 
     });
@@ -108,11 +96,17 @@ final class MywpLockoutForm {
 
   public static function is_validate_check_nonce( $require_field_value = false , $require_field_key = false ) {
 
-    if( empty( $require_field_key ) ) {
+    $called_text = sprintf( '%s::%s( $require_field_value , $require_field_key )' , __CLASS__ , __FUNCTION__ );
+
+    $require_field_value = MywpHelper::sanitize_text( $require_field_value );
+
+    if( empty( $require_field_value ) ) {
 
       return false;
 
     }
+
+    $require_field_key = MywpHelper::sanitize_text( $require_field_key );
 
     if( empty( $require_field_key ) ) {
 
