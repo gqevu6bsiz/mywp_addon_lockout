@@ -871,7 +871,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
 
     $messages .= sprintf( 'Site: %s' , $site_name ) . "\n\n";
 
-    $messages .= sprintf( 'User ID: %s' , get_current_blog_id() ) . "\n\n";
+    $messages .= sprintf( 'User ID: %s' , get_current_user_id() ) . "\n\n";
 
     if( is_multisite() ) {
 
