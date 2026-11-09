@@ -107,7 +107,7 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
     $default_data['unknown_plugin_theme_lockout'] = false;
 
     $default_data['week_password_validate'] = false;
-    $initial_data['comment_validate_lockout'] = false;
+    $default_data['comment_validate_lockout'] = false;
     $default_data['sleep_lockout'] = 0;
     $default_data['send_mail'] = false;
     $default_data['send_to_email'] = '';
@@ -812,6 +812,12 @@ final class MywpControllerModuleLockout extends MywpControllerAbstractModule {
   public static function lockout_send_email() {
 
     $setting_data = self::get_setting_data();
+
+    if( empty( $setting_data['send_mail'] ) ) {
+
+      return false;
+
+    }
 
     $send_to_email = $setting_data['send_to_email'];
 
