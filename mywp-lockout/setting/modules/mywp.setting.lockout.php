@@ -169,7 +169,7 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
               <span class="dashicons dashicons-lightbulb"></span>
               <?php echo esc_html( __( 'If set to 0 minute or blank, the time limit lockout will not be applied.' , 'mywp-lockout' ) ); ?>
             </p>
-            <div id="already-early-lockout" class="more-option-fields">
+            <div id="already-early-lockout" class="lockout-time-option-fields">
               <p>
                 <?php $checked = false; ?>
 
@@ -184,7 +184,7 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
                 </label>
               </p>
             </div>
-            <div id="ip-get" class="more-option-fields">
+            <div id="ip-get" class="lockout-time-option-fields">
               <p>
                 <?php echo esc_html( __( 'How to get an IP address' , 'mywp-lockout' ) ); ?>:
                 <select name="mywp[data][ip_get]" class="ip_get small-text" id="ip_get">
@@ -327,7 +327,7 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
               <input type="checkbox" name="mywp[data][send_mail]" class="send_mail" id="send_mail" value="1" <?php checked( $checked , true ); ?> />
               <?php echo esc_html( __( 'Send an email when locked out' , 'mywp-lockout' ) ); ?>
             </label>
-            <div id="send-mail-option" class="more-option-fields">
+            <div id="send-mail-option" class="send-mail-option-fields">
               <p>
                 <?php echo esc_html( __( 'From' , 'mywp-lockout' ) ); ?>:
                 <code><?php echo esc_html( MywpLockoutApi::get_send_from_email() ); ?></code>
@@ -469,13 +469,15 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
     ?>
     <style>
-    .more-option-fields {
+    .lockout-time-option-fields,
+    .send-mail-option-fields {
       padding: 20px;
       margin: 20px 0 0 0;
       background: #fff;
       opacity: 0.3;
     }
-    .more-option-fields.active {
+    .lockout-time-option-fields.active,
+    .send-mail-option-fields.active {
       opacity: 1;
     }
     #version-check-table .spinner {
@@ -503,41 +505,55 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
     <script>
     jQuery(document).ready(function($){
 
-      let expire_timeout = $('#expire_timeout').val();
+      let $expire_timeout = $('#expire_timeout');
 
-      let is_send_mail_checked = $('#send_mail').prop('checked');
+      let expire_timeout_min = $expire_timeout.val();
 
-      if( expire_timeout !== '' && expire_timeout > 0 ) {
+      let $lockout_time_option_fields = $('.lockout-time-option-fields');
 
-        more_option_fields( true );
+      let $send_mail = $('#send_mail');
+
+      let is_send_mail_checked = $send_mail.prop('checked');
+
+      let $send_mail_option_fields = $('.send-mail-option-fields');
+
+      if( expire_timeout_min !== '' && expire_timeout_min > 0 ) {
+
+        lockout_time_option_fields( true );
 
       }
 
-      function more_option_fields( is_true = false ) {
-
-        let $more_option_fields = $('.more-option-fields');
+      function lockout_time_option_fields( is_true = false ) {
 
         if( is_true ) {
 
-          $more_option_fields.addClass('active');
+          $lockout_time_option_fields.each( function( index, el ) {
+
+            $(el).addClass('active');
+
+          });
 
         } else {
 
-          $more_option_fields.removeClass('active');
+          $lockout_time_option_fields.each( function( index, el ) {
+
+            $(el).removeClass('active');
+
+          });
 
         }
 
       }
 
-      $('#expire_timeout').on('change', function() {
+      $expire_timeout.on('change', function() {
 
         if( $(this).val() === '' || $(this).val() < 1 ) {
 
-          more_option_fields();
+          lockout_time_option_fields();
 
         } else {
 
-          more_option_fields( true );
+          lockout_time_option_fields( true );
 
         }
 
@@ -545,29 +561,27 @@ final class MywpSettingScreenLockout extends MywpAbstractSettingModule {
 
       if( is_send_mail_checked ) {
 
-        send_mail_option( true );
+        send_mail_option_fields( true );
 
       }
 
-      function send_mail_option( is_true = false ) {
-
-        let $send_email_option = $('#send-mail-option');
+      function send_mail_option_fields( is_true = false ) {
 
         if( is_true ) {
 
-          $send_email_option.addClass('active');
+          $send_mail_option_fields.addClass('active');
 
         } else {
 
-          $send_email_option.removeClass('active');
+          $send_mail_option_fields.removeClass('active');
 
         }
 
       }
 
-      $('#send_mail').on('click', function() {
+      $send_mail.on('click', function() {
 
-        send_mail_option( $(this).prop('checked') );
+        send_mail_option_fields( $(this).prop('checked') );
 
       });
 
